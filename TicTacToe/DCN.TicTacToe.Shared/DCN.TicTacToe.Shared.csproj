@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FE0EAE6A-6E88-4004-B23C-813C86F04827}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DCN.TicTacToe.Shared</RootNamespace>
+    <AssemblyName>DCN.TicTacToe.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DCN.TicTacToe.Shared.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllowAllAssemblyVersionsDeserializationBinder.cs" />
+    <Compile Include="Enum\StatusEnum.cs" />
+    <Compile Include="ExtensionMethods\TcpClientMethods.cs" />
+    <Compile Include="Messages\DisconnectRequest.cs" />
+    <Compile Include="Messages\EndSessionRequest.cs" />
+    <Compile Include="Messages\EndSessionResponse.cs" />
+    <Compile Include="Messages\FileUploadRequest.cs" />
+    <Compile Include="Messages\FileUploadResponse.cs" />
+    <Compile Include="Messages\GenericRequest.cs" />
+    <Compile Include="Messages\GenericResponse.cs" />
+    <Compile Include="Messages\MessageBase.cs" />
+    <Compile Include="Messages\RemoteDesktopRequest.cs" />
+    <Compile Include="Messages\RemoteDesktopResponse.cs" />
+    <Compile Include="Messages\RequestMessageBase.cs" />
+    <Compile Include="Messages\ResponseMessageBase.cs" />
+    <Compile Include="Messages\SessionRequest.cs" />
+    <Compile Include="Messages\SessionResponse.cs" />
+    <Compile Include="Messages\TextMessageRequest.cs" />
+    <Compile Include="Messages\ValidationRequest.cs" />
+    <Compile Include="Messages\ValidationResponse.cs" />
+    <Compile Include="Models\ResponseCallbackObject.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
