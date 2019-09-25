@@ -31,6 +31,8 @@ namespace DCN.TicTacToe.UI.Client
         {
             client = new DCN.TicTacToe.Client.Client();
             InitializeComponent();
+
+            client.Connect("localhost", 9999);
         }
 
         #region Set up for title bar
@@ -79,6 +81,29 @@ namespace DCN.TicTacToe.UI.Client
         private void InvokeUI(Action action)
         {
             this.Invoke(action);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            client.Login("nguyenne", (senderClient, args) =>
+            {
+
+                if (args.IsValid)
+                {
+                    Status("User Validated!");
+                    this.InvokeUI(() =>
+                    {
+                        this.Text = "Client - " + "nguyenne";
+                        
+                    });
+                }
+
+                if (args.HasError)
+                {
+                    Status(args.Exception.ToString());
+                }
+
+            });
         }
     }
 }

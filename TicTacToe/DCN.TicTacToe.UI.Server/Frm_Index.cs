@@ -10,20 +10,50 @@ using System.Windows.Forms;
 
 namespace DCN.TicTacToe.UI.Server
 {
-    public partial class Form1 : Form
+    public partial class Frm_Index : Form
     {
         private DCN.TicTacToe.Server.Server server;
         private Timer updateListTimer;
 
-        public Form1()
+        public Frm_Index()
         {
             server = new TicTacToe.Server.Server(9999);
             InitializeComponent();
+
+            RegisterEvents();
 
             updateListTimer = new Timer();
             updateListTimer.Interval = 1000;
             updateListTimer.Tick += UpdateListTimer_Tick;
             updateListTimer.Start();
+        }
+
+        private void RegisterEvents()
+        {
+            //this
+            btnStart.Click += btnStart_Click;
+            btnStop.Click += btnStop_Click;
+            this.Load += ServerForm_Load;
+
+            //Server
+            server.ClientValidating += server_ClientValidating;
+        }
+
+        void ServerForm_Load(object sender, EventArgs e)
+        {
+            btnStart.PerformClick();
+        }
+
+        void server_ClientValidating(TicTacToe.Server.EventArguments.ClientValidatingEventArgs args)
+        {
+            if (!server.Receivers.Exists(x => x.Email == args.Request.Email))
+            {
+                args.Confirm();
+            }
+            else
+            {
+                args.Refuse();
+            }
         }
 
         private void UpdateListTimer_Tick(object sender, EventArgs e)
@@ -40,7 +70,7 @@ namespace DCN.TicTacToe.UI.Server
         {
             InvokeUI(() =>
             {
-                label1.Text = "";
+                listClients.Items.Clear();
 
                 foreach (var receiver in server.Receivers)
                 {
@@ -55,14 +85,25 @@ namespace DCN.TicTacToe.UI.Server
                         str[4] = receiver.OtherSideReceiver.Email;
                     }
 
-                    label1.Text += ("//" + str[0]); 
+                    ListViewItem item = new ListViewItem(str);
+                    listClients.Items.Add(item);
                 }
             });
+
         }
 
-        private void btn_StartServer_Click(object sender, EventArgs e)
+        void btnStop_Click(object sender, EventArgs e)
         {
-            this.server.Start();
+            server.Stop();
+            btnStop.Enabled = false;
+            btnStart.Enabled = true;
+        }
+
+        void btnStart_Click(object sender, EventArgs e)
+        {
+            server.Start();
+            btnStop.Enabled = true;
+            btnStart.Enabled = false;
         }
     }
 }
