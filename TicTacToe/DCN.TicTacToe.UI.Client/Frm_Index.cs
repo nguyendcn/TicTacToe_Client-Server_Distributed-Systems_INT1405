@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -29,8 +30,12 @@ namespace DCN.TicTacToe.UI.Client
 
         public Frm_Index()
         {
+            
             client = new DCN.TicTacToe.Client.Client();
             InitializeComponent();
+
+            this.tpnl_Login.Visible = false;
+            this.pnl_GamePlay.Visible = false;
 
             client.Connect("localhost", 9999);
         }
@@ -75,7 +80,7 @@ namespace DCN.TicTacToe.UI.Client
 
         private void Status(String str)
         {
-            InvokeUI(() => {  str+=""; });
+            InvokeUI(() => { Debug.WriteLine(str); });
         }
 
         private void InvokeUI(Action action)
@@ -83,22 +88,70 @@ namespace DCN.TicTacToe.UI.Client
             this.Invoke(action);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void pnl_ExitFormLogin_Click(object sender, EventArgs e)
         {
-            client.Login("nguyenne", (senderClient, args) =>
+            this.txt_UserName.Text = "";
+            this.tpnl_Login.Visible = false;
+
+        }
+
+        private void btn_Login_Click(object sender, EventArgs e)
+        {
+            client.Login(txt_UserName.Text, (senderClient, args) =>
             {
 
                 if (args.IsValid)
                 {
+                    //client.Status = Shared.Enum.StatusEnum.Validated;
                     Status("User Validated!");
                     this.InvokeUI(() =>
                     {
-                        this.Text = "Client - " + "nguyenne";
-                        
+                        this.Text = "Client - " + txt_UserName.Text;
+
                     });
                 }
 
                 if (args.HasError)
+                {
+                    Status(args.Exception.ToString());
+                }
+
+            });
+            this.txt_UserName.Text = "";
+            this.tpnl_Login.Visible = false;
+            this.pnl_Index.Visible = false;
+            this.pnl_Common.Visible = true;
+            this.pnl_Common.BringToFront();
+        }
+
+        private void picb_PlayNow_Click(object sender, EventArgs e)
+        {
+            if (client.Status == Shared.Enum.StatusEnum.Connected)
+            {
+                this.tpnl_Login.Visible = true;
+                this.tpnl_Login.BringToFront();
+            }
+            else
+            {
+                MessageBox.Show("You had login.");
+            }
+        }
+
+        private void btn_ConnectToPlayer_Click(object sender, EventArgs e)
+        {
+            client.RequestSession(txt_UserName.Text, (senderClient, args) =>
+            {
+
+                if (args.IsConfirmed)
+                {
+                    Status("Session started with " + txt_PlayerID.Text);
+
+                    InvokeUI(() =>
+                    {
+                        Debug.WriteLine("Session started with " + txt_PlayerID.Text);
+                    });
+                }
+                else
                 {
                     Status(args.Exception.ToString());
                 }

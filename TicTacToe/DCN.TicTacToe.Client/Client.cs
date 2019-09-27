@@ -35,7 +35,7 @@ namespace DCN.TicTacToe.Client
         /// <summary>
         /// The status of the client.
         /// </summary>
-        public StatusEnum Status { get; private set; }
+        public StatusEnum Status { get; set; }
         /// <summary>
         /// List containing all messages that is waiting to be delivered to the remote client/server
         /// </summary>

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCN.TicTacToe.UI.Client", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCN.TicTacToe.UI.Server", "DCN.TicTacToe.UI.Server\DCN.TicTacToe.UI.Server.csproj", "{7115EE67-D458-48A4-9832-4FDBE3CEDEFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCN.TicTacToe.UI", "DCN.TicTacToe.UI\DCN.TicTacToe.UI.csproj", "{8B388FC5-AACB-434F-B53A-E415BC858F19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7115EE67-D458-48A4-9832-4FDBE3CEDEFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7115EE67-D458-48A4-9832-4FDBE3CEDEFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7115EE67-D458-48A4-9832-4FDBE3CEDEFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B388FC5-AACB-434F-B53A-E415BC858F19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B388FC5-AACB-434F-B53A-E415BC858F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B388FC5-AACB-434F-B53A-E415BC858F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B388FC5-AACB-434F-B53A-E415BC858F19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
