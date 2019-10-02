@@ -39,12 +39,8 @@
             this.picb_About = new System.Windows.Forms.PictureBox();
             this.picb_QuickPlay = new System.Windows.Forms.PictureBox();
             this.picb_PlayNow = new System.Windows.Forms.PictureBox();
-            this.tpnl_Login = new DCN.TicTacToe.UI.Client.TransparentPanel(this.components);
-            this.btn_Login = new System.Windows.Forms.Button();
-            this.pnl_ExitFormLogin = new System.Windows.Forms.Panel();
-            this.txt_UserName = new System.Windows.Forms.TextBox();
             this.pnl_Common = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flp_ShowTableGame = new System.Windows.Forms.FlowLayoutPanel();
             this.cmb_Online = new System.Windows.Forms.ComboBox();
             this.btn_findOnline = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -64,6 +60,10 @@
             this.pnl_GameBoard = new System.Windows.Forms.Panel();
             this.pnl_ChatControl = new System.Windows.Forms.Panel();
             this.btn_Register = new System.Windows.Forms.Button();
+            this.tpnl_Login = new DCN.TicTacToe.UI.Client.TransparentPanel(this.components);
+            this.btn_Login = new System.Windows.Forms.Button();
+            this.pnl_ExitFormLogin = new System.Windows.Forms.Panel();
+            this.txt_UserName = new System.Windows.Forms.TextBox();
             this.pnl_form.SuspendLayout();
             this.pnl_Index.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -72,21 +72,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.picb_About)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_QuickPlay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_PlayNow)).BeginInit();
-            this.tpnl_Login.SuspendLayout();
             this.pnl_Common.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnl_TitleBar.SuspendLayout();
             this.pnl_GamePlay.SuspendLayout();
+            this.tpnl_Login.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_form
             // 
-            this.pnl_form.Controls.Add(this.pnl_Index);
-            this.pnl_form.Controls.Add(this.pnl_Common);
-            this.pnl_form.Controls.Add(this.pnl_TitleBar);
             this.pnl_form.Controls.Add(this.pnl_GamePlay);
+            this.pnl_form.Controls.Add(this.pnl_Common);
+            this.pnl_form.Controls.Add(this.pnl_Index);
+            this.pnl_form.Controls.Add(this.pnl_TitleBar);
             this.pnl_form.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_form.Location = new System.Drawing.Point(0, 0);
             this.pnl_form.Name = "pnl_form";
@@ -186,49 +185,10 @@
             this.picb_PlayNow.TabStop = false;
             this.picb_PlayNow.Click += new System.EventHandler(this.picb_PlayNow_Click);
             // 
-            // tpnl_Login
-            // 
-            this.tpnl_Login.BackColor = System.Drawing.Color.Transparent;
-            this.tpnl_Login.Controls.Add(this.btn_Login);
-            this.tpnl_Login.Controls.Add(this.pnl_ExitFormLogin);
-            this.tpnl_Login.Controls.Add(this.txt_UserName);
-            this.tpnl_Login.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tpnl_Login.Location = new System.Drawing.Point(0, 0);
-            this.tpnl_Login.Name = "tpnl_Login";
-            this.tpnl_Login.Opacity = 10;
-            this.tpnl_Login.Size = new System.Drawing.Size(873, 610);
-            this.tpnl_Login.TabIndex = 3;
-            // 
-            // btn_Login
-            // 
-            this.btn_Login.Location = new System.Drawing.Point(108, 86);
-            this.btn_Login.Name = "btn_Login";
-            this.btn_Login.Size = new System.Drawing.Size(75, 23);
-            this.btn_Login.TabIndex = 1;
-            this.btn_Login.Text = "Done";
-            this.btn_Login.UseVisualStyleBackColor = true;
-            this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
-            // 
-            // pnl_ExitFormLogin
-            // 
-            this.pnl_ExitFormLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.pnl_ExitFormLogin.Location = new System.Drawing.Point(241, 14);
-            this.pnl_ExitFormLogin.Name = "pnl_ExitFormLogin";
-            this.pnl_ExitFormLogin.Size = new System.Drawing.Size(21, 19);
-            this.pnl_ExitFormLogin.TabIndex = 2;
-            this.pnl_ExitFormLogin.Click += new System.EventHandler(this.pnl_ExitFormLogin_Click);
-            // 
-            // txt_UserName
-            // 
-            this.txt_UserName.Location = new System.Drawing.Point(73, 52);
-            this.txt_UserName.Name = "txt_UserName";
-            this.txt_UserName.Size = new System.Drawing.Size(134, 20);
-            this.txt_UserName.TabIndex = 0;
-            // 
             // pnl_Common
             // 
             this.pnl_Common.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnl_Common.Controls.Add(this.flowLayoutPanel1);
+            this.pnl_Common.Controls.Add(this.flp_ShowTableGame);
             this.pnl_Common.Controls.Add(this.panel1);
             this.pnl_Common.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Common.Location = new System.Drawing.Point(0, 34);
@@ -236,29 +196,27 @@
             this.pnl_Common.Size = new System.Drawing.Size(873, 610);
             this.pnl_Common.TabIndex = 2;
             // 
-            // flowLayoutPanel1
+            // flp_ShowTableGame
             // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.flowLayoutPanel1.Controls.Add(this.cmb_Online);
-            this.flowLayoutPanel1.Controls.Add(this.btn_findOnline);
-            this.flowLayoutPanel1.Controls.Add(this.btn_Register);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 52);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(873, 558);
-            this.flowLayoutPanel1.TabIndex = 1;
+            this.flp_ShowTableGame.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.flp_ShowTableGame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flp_ShowTableGame.Location = new System.Drawing.Point(0, 52);
+            this.flp_ShowTableGame.Name = "flp_ShowTableGame";
+            this.flp_ShowTableGame.Size = new System.Drawing.Size(873, 558);
+            this.flp_ShowTableGame.TabIndex = 1;
             // 
             // cmb_Online
             // 
             this.cmb_Online.FormattingEnabled = true;
-            this.cmb_Online.Location = new System.Drawing.Point(3, 3);
+            this.cmb_Online.Location = new System.Drawing.Point(455, 14);
             this.cmb_Online.Name = "cmb_Online";
             this.cmb_Online.Size = new System.Drawing.Size(121, 21);
             this.cmb_Online.TabIndex = 2;
+            this.cmb_Online.SelectedIndexChanged += new System.EventHandler(this.cmb_Online_SelectedIndexChanged);
             // 
             // btn_findOnline
             // 
-            this.btn_findOnline.Location = new System.Drawing.Point(130, 3);
+            this.btn_findOnline.Location = new System.Drawing.Point(707, 12);
             this.btn_findOnline.Name = "btn_findOnline";
             this.btn_findOnline.Size = new System.Drawing.Size(75, 23);
             this.btn_findOnline.TabIndex = 3;
@@ -269,6 +227,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.btn_findOnline);
+            this.panel1.Controls.Add(this.cmb_Online);
+            this.panel1.Controls.Add(this.btn_Register);
             this.panel1.Controls.Add(this.btn_ConnectToPlayer);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -396,9 +357,9 @@
             this.pnl_GamePlay.Controls.Add(this.pnl_GameBoard);
             this.pnl_GamePlay.Controls.Add(this.pnl_ChatControl);
             this.pnl_GamePlay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_GamePlay.Location = new System.Drawing.Point(0, 0);
+            this.pnl_GamePlay.Location = new System.Drawing.Point(0, 34);
             this.pnl_GamePlay.Name = "pnl_GamePlay";
-            this.pnl_GamePlay.Size = new System.Drawing.Size(873, 644);
+            this.pnl_GamePlay.Size = new System.Drawing.Size(873, 610);
             this.pnl_GamePlay.TabIndex = 1;
             // 
             // pnl_PlayerArea_2
@@ -433,7 +394,7 @@
             this.pnl_PlayerProps.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.pnl_PlayerProps.Location = new System.Drawing.Point(672, 52);
             this.pnl_PlayerProps.Name = "pnl_PlayerProps";
-            this.pnl_PlayerProps.Size = new System.Drawing.Size(708, 334);
+            this.pnl_PlayerProps.Size = new System.Drawing.Size(708, 300);
             this.pnl_PlayerProps.TabIndex = 8;
             // 
             // pnl_GameBoard
@@ -448,20 +409,59 @@
             // 
             this.pnl_ChatControl.BackColor = System.Drawing.SystemColors.Highlight;
             this.pnl_ChatControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_ChatControl.Location = new System.Drawing.Point(0, 565);
+            this.pnl_ChatControl.Location = new System.Drawing.Point(0, 531);
             this.pnl_ChatControl.Name = "pnl_ChatControl";
             this.pnl_ChatControl.Size = new System.Drawing.Size(873, 79);
             this.pnl_ChatControl.TabIndex = 6;
             // 
             // btn_Register
             // 
-            this.btn_Register.Location = new System.Drawing.Point(211, 3);
+            this.btn_Register.Location = new System.Drawing.Point(602, 12);
             this.btn_Register.Name = "btn_Register";
             this.btn_Register.Size = new System.Drawing.Size(75, 23);
             this.btn_Register.TabIndex = 4;
             this.btn_Register.Text = "Register";
             this.btn_Register.UseVisualStyleBackColor = true;
             this.btn_Register.Click += new System.EventHandler(this.btn_Register_Click);
+            // 
+            // tpnl_Login
+            // 
+            this.tpnl_Login.BackColor = System.Drawing.Color.Transparent;
+            this.tpnl_Login.Controls.Add(this.btn_Login);
+            this.tpnl_Login.Controls.Add(this.pnl_ExitFormLogin);
+            this.tpnl_Login.Controls.Add(this.txt_UserName);
+            this.tpnl_Login.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tpnl_Login.Location = new System.Drawing.Point(0, 0);
+            this.tpnl_Login.Name = "tpnl_Login";
+            this.tpnl_Login.Opacity = 10;
+            this.tpnl_Login.Size = new System.Drawing.Size(873, 610);
+            this.tpnl_Login.TabIndex = 3;
+            // 
+            // btn_Login
+            // 
+            this.btn_Login.Location = new System.Drawing.Point(108, 86);
+            this.btn_Login.Name = "btn_Login";
+            this.btn_Login.Size = new System.Drawing.Size(75, 23);
+            this.btn_Login.TabIndex = 1;
+            this.btn_Login.Text = "Done";
+            this.btn_Login.UseVisualStyleBackColor = true;
+            this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
+            // 
+            // pnl_ExitFormLogin
+            // 
+            this.pnl_ExitFormLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnl_ExitFormLogin.Location = new System.Drawing.Point(241, 14);
+            this.pnl_ExitFormLogin.Name = "pnl_ExitFormLogin";
+            this.pnl_ExitFormLogin.Size = new System.Drawing.Size(21, 19);
+            this.pnl_ExitFormLogin.TabIndex = 2;
+            this.pnl_ExitFormLogin.Click += new System.EventHandler(this.pnl_ExitFormLogin_Click);
+            // 
+            // txt_UserName
+            // 
+            this.txt_UserName.Location = new System.Drawing.Point(73, 52);
+            this.txt_UserName.Name = "txt_UserName";
+            this.txt_UserName.Size = new System.Drawing.Size(134, 20);
+            this.txt_UserName.TabIndex = 0;
             // 
             // Frm_Index
             // 
@@ -480,15 +480,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.picb_About)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_QuickPlay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_PlayNow)).EndInit();
-            this.tpnl_Login.ResumeLayout(false);
-            this.tpnl_Login.PerformLayout();
             this.pnl_Common.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.pnl_TitleBar.ResumeLayout(false);
             this.pnl_GamePlay.ResumeLayout(false);
+            this.tpnl_Login.ResumeLayout(false);
+            this.tpnl_Login.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -515,7 +514,7 @@
         private System.Windows.Forms.Panel pnl_GameBoard;
         private System.Windows.Forms.Panel pnl_ChatControl;
         private System.Windows.Forms.Panel pnl_Common;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flp_ShowTableGame;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_ConnectToPlayer;
         private System.Windows.Forms.Panel panel2;

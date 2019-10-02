@@ -68,6 +68,7 @@
     <Compile Include="Messages\SessionRequest.cs" />
     <Compile Include="Messages\SessionResponse.cs" />
     <Compile Include="Messages\TextMessageRequest.cs" />
+    <Compile Include="Messages\UpdateClientsInProcessRequest.cs" />
     <Compile Include="Messages\ValidationRequest.cs" />
     <Compile Include="Messages\ValidationResponse.cs" />
     <Compile Include="Models\ResponseCallbackObject.cs" />

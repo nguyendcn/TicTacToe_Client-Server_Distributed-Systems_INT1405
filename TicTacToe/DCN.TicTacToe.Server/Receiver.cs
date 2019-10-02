@@ -278,11 +278,18 @@ namespace DCN.TicTacToe.Server
             }
         }
 
+        private bool IsAvaliable(StatusEnum status)
+        {
+            if (status == StatusEnum.Validated || status == StatusEnum.InProcess)
+                return true;
+            return false;
+        }
+
         private void SessionRequestHandler(SessionRequest request)
         {
             SessionResponse response;
 
-            if (this.Status != StatusEnum.Validated) //Added after a code project user comment.
+            if (!IsAvaliable(this.Status)) //Added after a code project user comment.
             {
                 response = new SessionResponse(request);
                 response.IsConfirmed = false;
@@ -296,12 +303,12 @@ namespace DCN.TicTacToe.Server
             {
                 if (receiver.Email == request.Email)
                 {
-                    if (receiver.Status == StatusEnum.Validated)
+                    if (IsAvaliable(receiver.Status))
                     {
                         request.Email = this.Email;
                         receiver.SendMessage(request);
                         return;
-                    }
+                    } 
                 }
             }
 
@@ -356,6 +363,32 @@ namespace DCN.TicTacToe.Server
             }
             request.IsCreate = false;
             SendMessage(response);
+
+            UpdateClientsInProcessRequest processRequest = new UpdateClientsInProcessRequest();
+            processRequest.ClientsInProcess = GetListReceiverNameInProcess(Server.Receivers);
+
+            foreach (var receiver in Server.Receivers.Where(x => x != this))
+            {
+                if (receiver.Status == StatusEnum.Validated)
+                {
+                    receiver.SendMessage(processRequest);
+                }
+            }
+            
+        }
+
+
+        private List<String> GetListReceiverNameInProcess(List<Receiver> listReceiver)
+        {
+            List<String> listName = new List<string>();
+            foreach (var receiver in Server.Receivers)
+            {
+                if (receiver.Status == StatusEnum.InProcess)
+                {
+                    listName.Add(receiver.Email);
+                }
+            }
+            return listName;
         }
 
         public void ClientsInProcessRequestHandler(ClientsInProcessRequest request)

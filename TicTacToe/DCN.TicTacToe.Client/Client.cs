@@ -78,6 +78,10 @@ namespace DCN.TicTacToe.Client
         /// Raises when the current session was ended by the remote client.
         /// </summary>
         public event Action<Client> SessionEndedByTheRemoteClient;
+        /// <summary>
+        /// 
+        /// </summary>
+        public event Action<UpdateClientsInProcessRequest> UpdateClientInProcess;
         #endregion
 
         #region Constructors
@@ -375,6 +379,10 @@ namespace DCN.TicTacToe.Client
                 {
                     OnSessionClientDisconnected();
                 }
+                else if(type == typeof(UpdateClientsInProcessRequest))
+                {
+                    UpdateClientsInProcessRequestHandler(msg as UpdateClientsInProcessRequest);
+                }
                 else if (type == typeof(GenericRequest))
                 {
                     OnGenericRequestReceived(msg as GenericRequest);
@@ -471,13 +479,15 @@ namespace DCN.TicTacToe.Client
         {
             SessionResponse response = new SessionResponse(request);
 
-            EventArguments.SessionRequestEventArguments args = new EventArguments.SessionRequestEventArguments(() =>
+            if(this.Status == StatusEnum.Validated)
             {
-                //Confirm Session
-                response.IsConfirmed = true;
-                response.Email = request.Email;
-                SendMessage(response);
-            },
+                EventArguments.SessionRequestEventArguments args = new EventArguments.SessionRequestEventArguments(() =>
+                {
+                    //Confirm Session
+                    response.IsConfirmed = true;
+                    response.Email = request.Email;
+                    SendMessage(response);
+                },
             () =>
             {
                 //Refuse Session
@@ -486,8 +496,21 @@ namespace DCN.TicTacToe.Client
                 SendMessage(response);
             });
 
-            args.Request = request;
-            OnSessionRequest(args);
+                args.Request = request;
+                OnSessionRequest(args);
+            }
+            else
+            {
+                response.IsConfirmed = true;
+                response.Email = request.Email;
+                SendMessage(response);
+            }
+            
+        }
+
+        public void UpdateClientsInProcessRequestHandler(UpdateClientsInProcessRequest request)
+        {
+            OnUpdateClientsInProcessRequest(request);
         }
 
         #endregion
@@ -527,6 +550,11 @@ namespace DCN.TicTacToe.Client
         #endregion
 
         #region Virtuals
+
+        protected virtual void OnUpdateClientsInProcessRequest(UpdateClientsInProcessRequest args)
+        {
+            if (UpdateClientInProcess != null) UpdateClientInProcess(args);
+        }
 
         protected virtual void OnSessionRequest(EventArguments.SessionRequestEventArguments args)
         {

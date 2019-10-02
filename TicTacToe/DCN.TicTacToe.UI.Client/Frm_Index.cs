@@ -34,13 +34,32 @@ namespace DCN.TicTacToe.UI.Client
             client = new DCN.TicTacToe.Client.Client();
             InitializeComponent();
 
-            this.tpnl_Login.Visible = false;
-            this.pnl_GamePlay.Visible = false;
+            this.pnl_Index.BringToFront();
+
 
             client.Connect("localhost", 9999);
 
             client.SessionRequest += client_SessionRequest;
             client.TextMessageReceived += Client_TextMessageReceived;
+            client.UpdateClientInProcess += Client_UpdateClientInProcess;
+        }
+
+        private void Client_UpdateClientInProcess(Shared.Messages.UpdateClientsInProcessRequest msg)
+        {
+            this.InvokeUI(() =>
+            {
+                flp_ShowTableGame.Controls.Clear();
+                foreach (string namePlayer in msg.ClientsInProcess)
+                {
+                    Button btn = new Button();
+                    btn.Size = new Size(100, 100);
+                    btn.Text = namePlayer;
+                    btn.Click += Btn_TableGame_Click;
+
+                    flp_ShowTableGame.Controls.Add(btn);
+                }
+            });
+
         }
 
         private void Client_TextMessageReceived(TicTacToe.Client.Client client, string message)
@@ -130,6 +149,7 @@ namespace DCN.TicTacToe.UI.Client
             this.pnl_Index.Visible = false;
             this.pnl_Common.Visible = true;
             this.pnl_Common.BringToFront();
+            this.btn_findOnline.PerformClick();
         }
 
         private void picb_PlayNow_Click(object sender, EventArgs e)
@@ -204,16 +224,39 @@ namespace DCN.TicTacToe.UI.Client
                 {
                     if (args.ClientsInProcess != null)
                     {
-                        cmb_Online.Items.Clear();
-
-                        args.ClientsInProcess.ForEach((clt) =>
+                        flp_ShowTableGame.Controls.Clear();
+                        args.ClientsInProcess.ForEach((namePlayer) =>
                         {
-                            cmb_Online.Items.Add(clt);
+                            Button btn = new Button();
+                            btn.Size = new Size(100, 100);
+                            btn.Text = namePlayer;
+                            btn.Click += Btn_TableGame_Click;
+
+                            flp_ShowTableGame.Controls.Add(btn);
                         });
-                        cmb_Online.SelectedIndex = 0;
+                        
                     }
+
                 });
 
+            });
+        }
+
+        private void Btn_TableGame_Click(object sender, EventArgs e)
+        {
+            Button btn_Table = sender as Button;
+            string playerName = btn_Table.Text;
+
+            client.RequestSession(playerName, (clientSend, args) =>
+            {
+                this.InvokeUI(() => {
+                    if (args.IsConfirmed)
+                    {
+                        this.Text = args.Email;
+                        pnl_GamePlay.BringToFront();
+                    }
+                });
+               
             });
         }
 
@@ -224,7 +267,30 @@ namespace DCN.TicTacToe.UI.Client
                 {
                     //this.Text = "Create table success!";
                     Status("Create table success!");
+                    this.InvokeUI(() =>
+                    {
+                        this.pnl_GamePlay.BringToFront();
+                    });
+                    //redirect to table game.
                 }
+            });
+        }
+
+        private void cmb_Online_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cmb_NamePlayer = sender as ComboBox;
+            string clientName = cmb_NamePlayer.SelectedItem.ToString();
+
+            foreach(Button ctr in flp_ShowTableGame.Controls)
+            {
+                flp_ShowTableGame.Controls.Remove(ctr);
+            }
+
+            client.RequestSession(clientName, (clientSend, args) =>
+            {
+            this.InvokeUI(()=>{
+                this.Text = args.Email;
+            });
             });
         }
     }
