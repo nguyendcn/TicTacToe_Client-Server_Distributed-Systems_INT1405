@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using DCN.TicTacToe.Shared.Models;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Diagnostics;
 
 namespace DCN.TicTacToe.Client
 {
@@ -253,6 +254,21 @@ namespace DCN.TicTacToe.Client
             SendMessage(genericResponse);
         }
 
+        public void RequestCreateTable(bool createTable, Action<Client, CreateTableResponse> callback)
+        {
+            CreateTableRequest request = new CreateTableRequest();
+            request.IsCreate = createTable;
+            AddCallback(callback, request);
+            SendMessage(request);
+        }
+
+        public void RequestClientsInProcess(Action<Client, ClientsInProcessResponse> callback)
+        {
+            ClientsInProcessRequest request = new ClientsInProcessRequest();
+            AddCallback(callback, request);
+            SendMessage(request);
+        }
+
         #endregion
 
         #region Threads Methods
@@ -290,15 +306,15 @@ namespace DCN.TicTacToe.Client
                 {
                     //try
                     //{
-                    BinaryFormatter f = new BinaryFormatter();
-                    f.Binder = new Shared.AllowAllAssemblyVersionsDeserializationBinder();
-                    MessageBase msg = f.Deserialize(TcpClient.GetStream()) as MessageBase;
-                    OnMessageReceived(msg);
+                        BinaryFormatter f = new BinaryFormatter();
+                        f.Binder = new Shared.AllowAllAssemblyVersionsDeserializationBinder();
+                        MessageBase msg = f.Deserialize(TcpClient.GetStream()) as MessageBase;
+                        OnMessageReceived(msg);
                     //}
                     //catch (Exception e)
                     //{
                     //    Exception ex = new Exception("Unknown message recieved. Could not deserialize the stream.", e);
-                    //    OnClientError(this, ex);
+                    //    //OnClientError(this, ex);
                     //    Debug.WriteLine(ex.Message);
                     //}
                 }
@@ -388,7 +404,7 @@ namespace DCN.TicTacToe.Client
             {
                 if (request.CurrentPosition < request.TotalBytes)
                 {
-                   // request.BytesToWrite = Helpers.FileHelper.SampleBytesFromFile(request.SourceFilePath, request.CurrentPosition, request.BufferSize);
+                    // request.BytesToWrite = Helpers.FileHelper.SampleBytesFromFile(request.SourceFilePath, request.CurrentPosition, request.BufferSize);
                     request.CurrentPosition += request.BufferSize;
                     SendMessage(request);
                 }

@@ -212,6 +212,13 @@ namespace DCN.TicTacToe.Server
             else if (type == typeof(DisconnectRequest))
             {
                 DisconnectRequestHandler(msg as DisconnectRequest);
+            }else if(type == typeof(CreateTableRequest))
+            {
+                CreateTableHandler(msg as CreateTableRequest);
+            }
+            else if(type == typeof(ClientsInProcessRequest))
+            {
+                ClientsInProcessRequestHandler(msg as ClientsInProcessRequest);
             }
             else if (OtherSideReceiver != null)
             {
@@ -331,6 +338,41 @@ namespace DCN.TicTacToe.Server
             args.Request = request;
 
             Server.OnClientValidating(args);
+        }
+
+        private void CreateTableHandler(CreateTableRequest request)
+        {
+            CreateTableResponse response = new CreateTableResponse(request);
+
+            if (request.IsCreate)
+            {
+                Status = StatusEnum.InProcess;
+                response.IsSuccess = true;
+            }
+            else
+            {
+                Status = StatusEnum.Validated;
+                response.IsSuccess = true;
+            }
+            request.IsCreate = false;
+            SendMessage(response);
+        }
+
+        public void ClientsInProcessRequestHandler(ClientsInProcessRequest request)
+        {
+            ClientsInProcessResponse response = new ClientsInProcessResponse(request);
+
+            response.ClientsInProcess = new List<string>();
+
+            foreach (var receiver in Server.Receivers.Where(x => x != this))
+            {
+                if(receiver.Status == StatusEnum.InProcess)
+                {
+                    response.ClientsInProcess.Add(receiver.Email);
+                }
+            }
+
+            SendMessage(response);
         }
 
         #endregion

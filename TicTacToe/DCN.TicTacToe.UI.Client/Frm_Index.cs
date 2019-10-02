@@ -38,6 +38,14 @@ namespace DCN.TicTacToe.UI.Client
             this.pnl_GamePlay.Visible = false;
 
             client.Connect("localhost", 9999);
+
+            client.SessionRequest += client_SessionRequest;
+            client.TextMessageReceived += Client_TextMessageReceived;
+        }
+
+        private void Client_TextMessageReceived(TicTacToe.Client.Client client, string message)
+        {
+            this.Text = "Message: " + message;
         }
 
         #region Set up for title bar
@@ -80,7 +88,7 @@ namespace DCN.TicTacToe.UI.Client
 
         private void Status(String str)
         {
-            InvokeUI(() => { Debug.WriteLine(str); });
+            InvokeUI(() => { this.Text += str; });
         }
 
         private void InvokeUI(Action action)
@@ -139,7 +147,7 @@ namespace DCN.TicTacToe.UI.Client
 
         private void btn_ConnectToPlayer_Click(object sender, EventArgs e)
         {
-            client.RequestSession(txt_UserName.Text, (senderClient, args) =>
+            client.RequestSession(txt_PlayerID.Text, (senderClient, args) =>
             {
 
                 if (args.IsConfirmed)
@@ -156,6 +164,67 @@ namespace DCN.TicTacToe.UI.Client
                     Status(args.Exception.ToString());
                 }
 
+            });
+        }
+
+        void client_SessionRequest(DCN.TicTacToe.Client.Client client, TicTacToe.Client.EventArguments.SessionRequestEventArguments args)
+        {
+            this.InvokeUI(() =>
+            {
+
+                if (MessageBox.Show(this, "Session request from " + args.Request.Email + ". Confirm request?", this.Text, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    args.Confirm();
+                    Status("Session started with " + args.Request.Email);
+
+                    InvokeUI(() =>
+                    {
+
+                    });
+                }
+                else
+                {
+                    args.Refuse();
+                }
+
+            });
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            client.SendTextMessage(client.Address);
+        }
+
+        private void btn_findOnline_Click(object sender, EventArgs e)
+        {
+            client.RequestClientsInProcess((client, args) =>
+            {
+                this.InvokeUI(() =>
+                {
+                    if (args.ClientsInProcess != null)
+                    {
+                        cmb_Online.Items.Clear();
+
+                        args.ClientsInProcess.ForEach((clt) =>
+                        {
+                            cmb_Online.Items.Add(clt);
+                        });
+                        cmb_Online.SelectedIndex = 0;
+                    }
+                });
+
+            });
+        }
+
+        private void btn_Register_Click(object sender, EventArgs e)
+        {
+            client.RequestCreateTable(true, (client, args) => {
+                if (args.IsSuccess)
+                {
+                    //this.Text = "Create table success!";
+                    Status("Create table success!");
+                }
             });
         }
     }

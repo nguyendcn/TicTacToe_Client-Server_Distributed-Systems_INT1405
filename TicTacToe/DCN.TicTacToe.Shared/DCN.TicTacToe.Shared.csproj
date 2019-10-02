@@ -49,6 +49,10 @@
     <Compile Include="AllowAllAssemblyVersionsDeserializationBinder.cs" />
     <Compile Include="Enum\StatusEnum.cs" />
     <Compile Include="ExtensionMethods\TcpClientMethods.cs" />
+    <Compile Include="Messages\ClientsInProcessRequest.cs" />
+    <Compile Include="Messages\ClientsInProcessResponse.cs" />
+    <Compile Include="Messages\CreateTableRequest.cs" />
+    <Compile Include="Messages\CreateTableResponse.cs" />
     <Compile Include="Messages\DisconnectRequest.cs" />
     <Compile Include="Messages\EndSessionRequest.cs" />
     <Compile Include="Messages\EndSessionResponse.cs" />

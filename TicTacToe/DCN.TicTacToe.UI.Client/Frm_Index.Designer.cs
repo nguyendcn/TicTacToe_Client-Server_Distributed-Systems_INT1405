@@ -32,18 +32,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Index));
             this.pnl_form = new System.Windows.Forms.Panel();
             this.pnl_Index = new System.Windows.Forms.Panel();
+            this.pnl_IndexBar = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.picb_Exit = new System.Windows.Forms.PictureBox();
             this.picb_About = new System.Windows.Forms.PictureBox();
             this.picb_QuickPlay = new System.Windows.Forms.PictureBox();
             this.picb_PlayNow = new System.Windows.Forms.PictureBox();
-            this.pnl_IndexBar = new System.Windows.Forms.Panel();
             this.tpnl_Login = new DCN.TicTacToe.UI.Client.TransparentPanel(this.components);
             this.btn_Login = new System.Windows.Forms.Button();
             this.pnl_ExitFormLogin = new System.Windows.Forms.Panel();
             this.txt_UserName = new System.Windows.Forms.TextBox();
             this.pnl_Common = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.cmb_Online = new System.Windows.Forms.ComboBox();
+            this.btn_findOnline = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_ConnectToPlayer = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -60,9 +63,10 @@
             this.pnl_PlayerProps = new System.Windows.Forms.Panel();
             this.pnl_GameBoard = new System.Windows.Forms.Panel();
             this.pnl_ChatControl = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btn_Register = new System.Windows.Forms.Button();
             this.pnl_form.SuspendLayout();
             this.pnl_Index.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picb_Exit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_About)).BeginInit();
@@ -70,11 +74,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.picb_PlayNow)).BeginInit();
             this.tpnl_Login.SuspendLayout();
             this.pnl_Common.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnl_TitleBar.SuspendLayout();
             this.pnl_GamePlay.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_form
@@ -101,6 +105,32 @@
             this.pnl_Index.Name = "pnl_Index";
             this.pnl_Index.Size = new System.Drawing.Size(873, 610);
             this.pnl_Index.TabIndex = 1;
+            // 
+            // pnl_IndexBar
+            // 
+            this.pnl_IndexBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnl_IndexBar.Location = new System.Drawing.Point(0, 0);
+            this.pnl_IndexBar.Name = "pnl_IndexBar";
+            this.pnl_IndexBar.Size = new System.Drawing.Size(873, 35);
+            this.pnl_IndexBar.TabIndex = 1;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(873, 610);
+            this.tableLayoutPanel1.TabIndex = 5;
             // 
             // panel3
             // 
@@ -156,14 +186,6 @@
             this.picb_PlayNow.TabStop = false;
             this.picb_PlayNow.Click += new System.EventHandler(this.picb_PlayNow_Click);
             // 
-            // pnl_IndexBar
-            // 
-            this.pnl_IndexBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl_IndexBar.Location = new System.Drawing.Point(0, 0);
-            this.pnl_IndexBar.Name = "pnl_IndexBar";
-            this.pnl_IndexBar.Size = new System.Drawing.Size(873, 35);
-            this.pnl_IndexBar.TabIndex = 1;
-            // 
             // tpnl_Login
             // 
             this.tpnl_Login.BackColor = System.Drawing.Color.Transparent;
@@ -217,11 +239,32 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.flowLayoutPanel1.Controls.Add(this.cmb_Online);
+            this.flowLayoutPanel1.Controls.Add(this.btn_findOnline);
+            this.flowLayoutPanel1.Controls.Add(this.btn_Register);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 52);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(873, 558);
             this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // cmb_Online
+            // 
+            this.cmb_Online.FormattingEnabled = true;
+            this.cmb_Online.Location = new System.Drawing.Point(3, 3);
+            this.cmb_Online.Name = "cmb_Online";
+            this.cmb_Online.Size = new System.Drawing.Size(121, 21);
+            this.cmb_Online.TabIndex = 2;
+            // 
+            // btn_findOnline
+            // 
+            this.btn_findOnline.Location = new System.Drawing.Point(130, 3);
+            this.btn_findOnline.Name = "btn_findOnline";
+            this.btn_findOnline.Size = new System.Drawing.Size(75, 23);
+            this.btn_findOnline.TabIndex = 3;
+            this.btn_findOnline.Text = "Online";
+            this.btn_findOnline.UseVisualStyleBackColor = true;
+            this.btn_findOnline.Click += new System.EventHandler(this.btn_findOnline_Click);
             // 
             // panel1
             // 
@@ -290,6 +333,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "<--";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // btn_Minimise
             // 
@@ -409,23 +453,15 @@
             this.pnl_ChatControl.Size = new System.Drawing.Size(873, 79);
             this.pnl_ChatControl.TabIndex = 6;
             // 
-            // tableLayoutPanel1
+            // btn_Register
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(873, 610);
-            this.tableLayoutPanel1.TabIndex = 5;
+            this.btn_Register.Location = new System.Drawing.Point(211, 3);
+            this.btn_Register.Name = "btn_Register";
+            this.btn_Register.Size = new System.Drawing.Size(75, 23);
+            this.btn_Register.TabIndex = 4;
+            this.btn_Register.Text = "Register";
+            this.btn_Register.UseVisualStyleBackColor = true;
+            this.btn_Register.Click += new System.EventHandler(this.btn_Register_Click);
             // 
             // Frm_Index
             // 
@@ -433,12 +469,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(873, 644);
             this.Controls.Add(this.pnl_form);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Frm_Index";
             this.Text = "Form3";
             this.pnl_form.ResumeLayout(false);
             this.pnl_Index.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picb_Exit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_About)).EndInit();
@@ -447,12 +483,12 @@
             this.tpnl_Login.ResumeLayout(false);
             this.tpnl_Login.PerformLayout();
             this.pnl_Common.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.pnl_TitleBar.ResumeLayout(false);
             this.pnl_GamePlay.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -490,6 +526,9 @@
         private System.Windows.Forms.PictureBox picb_About;
         private System.Windows.Forms.PictureBox picb_QuickPlay;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ComboBox cmb_Online;
+        private System.Windows.Forms.Button btn_findOnline;
+        private System.Windows.Forms.Button btn_Register;
     }
 }
 
