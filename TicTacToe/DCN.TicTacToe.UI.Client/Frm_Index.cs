@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DCN.TicTacToe.Client;
+using DCN.TicTacToe.Shared.Models;
 
 namespace DCN.TicTacToe.UI.Client
 {
@@ -41,19 +42,37 @@ namespace DCN.TicTacToe.UI.Client
 
             client.SessionRequest += client_SessionRequest;
             client.TextMessageReceived += Client_TextMessageReceived;
-            client.UpdateClientInProcess += Client_UpdateClientInProcess;
+            client.UpdateTablesInProcess += Client_UpdateTablesInProcess;
+            client.AcceptPlayRequest += Client_AcceptPlayRequest;
         }
 
-        private void Client_UpdateClientInProcess(Shared.Messages.UpdateClientsInProcessRequest msg)
+        private void Client_AcceptPlayRequest(Shared.Messages.AcceptPlayRequest msg)
+        {
+            this.InvokeUI(() => {
+                Button btn = new Button();
+                btn.Size = new Size(100, 100);
+                btn.Click += Btn_Click;
+                pnl_GameBoard.Controls.Add(btn);
+            });
+            
+        }
+
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Client_UpdateTablesInProcess(Shared.Messages.UpdateTablesInProcessRequest msg)
         {
             this.InvokeUI(() =>
             {
                 flp_ShowTableGame.Controls.Clear();
-                foreach (string namePlayer in msg.ClientsInProcess)
+                foreach (TablePropertiesBase table in msg.ClientsInProcess)
                 {
                     Button btn = new Button();
                     btn.Size = new Size(100, 100);
-                    btn.Text = namePlayer;
+                    btn.Text = table.Room.ToString();
+                    btn.Name = table.IDUser_1;
                     btn.Click += Btn_TableGame_Click;
 
                     flp_ShowTableGame.Controls.Add(btn);
@@ -225,11 +244,12 @@ namespace DCN.TicTacToe.UI.Client
                     if (args.ClientsInProcess != null)
                     {
                         flp_ShowTableGame.Controls.Clear();
-                        args.ClientsInProcess.ForEach((namePlayer) =>
+                        args.ClientsInProcess.ForEach((table) =>
                         {
                             Button btn = new Button();
                             btn.Size = new Size(100, 100);
-                            btn.Text = namePlayer;
+                            btn.Text = table.Room.ToString();
+                            btn.Name = table.IDUser_1.ToString();
                             btn.Click += Btn_TableGame_Click;
 
                             flp_ShowTableGame.Controls.Add(btn);
@@ -245,7 +265,7 @@ namespace DCN.TicTacToe.UI.Client
         private void Btn_TableGame_Click(object sender, EventArgs e)
         {
             Button btn_Table = sender as Button;
-            string playerName = btn_Table.Text;
+            string playerName = btn_Table.Name;
 
             client.RequestSession(playerName, (clientSend, args) =>
             {
@@ -262,7 +282,7 @@ namespace DCN.TicTacToe.UI.Client
 
         private void btn_Register_Click(object sender, EventArgs e)
         {
-            client.RequestCreateTable(true, (client, args) => {
+            client.RequestCreateTable(true, -1, (client, args) => {
                 if (args.IsSuccess)
                 {
                     //this.Text = "Create table success!";
@@ -272,6 +292,10 @@ namespace DCN.TicTacToe.UI.Client
                         this.pnl_GamePlay.BringToFront();
                     });
                     //redirect to table game.
+                }
+                else
+                {
+                    Status("Table is exists");
                 }
             });
         }

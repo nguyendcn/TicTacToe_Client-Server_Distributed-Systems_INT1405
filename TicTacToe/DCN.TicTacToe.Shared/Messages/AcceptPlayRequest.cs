@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 namespace DCN.TicTacToe.Shared.Messages
 {
     [Serializable]
-    public class CreateTableRequest :RequestMessageBase
+    public class AcceptPlayRequest : RequestMessageBase
     {
-        public bool IsCreate { get; set; }
-        public int TableNumber { get; set; }
     }
 }

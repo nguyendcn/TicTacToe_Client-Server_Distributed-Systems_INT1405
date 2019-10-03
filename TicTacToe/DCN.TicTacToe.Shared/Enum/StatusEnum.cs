@@ -12,7 +12,6 @@ namespace DCN.TicTacToe.Shared.Enum
         Validated,
         InSession,
         InProcess
-
     }
 
 }

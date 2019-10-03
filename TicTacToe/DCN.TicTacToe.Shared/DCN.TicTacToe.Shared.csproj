@@ -48,9 +48,11 @@
   <ItemGroup>
     <Compile Include="AllowAllAssemblyVersionsDeserializationBinder.cs" />
     <Compile Include="Enum\StatusEnum.cs" />
+    <Compile Include="Enum\StatusInGame.cs" />
     <Compile Include="ExtensionMethods\TcpClientMethods.cs" />
-    <Compile Include="Messages\ClientsInProcessRequest.cs" />
-    <Compile Include="Messages\ClientsInProcessResponse.cs" />
+    <Compile Include="Messages\AcceptPlayRequest.cs" />
+    <Compile Include="Messages\TablesInProcessRequest.cs" />
+    <Compile Include="Messages\TablesInProcessResponse.cs" />
     <Compile Include="Messages\CreateTableRequest.cs" />
     <Compile Include="Messages\CreateTableResponse.cs" />
     <Compile Include="Messages\DisconnectRequest.cs" />
@@ -68,10 +70,12 @@
     <Compile Include="Messages\SessionRequest.cs" />
     <Compile Include="Messages\SessionResponse.cs" />
     <Compile Include="Messages\TextMessageRequest.cs" />
-    <Compile Include="Messages\UpdateClientsInProcessRequest.cs" />
+    <Compile Include="Messages\UpdateTablesInProcessRequest.cs" />
     <Compile Include="Messages\ValidationRequest.cs" />
     <Compile Include="Messages\ValidationResponse.cs" />
+    <Compile Include="Models\InGameProperties.cs" />
     <Compile Include="Models\ResponseCallbackObject.cs" />
+    <Compile Include="Models\TablePropertiesBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

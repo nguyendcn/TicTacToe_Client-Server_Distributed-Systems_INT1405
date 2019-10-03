@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DCN.TicTacToe.Shared.Messages
+namespace DCN.TicTacToe.Shared.Enum
 {
     [Serializable]
-    public class ClientsInProcessRequest : RequestMessageBase
+    public enum StatusInGame
     {
+        Ready,
+        NotReady,
+        Decline
     }
 }

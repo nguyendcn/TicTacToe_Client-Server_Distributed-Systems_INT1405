@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace DCN.TicTacToe.Shared.Messages
 {
     [Serializable]
-    public class UpdateClientsInProcessRequest : RequestMessageBase
+    public class TablesInProcessRequest : RequestMessageBase
     {
-        public List<String> ClientsInProcess { get; set; }
     }
 }

@@ -81,7 +81,12 @@ namespace DCN.TicTacToe.Client
         /// <summary>
         /// 
         /// </summary>
-        public event Action<UpdateClientsInProcessRequest> UpdateClientInProcess;
+        public event Action<UpdateTablesInProcessRequest> UpdateTablesInProcess;
+        /// <summary>
+        /// 
+        /// </summary>
+        public event Action<AcceptPlayRequest> AcceptPlayRequest;
+
         #endregion
 
         #region Constructors
@@ -258,20 +263,23 @@ namespace DCN.TicTacToe.Client
             SendMessage(genericResponse);
         }
 
-        public void RequestCreateTable(bool createTable, Action<Client, CreateTableResponse> callback)
+        public void RequestCreateTable(bool createTable, int tableNumber, Action<Client, CreateTableResponse> callback)
         {
             CreateTableRequest request = new CreateTableRequest();
             request.IsCreate = createTable;
+            request.TableNumber = tableNumber;
             AddCallback(callback, request);
             SendMessage(request);
         }
 
-        public void RequestClientsInProcess(Action<Client, ClientsInProcessResponse> callback)
+        public void RequestClientsInProcess(Action<Client, TablesInProcessResponse> callback)
         {
-            ClientsInProcessRequest request = new ClientsInProcessRequest();
+            TablesInProcessRequest request = new TablesInProcessRequest();
             AddCallback(callback, request);
             SendMessage(request);
         }
+
+        //public void RequestAcceptPlay(Action<>)
 
         #endregion
 
@@ -379,9 +387,13 @@ namespace DCN.TicTacToe.Client
                 {
                     OnSessionClientDisconnected();
                 }
-                else if(type == typeof(UpdateClientsInProcessRequest))
+                else if(type == typeof(UpdateTablesInProcessRequest))
                 {
-                    UpdateClientsInProcessRequestHandler(msg as UpdateClientsInProcessRequest);
+                    UpdateTablesInProcessRequestHandler(msg as UpdateTablesInProcessRequest);
+                }
+                else if(type == typeof(AcceptPlayRequest))
+                {
+
                 }
                 else if (type == typeof(GenericRequest))
                 {
@@ -488,13 +500,13 @@ namespace DCN.TicTacToe.Client
                     response.Email = request.Email;
                     SendMessage(response);
                 },
-            () =>
-            {
-                //Refuse Session
-                response.IsConfirmed = false;
-                response.Email = request.Email;
-                SendMessage(response);
-            });
+                () =>
+                {
+                    //Refuse Session
+                    response.IsConfirmed = false;
+                    response.Email = request.Email;
+                    SendMessage(response);
+                });
 
                 args.Request = request;
                 OnSessionRequest(args);
@@ -508,9 +520,9 @@ namespace DCN.TicTacToe.Client
             
         }
 
-        public void UpdateClientsInProcessRequestHandler(UpdateClientsInProcessRequest request)
+        public void UpdateTablesInProcessRequestHandler(UpdateTablesInProcessRequest request)
         {
-            OnUpdateClientsInProcessRequest(request);
+            OnUpdateTablesInProcessRequest(request);
         }
 
         #endregion
@@ -550,10 +562,15 @@ namespace DCN.TicTacToe.Client
         #endregion
 
         #region Virtuals
-
-        protected virtual void OnUpdateClientsInProcessRequest(UpdateClientsInProcessRequest args)
+        
+        protected virtual void OnAcceptPlayRequest(AcceptPlayRequest args)
         {
-            if (UpdateClientInProcess != null) UpdateClientInProcess(args);
+            if (AcceptPlayRequest != null) AcceptPlayRequest(args);
+        }
+
+        protected virtual void OnUpdateTablesInProcessRequest(UpdateTablesInProcessRequest args)
+        {
+            if (UpdateTablesInProcess != null) UpdateTablesInProcess(args);
         }
 
         protected virtual void OnSessionRequest(EventArguments.SessionRequestEventArguments args)

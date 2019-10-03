@@ -1,5 +1,6 @@
 ﻿using DCN.TicTacToe.Shared.Enum;
 using DCN.TicTacToe.Shared.Messages;
+using DCN.TicTacToe.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -56,6 +57,10 @@ namespace DCN.TicTacToe.Server
         /// If true will produce and exception in some cases.
         /// </summary>
         public bool DebugMode { get; set; }
+        /// <summary>
+        /// The room number is used to name session with other client 
+        /// </summary>
+        public InGameProperties InGameProperties { get; set; }
 
         #endregion
 
@@ -66,6 +71,8 @@ namespace DCN.TicTacToe.Server
             ID = Guid.NewGuid();
             MessageQueue = new List<MessageBase>();
             Status = StatusEnum.Connected;
+
+            InGameProperties = new InGameProperties();
         }
 
         /// <summary>
@@ -216,9 +223,9 @@ namespace DCN.TicTacToe.Server
             {
                 CreateTableHandler(msg as CreateTableRequest);
             }
-            else if(type == typeof(ClientsInProcessRequest))
+            else if(type == typeof(TablesInProcessRequest))
             {
-                ClientsInProcessRequestHandler(msg as ClientsInProcessRequest);
+                ClientsInProcessRequestHandler(msg as TablesInProcessRequest);
             }
             else if (OtherSideReceiver != null)
             {
@@ -265,6 +272,20 @@ namespace DCN.TicTacToe.Server
                         this.OtherSideReceiver = receiver;
                         this.Status = StatusEnum.InSession;
                         receiver.Status = StatusEnum.InSession;
+
+                        if (this.InGameProperties.Room == -1 && receiver.InGameProperties.Room == -1)
+                        {
+                            this.InGameProperties.Room = receiver.InGameProperties.Room = GetRandomTable(Server.Receivers);
+                        }
+                        else if (this.InGameProperties.Room == -1)
+                        {
+                            this.InGameProperties.Room = receiver.InGameProperties.Room;
+                        }
+                        else
+                        {
+                            receiver.InGameProperties.Room = this.InGameProperties.Room;
+                        }
+
                     }
                     else
                     {
@@ -273,9 +294,32 @@ namespace DCN.TicTacToe.Server
                     }
 
                     receiver.SendMessage(response);
+                    if(!response.HasError)
+                    {
+                        this.SendMessage(new AcceptPlayRequest());
+                        receiver.SendMessage(new AcceptPlayRequest());
+                    }
                     return;
                 }
             }
+        }
+
+        private int GetRandomTable(List<Receiver> listReceiver)
+        {
+            Random random = new Random();
+            int tableNumber = -1;
+
+            do
+            {
+                tableNumber = random.Next(1000, 9999);
+            } while (TableIsExists(listReceiver, tableNumber));
+
+            return tableNumber;
+        }
+
+        private bool TableIsExists(List<Receiver> listReceiver, int tableNumber)
+        {
+            return (listReceiver.Where(x =>  x.InGameProperties.Room == tableNumber)).Count() > 0;
         }
 
         private bool IsAvaliable(StatusEnum status)
@@ -353,19 +397,40 @@ namespace DCN.TicTacToe.Server
 
             if (request.IsCreate)
             {
-                Status = StatusEnum.InProcess;
-                response.IsSuccess = true;
+                if(request.TableNumber != -1)
+                {
+                    if(TableIsExists(Server.Receivers, request.TableNumber))
+                    {
+                        response.IsSuccess = false;
+                    }
+                    else
+                    {
+                        this.InGameProperties.Room = request.TableNumber;
+                        this.Status = StatusEnum.InProcess;
+                        response.IsSuccess = true;
+                    }
+                }
+                else
+                {
+                    this.InGameProperties.Room = GetRandomTable(Server.Receivers);
+                    this.Status = StatusEnum.InProcess;
+                    response.IsSuccess = true;
+                }              
             }
             else
             {
                 Status = StatusEnum.Validated;
                 response.IsSuccess = true;
             }
-            request.IsCreate = false;
             SendMessage(response);
 
-            UpdateClientsInProcessRequest processRequest = new UpdateClientsInProcessRequest();
-            processRequest.ClientsInProcess = GetListReceiverNameInProcess(Server.Receivers);
+            UpdateTableInProcessRequestHandler();
+        }
+
+        private void UpdateTableInProcessRequestHandler()
+        {
+            UpdateTablesInProcessRequest processRequest = new UpdateTablesInProcessRequest();
+            processRequest.ClientsInProcess = GetListTableInProcess(Server.Receivers);
 
             foreach (var receiver in Server.Receivers.Where(x => x != this))
             {
@@ -374,34 +439,34 @@ namespace DCN.TicTacToe.Server
                     receiver.SendMessage(processRequest);
                 }
             }
-            
         }
 
-
-        private List<String> GetListReceiverNameInProcess(List<Receiver> listReceiver)
+        private List<TablePropertiesBase> GetListTableInProcess(List<Receiver> listReceiver)
         {
-            List<String> listName = new List<string>();
+            List<TablePropertiesBase> listName = new List<TablePropertiesBase>();
             foreach (var receiver in Server.Receivers)
             {
                 if (receiver.Status == StatusEnum.InProcess)
                 {
-                    listName.Add(receiver.Email);
+                    listName.Add(new TablePropertiesBase(receiver.InGameProperties.Room,
+                                       receiver.Email, ""));
                 }
             }
             return listName;
         }
 
-        public void ClientsInProcessRequestHandler(ClientsInProcessRequest request)
+        public void ClientsInProcessRequestHandler(TablesInProcessRequest request)
         {
-            ClientsInProcessResponse response = new ClientsInProcessResponse(request);
+            TablesInProcessResponse response = new TablesInProcessResponse(request);
 
-            response.ClientsInProcess = new List<string>();
+            response.ClientsInProcess = new List<TablePropertiesBase>();
 
             foreach (var receiver in Server.Receivers.Where(x => x != this))
             {
                 if(receiver.Status == StatusEnum.InProcess)
                 {
-                    response.ClientsInProcess.Add(receiver.Email);
+                    response.ClientsInProcess.Add(new TablePropertiesBase(receiver.InGameProperties.Room, 
+                        receiver.Email, ""));
                 }
             }
 
