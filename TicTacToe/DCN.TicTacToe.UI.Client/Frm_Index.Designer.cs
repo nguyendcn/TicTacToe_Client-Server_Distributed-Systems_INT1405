@@ -39,11 +39,30 @@
             this.picb_About = new System.Windows.Forms.PictureBox();
             this.picb_QuickPlay = new System.Windows.Forms.PictureBox();
             this.picb_PlayNow = new System.Windows.Forms.PictureBox();
+            this.tpnl_Login = new DCN.TicTacToe.UI.Client.TransparentPanel(this.components);
+            this.btn_Login = new System.Windows.Forms.Button();
+            this.pnl_ExitFormLogin = new System.Windows.Forms.Panel();
+            this.txt_UserName = new System.Windows.Forms.TextBox();
+            this.pnl_GamePlay = new System.Windows.Forms.Panel();
+            this.pnl_MsgChat_2 = new System.Windows.Forms.Panel();
+            this.txt_MessContent_2 = new System.Windows.Forms.TextBox();
+            this.pnl_PlayerProps = new System.Windows.Forms.Panel();
+            this.pnl_MsgChat_1 = new System.Windows.Forms.Panel();
+            this.txt_MessContent_1 = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.pnl_PlayerArea_2 = new System.Windows.Forms.Panel();
+            this.pnl_PlayerArea_1 = new System.Windows.Forms.Panel();
+            this.pnl_ChatView = new System.Windows.Forms.Panel();
+            this.pnl_GameBoard = new System.Windows.Forms.Panel();
+            this.pnl_ChatControl = new System.Windows.Forms.Panel();
+            this.btn_SendMessage = new System.Windows.Forms.Button();
+            this.txt_Message = new System.Windows.Forms.TextBox();
             this.pnl_Common = new System.Windows.Forms.Panel();
             this.flp_ShowTableGame = new System.Windows.Forms.FlowLayoutPanel();
-            this.cmb_Online = new System.Windows.Forms.ComboBox();
-            this.btn_findOnline = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_findOnline = new System.Windows.Forms.Button();
+            this.cmb_Online = new System.Windows.Forms.ComboBox();
+            this.btn_Register = new System.Windows.Forms.Button();
             this.btn_ConnectToPlayer = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txt_PlayerID = new System.Windows.Forms.TextBox();
@@ -52,18 +71,9 @@
             this.btn_Minimise = new System.Windows.Forms.Button();
             this.btn_Maximise = new System.Windows.Forms.Button();
             this.btn_Exit = new System.Windows.Forms.Button();
-            this.pnl_GamePlay = new System.Windows.Forms.Panel();
-            this.pnl_PlayerArea_2 = new System.Windows.Forms.Panel();
-            this.pnl_PlayerArea_1 = new System.Windows.Forms.Panel();
-            this.pnl_ChatView = new System.Windows.Forms.Panel();
-            this.pnl_PlayerProps = new System.Windows.Forms.Panel();
-            this.pnl_GameBoard = new System.Windows.Forms.Panel();
-            this.pnl_ChatControl = new System.Windows.Forms.Panel();
-            this.btn_Register = new System.Windows.Forms.Button();
-            this.tpnl_Login = new DCN.TicTacToe.UI.Client.TransparentPanel(this.components);
-            this.btn_Login = new System.Windows.Forms.Button();
-            this.pnl_ExitFormLogin = new System.Windows.Forms.Panel();
-            this.txt_UserName = new System.Windows.Forms.TextBox();
+            this.btn_Already = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.pnl_form.SuspendLayout();
             this.pnl_Index.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -72,19 +82,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.picb_About)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_QuickPlay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_PlayNow)).BeginInit();
+            this.tpnl_Login.SuspendLayout();
+            this.pnl_GamePlay.SuspendLayout();
+            this.pnl_MsgChat_2.SuspendLayout();
+            this.pnl_MsgChat_1.SuspendLayout();
+            this.pnl_PlayerArea_2.SuspendLayout();
+            this.pnl_PlayerArea_1.SuspendLayout();
+            this.pnl_ChatControl.SuspendLayout();
             this.pnl_Common.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnl_TitleBar.SuspendLayout();
-            this.pnl_GamePlay.SuspendLayout();
-            this.tpnl_Login.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_form
             // 
             this.pnl_form.Controls.Add(this.pnl_GamePlay);
-            this.pnl_form.Controls.Add(this.pnl_Common);
             this.pnl_form.Controls.Add(this.pnl_Index);
+            this.pnl_form.Controls.Add(this.pnl_Common);
             this.pnl_form.Controls.Add(this.pnl_TitleBar);
             this.pnl_form.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_form.Location = new System.Drawing.Point(0, 0);
@@ -157,9 +172,9 @@
             // picb_About
             // 
             this.picb_About.Image = global::DCN.TicTacToe.UI.Client.Client_Resx.about;
-            this.picb_About.Location = new System.Drawing.Point(114, 338);
+            this.picb_About.Location = new System.Drawing.Point(114, 343);
             this.picb_About.Name = "picb_About";
-            this.picb_About.Size = new System.Drawing.Size(158, 52);
+            this.picb_About.Size = new System.Drawing.Size(158, 49);
             this.picb_About.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picb_About.TabIndex = 2;
             this.picb_About.TabStop = false;
@@ -185,6 +200,176 @@
             this.picb_PlayNow.TabStop = false;
             this.picb_PlayNow.Click += new System.EventHandler(this.picb_PlayNow_Click);
             // 
+            // tpnl_Login
+            // 
+            this.tpnl_Login.BackColor = System.Drawing.Color.Transparent;
+            this.tpnl_Login.Controls.Add(this.btn_Login);
+            this.tpnl_Login.Controls.Add(this.pnl_ExitFormLogin);
+            this.tpnl_Login.Controls.Add(this.txt_UserName);
+            this.tpnl_Login.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tpnl_Login.Location = new System.Drawing.Point(0, 0);
+            this.tpnl_Login.Name = "tpnl_Login";
+            this.tpnl_Login.Opacity = 10;
+            this.tpnl_Login.Size = new System.Drawing.Size(873, 610);
+            this.tpnl_Login.TabIndex = 3;
+            // 
+            // btn_Login
+            // 
+            this.btn_Login.Location = new System.Drawing.Point(108, 86);
+            this.btn_Login.Name = "btn_Login";
+            this.btn_Login.Size = new System.Drawing.Size(75, 23);
+            this.btn_Login.TabIndex = 1;
+            this.btn_Login.Text = "Done";
+            this.btn_Login.UseVisualStyleBackColor = true;
+            this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
+            // 
+            // pnl_ExitFormLogin
+            // 
+            this.pnl_ExitFormLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnl_ExitFormLogin.Location = new System.Drawing.Point(241, 14);
+            this.pnl_ExitFormLogin.Name = "pnl_ExitFormLogin";
+            this.pnl_ExitFormLogin.Size = new System.Drawing.Size(21, 19);
+            this.pnl_ExitFormLogin.TabIndex = 2;
+            this.pnl_ExitFormLogin.Click += new System.EventHandler(this.pnl_ExitFormLogin_Click);
+            // 
+            // txt_UserName
+            // 
+            this.txt_UserName.Location = new System.Drawing.Point(73, 52);
+            this.txt_UserName.Name = "txt_UserName";
+            this.txt_UserName.Size = new System.Drawing.Size(134, 20);
+            this.txt_UserName.TabIndex = 0;
+            // 
+            // pnl_GamePlay
+            // 
+            this.pnl_GamePlay.BackColor = System.Drawing.Color.Azure;
+            this.pnl_GamePlay.Controls.Add(this.btn_Already);
+            this.pnl_GamePlay.Controls.Add(this.pnl_MsgChat_2);
+            this.pnl_GamePlay.Controls.Add(this.pnl_PlayerProps);
+            this.pnl_GamePlay.Controls.Add(this.pnl_MsgChat_1);
+            this.pnl_GamePlay.Controls.Add(this.panel4);
+            this.pnl_GamePlay.Controls.Add(this.pnl_PlayerArea_2);
+            this.pnl_GamePlay.Controls.Add(this.pnl_PlayerArea_1);
+            this.pnl_GamePlay.Controls.Add(this.pnl_ChatView);
+            this.pnl_GamePlay.Controls.Add(this.pnl_GameBoard);
+            this.pnl_GamePlay.Controls.Add(this.pnl_ChatControl);
+            this.pnl_GamePlay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_GamePlay.Location = new System.Drawing.Point(0, 34);
+            this.pnl_GamePlay.Name = "pnl_GamePlay";
+            this.pnl_GamePlay.Size = new System.Drawing.Size(873, 610);
+            this.pnl_GamePlay.TabIndex = 1;
+            // 
+            // pnl_MsgChat_2
+            // 
+            this.pnl_MsgChat_2.Controls.Add(this.txt_MessContent_2);
+            this.pnl_MsgChat_2.Location = new System.Drawing.Point(679, 274);
+            this.pnl_MsgChat_2.Name = "pnl_MsgChat_2";
+            this.pnl_MsgChat_2.Size = new System.Drawing.Size(103, 75);
+            this.pnl_MsgChat_2.TabIndex = 14;
+            // 
+            // txt_MessContent_2
+            // 
+            this.txt_MessContent_2.Location = new System.Drawing.Point(0, 3);
+            this.txt_MessContent_2.Multiline = true;
+            this.txt_MessContent_2.Name = "txt_MessContent_2";
+            this.txt_MessContent_2.Size = new System.Drawing.Size(100, 69);
+            this.txt_MessContent_2.TabIndex = 0;
+            // 
+            // pnl_PlayerProps
+            // 
+            this.pnl_PlayerProps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnl_PlayerProps.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.pnl_PlayerProps.Location = new System.Drawing.Point(672, 41);
+            this.pnl_PlayerProps.Name = "pnl_PlayerProps";
+            this.pnl_PlayerProps.Size = new System.Drawing.Size(187, 279);
+            this.pnl_PlayerProps.TabIndex = 8;
+            // 
+            // pnl_MsgChat_1
+            // 
+            this.pnl_MsgChat_1.Controls.Add(this.txt_MessContent_1);
+            this.pnl_MsgChat_1.Location = new System.Drawing.Point(104, 277);
+            this.pnl_MsgChat_1.Name = "pnl_MsgChat_1";
+            this.pnl_MsgChat_1.Size = new System.Drawing.Size(103, 75);
+            this.pnl_MsgChat_1.TabIndex = 13;
+            // 
+            // txt_MessContent_1
+            // 
+            this.txt_MessContent_1.Location = new System.Drawing.Point(0, 3);
+            this.txt_MessContent_1.Multiline = true;
+            this.txt_MessContent_1.Name = "txt_MessContent_1";
+            this.txt_MessContent_1.Size = new System.Drawing.Size(100, 69);
+            this.txt_MessContent_1.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(200, 100);
+            this.panel4.TabIndex = 12;
+            // 
+            // pnl_PlayerArea_2
+            // 
+            this.pnl_PlayerArea_2.BackColor = System.Drawing.SystemColors.GrayText;
+            this.pnl_PlayerArea_2.Controls.Add(this.label2);
+            this.pnl_PlayerArea_2.Location = new System.Drawing.Point(672, 370);
+            this.pnl_PlayerArea_2.Name = "pnl_PlayerArea_2";
+            this.pnl_PlayerArea_2.Size = new System.Drawing.Size(110, 150);
+            this.pnl_PlayerArea_2.TabIndex = 11;
+            // 
+            // pnl_PlayerArea_1
+            // 
+            this.pnl_PlayerArea_1.BackColor = System.Drawing.SystemColors.GrayText;
+            this.pnl_PlayerArea_1.Controls.Add(this.label1);
+            this.pnl_PlayerArea_1.Location = new System.Drawing.Point(101, 370);
+            this.pnl_PlayerArea_1.Name = "pnl_PlayerArea_1";
+            this.pnl_PlayerArea_1.Size = new System.Drawing.Size(110, 150);
+            this.pnl_PlayerArea_1.TabIndex = 10;
+            // 
+            // pnl_ChatView
+            // 
+            this.pnl_ChatView.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.pnl_ChatView.Location = new System.Drawing.Point(12, 52);
+            this.pnl_ChatView.Name = "pnl_ChatView";
+            this.pnl_ChatView.Size = new System.Drawing.Size(189, 161);
+            this.pnl_ChatView.TabIndex = 9;
+            // 
+            // pnl_GameBoard
+            // 
+            this.pnl_GameBoard.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.pnl_GameBoard.Location = new System.Drawing.Point(228, 31);
+            this.pnl_GameBoard.Name = "pnl_GameBoard";
+            this.pnl_GameBoard.Size = new System.Drawing.Size(425, 425);
+            this.pnl_GameBoard.TabIndex = 7;
+            // 
+            // pnl_ChatControl
+            // 
+            this.pnl_ChatControl.BackColor = System.Drawing.SystemColors.Highlight;
+            this.pnl_ChatControl.Controls.Add(this.btn_SendMessage);
+            this.pnl_ChatControl.Controls.Add(this.txt_Message);
+            this.pnl_ChatControl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnl_ChatControl.Location = new System.Drawing.Point(0, 531);
+            this.pnl_ChatControl.Name = "pnl_ChatControl";
+            this.pnl_ChatControl.Size = new System.Drawing.Size(873, 79);
+            this.pnl_ChatControl.TabIndex = 6;
+            // 
+            // btn_SendMessage
+            // 
+            this.btn_SendMessage.Location = new System.Drawing.Point(483, 18);
+            this.btn_SendMessage.Name = "btn_SendMessage";
+            this.btn_SendMessage.Size = new System.Drawing.Size(75, 23);
+            this.btn_SendMessage.TabIndex = 1;
+            this.btn_SendMessage.Text = "Send";
+            this.btn_SendMessage.UseVisualStyleBackColor = true;
+            this.btn_SendMessage.Click += new System.EventHandler(this.btn_SendMessage_Click);
+            // 
+            // txt_Message
+            // 
+            this.txt_Message.Location = new System.Drawing.Point(155, 21);
+            this.txt_Message.Name = "txt_Message";
+            this.txt_Message.Size = new System.Drawing.Size(312, 20);
+            this.txt_Message.TabIndex = 0;
+            // 
             // pnl_Common
             // 
             this.pnl_Common.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -205,25 +390,6 @@
             this.flp_ShowTableGame.Size = new System.Drawing.Size(873, 558);
             this.flp_ShowTableGame.TabIndex = 1;
             // 
-            // cmb_Online
-            // 
-            this.cmb_Online.FormattingEnabled = true;
-            this.cmb_Online.Location = new System.Drawing.Point(455, 14);
-            this.cmb_Online.Name = "cmb_Online";
-            this.cmb_Online.Size = new System.Drawing.Size(121, 21);
-            this.cmb_Online.TabIndex = 2;
-            this.cmb_Online.SelectedIndexChanged += new System.EventHandler(this.cmb_Online_SelectedIndexChanged);
-            // 
-            // btn_findOnline
-            // 
-            this.btn_findOnline.Location = new System.Drawing.Point(707, 12);
-            this.btn_findOnline.Name = "btn_findOnline";
-            this.btn_findOnline.Size = new System.Drawing.Size(75, 23);
-            this.btn_findOnline.TabIndex = 3;
-            this.btn_findOnline.Text = "Online";
-            this.btn_findOnline.UseVisualStyleBackColor = true;
-            this.btn_findOnline.Click += new System.EventHandler(this.btn_findOnline_Click);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -237,6 +403,35 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(873, 52);
             this.panel1.TabIndex = 0;
+            // 
+            // btn_findOnline
+            // 
+            this.btn_findOnline.Location = new System.Drawing.Point(707, 12);
+            this.btn_findOnline.Name = "btn_findOnline";
+            this.btn_findOnline.Size = new System.Drawing.Size(75, 23);
+            this.btn_findOnline.TabIndex = 3;
+            this.btn_findOnline.Text = "Online";
+            this.btn_findOnline.UseVisualStyleBackColor = true;
+            this.btn_findOnline.Click += new System.EventHandler(this.btn_findOnline_Click);
+            // 
+            // cmb_Online
+            // 
+            this.cmb_Online.FormattingEnabled = true;
+            this.cmb_Online.Location = new System.Drawing.Point(455, 14);
+            this.cmb_Online.Name = "cmb_Online";
+            this.cmb_Online.Size = new System.Drawing.Size(121, 21);
+            this.cmb_Online.TabIndex = 2;
+            this.cmb_Online.SelectedIndexChanged += new System.EventHandler(this.cmb_Online_SelectedIndexChanged);
+            // 
+            // btn_Register
+            // 
+            this.btn_Register.Location = new System.Drawing.Point(602, 12);
+            this.btn_Register.Name = "btn_Register";
+            this.btn_Register.Size = new System.Drawing.Size(75, 23);
+            this.btn_Register.TabIndex = 4;
+            this.btn_Register.Text = "Register";
+            this.btn_Register.UseVisualStyleBackColor = true;
+            this.btn_Register.Click += new System.EventHandler(this.btn_Register_Click);
             // 
             // btn_ConnectToPlayer
             // 
@@ -347,121 +542,33 @@
             this.btn_Exit.UseVisualStyleBackColor = true;
             this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
-            // pnl_GamePlay
+            // btn_Already
             // 
-            this.pnl_GamePlay.BackColor = System.Drawing.Color.Azure;
-            this.pnl_GamePlay.Controls.Add(this.pnl_PlayerArea_2);
-            this.pnl_GamePlay.Controls.Add(this.pnl_PlayerArea_1);
-            this.pnl_GamePlay.Controls.Add(this.pnl_ChatView);
-            this.pnl_GamePlay.Controls.Add(this.pnl_PlayerProps);
-            this.pnl_GamePlay.Controls.Add(this.pnl_GameBoard);
-            this.pnl_GamePlay.Controls.Add(this.pnl_ChatControl);
-            this.pnl_GamePlay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_GamePlay.Location = new System.Drawing.Point(0, 34);
-            this.pnl_GamePlay.Name = "pnl_GamePlay";
-            this.pnl_GamePlay.Size = new System.Drawing.Size(873, 610);
-            this.pnl_GamePlay.TabIndex = 1;
+            this.btn_Already.Location = new System.Drawing.Point(403, 479);
+            this.btn_Already.Name = "btn_Already";
+            this.btn_Already.Size = new System.Drawing.Size(94, 41);
+            this.btn_Already.TabIndex = 15;
+            this.btn_Already.Text = "Ready";
+            this.btn_Already.UseVisualStyleBackColor = true;
+            this.btn_Already.Click += new System.EventHandler(this.btn_Already_Click);
             // 
-            // pnl_PlayerArea_2
+            // label1
             // 
-            this.pnl_PlayerArea_2.BackColor = System.Drawing.SystemColors.GrayText;
-            this.pnl_PlayerArea_2.Location = new System.Drawing.Point(672, 370);
-            this.pnl_PlayerArea_2.Name = "pnl_PlayerArea_2";
-            this.pnl_PlayerArea_2.Size = new System.Drawing.Size(110, 150);
-            this.pnl_PlayerArea_2.TabIndex = 11;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(35, 123);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
             // 
-            // pnl_PlayerArea_1
+            // label2
             // 
-            this.pnl_PlayerArea_1.BackColor = System.Drawing.SystemColors.GrayText;
-            this.pnl_PlayerArea_1.Location = new System.Drawing.Point(101, 370);
-            this.pnl_PlayerArea_1.Name = "pnl_PlayerArea_1";
-            this.pnl_PlayerArea_1.Size = new System.Drawing.Size(110, 150);
-            this.pnl_PlayerArea_1.TabIndex = 10;
-            // 
-            // pnl_ChatView
-            // 
-            this.pnl_ChatView.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.pnl_ChatView.Location = new System.Drawing.Point(12, 52);
-            this.pnl_ChatView.Name = "pnl_ChatView";
-            this.pnl_ChatView.Size = new System.Drawing.Size(189, 161);
-            this.pnl_ChatView.TabIndex = 9;
-            // 
-            // pnl_PlayerProps
-            // 
-            this.pnl_PlayerProps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnl_PlayerProps.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.pnl_PlayerProps.Location = new System.Drawing.Point(672, 52);
-            this.pnl_PlayerProps.Name = "pnl_PlayerProps";
-            this.pnl_PlayerProps.Size = new System.Drawing.Size(708, 300);
-            this.pnl_PlayerProps.TabIndex = 8;
-            // 
-            // pnl_GameBoard
-            // 
-            this.pnl_GameBoard.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.pnl_GameBoard.Location = new System.Drawing.Point(228, 31);
-            this.pnl_GameBoard.Name = "pnl_GameBoard";
-            this.pnl_GameBoard.Size = new System.Drawing.Size(425, 425);
-            this.pnl_GameBoard.TabIndex = 7;
-            // 
-            // pnl_ChatControl
-            // 
-            this.pnl_ChatControl.BackColor = System.Drawing.SystemColors.Highlight;
-            this.pnl_ChatControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_ChatControl.Location = new System.Drawing.Point(0, 531);
-            this.pnl_ChatControl.Name = "pnl_ChatControl";
-            this.pnl_ChatControl.Size = new System.Drawing.Size(873, 79);
-            this.pnl_ChatControl.TabIndex = 6;
-            // 
-            // btn_Register
-            // 
-            this.btn_Register.Location = new System.Drawing.Point(602, 12);
-            this.btn_Register.Name = "btn_Register";
-            this.btn_Register.Size = new System.Drawing.Size(75, 23);
-            this.btn_Register.TabIndex = 4;
-            this.btn_Register.Text = "Register";
-            this.btn_Register.UseVisualStyleBackColor = true;
-            this.btn_Register.Click += new System.EventHandler(this.btn_Register_Click);
-            // 
-            // tpnl_Login
-            // 
-            this.tpnl_Login.BackColor = System.Drawing.Color.Transparent;
-            this.tpnl_Login.Controls.Add(this.btn_Login);
-            this.tpnl_Login.Controls.Add(this.pnl_ExitFormLogin);
-            this.tpnl_Login.Controls.Add(this.txt_UserName);
-            this.tpnl_Login.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tpnl_Login.Location = new System.Drawing.Point(0, 0);
-            this.tpnl_Login.Name = "tpnl_Login";
-            this.tpnl_Login.Opacity = 10;
-            this.tpnl_Login.Size = new System.Drawing.Size(873, 610);
-            this.tpnl_Login.TabIndex = 3;
-            // 
-            // btn_Login
-            // 
-            this.btn_Login.Location = new System.Drawing.Point(108, 86);
-            this.btn_Login.Name = "btn_Login";
-            this.btn_Login.Size = new System.Drawing.Size(75, 23);
-            this.btn_Login.TabIndex = 1;
-            this.btn_Login.Text = "Done";
-            this.btn_Login.UseVisualStyleBackColor = true;
-            this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
-            // 
-            // pnl_ExitFormLogin
-            // 
-            this.pnl_ExitFormLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.pnl_ExitFormLogin.Location = new System.Drawing.Point(241, 14);
-            this.pnl_ExitFormLogin.Name = "pnl_ExitFormLogin";
-            this.pnl_ExitFormLogin.Size = new System.Drawing.Size(21, 19);
-            this.pnl_ExitFormLogin.TabIndex = 2;
-            this.pnl_ExitFormLogin.Click += new System.EventHandler(this.pnl_ExitFormLogin_Click);
-            // 
-            // txt_UserName
-            // 
-            this.txt_UserName.Location = new System.Drawing.Point(73, 52);
-            this.txt_UserName.Name = "txt_UserName";
-            this.txt_UserName.Size = new System.Drawing.Size(134, 20);
-            this.txt_UserName.TabIndex = 0;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(32, 123);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "label2";
             // 
             // Frm_Index
             // 
@@ -480,14 +587,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.picb_About)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_QuickPlay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_PlayNow)).EndInit();
+            this.tpnl_Login.ResumeLayout(false);
+            this.tpnl_Login.PerformLayout();
+            this.pnl_GamePlay.ResumeLayout(false);
+            this.pnl_MsgChat_2.ResumeLayout(false);
+            this.pnl_MsgChat_2.PerformLayout();
+            this.pnl_MsgChat_1.ResumeLayout(false);
+            this.pnl_MsgChat_1.PerformLayout();
+            this.pnl_PlayerArea_2.ResumeLayout(false);
+            this.pnl_PlayerArea_2.PerformLayout();
+            this.pnl_PlayerArea_1.ResumeLayout(false);
+            this.pnl_PlayerArea_1.PerformLayout();
+            this.pnl_ChatControl.ResumeLayout(false);
+            this.pnl_ChatControl.PerformLayout();
             this.pnl_Common.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.pnl_TitleBar.ResumeLayout(false);
-            this.pnl_GamePlay.ResumeLayout(false);
-            this.tpnl_Login.ResumeLayout(false);
-            this.tpnl_Login.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -528,6 +645,16 @@
         private System.Windows.Forms.ComboBox cmb_Online;
         private System.Windows.Forms.Button btn_findOnline;
         private System.Windows.Forms.Button btn_Register;
+        private System.Windows.Forms.Button btn_SendMessage;
+        private System.Windows.Forms.TextBox txt_Message;
+        private System.Windows.Forms.Panel pnl_MsgChat_2;
+        private System.Windows.Forms.TextBox txt_MessContent_2;
+        private System.Windows.Forms.Panel pnl_MsgChat_1;
+        private System.Windows.Forms.TextBox txt_MessContent_1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btn_Already;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 

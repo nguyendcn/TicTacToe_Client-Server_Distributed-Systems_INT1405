@@ -29,38 +29,68 @@ namespace DCN.TicTacToe.UI.Client
 
         private DCN.TicTacToe.Client.Client client;
 
+        private Timer timerReqMesgChat;
+        private Timer timerReceMesgChat;
+
         public Frm_Index()
         {
-            
+
             client = new DCN.TicTacToe.Client.Client();
             InitializeComponent();
 
             this.pnl_Index.BringToFront();
 
+            this.pnl_MsgChat_1.Visible = false;
+            this.pnl_MsgChat_2.Visible = false;
+            this.btn_Already.Visible = false;
 
             client.Connect("localhost", 9999);
 
             client.SessionRequest += client_SessionRequest;
             client.TextMessageReceived += Client_TextMessageReceived;
             client.UpdateTablesInProcess += Client_UpdateTablesInProcess;
-            client.AcceptPlayRequest += Client_AcceptPlayRequest;
+            client.EnablePlayRequest += Client_EnablePlayRequest; ;
+
+            this.timerReqMesgChat = new Timer();
+            this.timerReqMesgChat.Interval = 3000;
+            this.timerReqMesgChat.Tick += timerReqMesgChat_Tick;
+
+            this.timerReceMesgChat = new Timer();
+            this.timerReceMesgChat.Interval = 3000;
+            this.timerReceMesgChat.Tick += timerReceMesgChat_Tick;
+
         }
 
-        private void Client_AcceptPlayRequest(Shared.Messages.AcceptPlayRequest msg)
+        private void Client_EnablePlayRequest(Shared.Messages.AcceptPlayRequest obj)
         {
-            this.InvokeUI(() => {
-                Button btn = new Button();
-                btn.Size = new Size(100, 100);
-                btn.Click += Btn_Click;
-                pnl_GameBoard.Controls.Add(btn);
+            this.InvokeUI(() =>
+            {
+                if (obj.IsAlready)
+                {
+                    this.label2.Text = "Already";
+                }
+                else
+                {
+                    this.btn_Already.Visible = true;
+                }
             });
-            
+
         }
 
-        private void Btn_Click(object sender, EventArgs e)
+        private void timerReqMesgChat_Tick(object sender, EventArgs e)
         {
-            
+            this.pnl_MsgChat_1.Visible = false;
+
+            this.timerReqMesgChat.Stop();
         }
+
+        private void timerReceMesgChat_Tick(object sender, EventArgs e)
+        {
+            this.pnl_MsgChat_2.Visible = false;
+
+            this.timerReceMesgChat.Stop();
+        }
+
 
         private void Client_UpdateTablesInProcess(Shared.Messages.UpdateTablesInProcessRequest msg)
         {
@@ -83,7 +113,9 @@ namespace DCN.TicTacToe.UI.Client
 
         private void Client_TextMessageReceived(TicTacToe.Client.Client client, string message)
         {
-            this.Text = "Message: " + message;
+            ChatMessageBox(message);
+            Debug.WriteLine("Message received: " + message);
+            //Status("Message received: " + message);
         }
 
         #region Set up for title bar
@@ -254,7 +286,7 @@ namespace DCN.TicTacToe.UI.Client
 
                             flp_ShowTableGame.Controls.Add(btn);
                         });
-                        
+
                     }
 
                 });
@@ -269,20 +301,22 @@ namespace DCN.TicTacToe.UI.Client
 
             client.RequestSession(playerName, (clientSend, args) =>
             {
-                this.InvokeUI(() => {
+                this.InvokeUI(() =>
+                {
                     if (args.IsConfirmed)
                     {
                         this.Text = args.Email;
                         pnl_GamePlay.BringToFront();
                     }
                 });
-               
+
             });
         }
 
         private void btn_Register_Click(object sender, EventArgs e)
         {
-            client.RequestCreateTable(true, -1, (client, args) => {
+            client.RequestCreateTable(true, -1, (client, args) =>
+            {
                 if (args.IsSuccess)
                 {
                     //this.Text = "Create table success!";
@@ -305,17 +339,65 @@ namespace DCN.TicTacToe.UI.Client
             ComboBox cmb_NamePlayer = sender as ComboBox;
             string clientName = cmb_NamePlayer.SelectedItem.ToString();
 
-            foreach(Button ctr in flp_ShowTableGame.Controls)
+            foreach (Button ctr in flp_ShowTableGame.Controls)
             {
                 flp_ShowTableGame.Controls.Remove(ctr);
             }
 
             client.RequestSession(clientName, (clientSend, args) =>
             {
-            this.InvokeUI(()=>{
-                this.Text = args.Email;
+                this.InvokeUI(() =>
+                {
+                    this.Text = args.Email;
+                });
             });
+        }
+
+        private void btn_SendMessage_Click(object sender, EventArgs e)
+        {
+            if (this.timerReqMesgChat.Enabled)
+            {
+                this.timerReqMesgChat.Stop();
+                this.timerReqMesgChat.Start();
+                this.pnl_MsgChat_1.Visible = true;
+                this.txt_MessContent_1.Text = txt_Message.Text;
+                client.SendTextMessage(txt_Message.Text);
+            }
+            else
+            {
+                this.timerReqMesgChat.Start();
+                this.pnl_MsgChat_1.Visible = true;
+                this.txt_MessContent_1.Text = txt_Message.Text;
+                client.SendTextMessage(txt_Message.Text);
+            }
+        }
+
+        private void ChatMessageBox(String msgs)
+        {
+            InvokeUI(() =>
+            {
+                if (this.timerReceMesgChat.Enabled)
+                {
+                    this.timerReceMesgChat.Stop();
+                    this.timerReceMesgChat.Start();
+                    this.pnl_MsgChat_2.Visible = true;
+                    this.pnl_MsgChat_2.BringToFront();
+                    txt_MessContent_2.Text = msgs;
+                }
+                else
+                {
+                    this.timerReceMesgChat.Start();
+                    this.pnl_MsgChat_2.Visible = true;
+                    this.pnl_MsgChat_2.BringToFront();
+                    txt_MessContent_2.Text = msgs;
+                }
             });
+        }
+
+        private void btn_Already_Click(object sender, EventArgs e)
+        {
+            this.label1.Text = "Already";
+            client.RequestAlreadyPlayGame();
         }
     }
 }

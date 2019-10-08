@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 namespace DCN.TicTacToe.Shared.Messages
 {
     [Serializable]
-    public class AcceptPlayRequest : RequestMessageBase
+    public class UpdateCountDownRequest : RequestMessageBase
     {
-
-        public bool IsAlready { get; set; }
+        public int Time { get; set; }
     }
 }

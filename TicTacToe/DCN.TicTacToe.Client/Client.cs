@@ -85,7 +85,7 @@ namespace DCN.TicTacToe.Client
         /// <summary>
         /// 
         /// </summary>
-        public event Action<AcceptPlayRequest> AcceptPlayRequest;
+        public event Action<AcceptPlayRequest> EnablePlayRequest;
 
         #endregion
 
@@ -279,6 +279,13 @@ namespace DCN.TicTacToe.Client
             SendMessage(request);
         }
 
+        public void RequestAlreadyPlayGame()
+        {
+            AcceptPlayRequest request = new AcceptPlayRequest();
+            request.IsAlready = true;
+            SendMessage(request);
+        }
+
         //public void RequestAcceptPlay(Action<>)
 
         #endregion
@@ -318,10 +325,10 @@ namespace DCN.TicTacToe.Client
                 {
                     //try
                     //{
-                        BinaryFormatter f = new BinaryFormatter();
-                        f.Binder = new Shared.AllowAllAssemblyVersionsDeserializationBinder();
-                        MessageBase msg = f.Deserialize(TcpClient.GetStream()) as MessageBase;
-                        OnMessageReceived(msg);
+                    BinaryFormatter f = new BinaryFormatter();
+                    f.Binder = new Shared.AllowAllAssemblyVersionsDeserializationBinder();
+                    MessageBase msg = f.Deserialize(TcpClient.GetStream()) as MessageBase;
+                    OnMessageReceived(msg);
                     //}
                     //catch (Exception e)
                     //{
@@ -387,13 +394,13 @@ namespace DCN.TicTacToe.Client
                 {
                     OnSessionClientDisconnected();
                 }
-                else if(type == typeof(UpdateTablesInProcessRequest))
+                else if (type == typeof(UpdateTablesInProcessRequest))
                 {
                     UpdateTablesInProcessRequestHandler(msg as UpdateTablesInProcessRequest);
                 }
-                else if(type == typeof(AcceptPlayRequest))
+                else if (type == typeof(AcceptPlayRequest))
                 {
-
+                    OnAcceptPlayRequest(msg as AcceptPlayRequest);
                 }
                 else if (type == typeof(GenericRequest))
                 {
@@ -491,7 +498,7 @@ namespace DCN.TicTacToe.Client
         {
             SessionResponse response = new SessionResponse(request);
 
-            if(this.Status == StatusEnum.Validated)
+            if (this.Status == StatusEnum.Validated)
             {
                 EventArguments.SessionRequestEventArguments args = new EventArguments.SessionRequestEventArguments(() =>
                 {
@@ -517,7 +524,7 @@ namespace DCN.TicTacToe.Client
                 response.Email = request.Email;
                 SendMessage(response);
             }
-            
+
         }
 
         public void UpdateTablesInProcessRequestHandler(UpdateTablesInProcessRequest request)
@@ -562,10 +569,10 @@ namespace DCN.TicTacToe.Client
         #endregion
 
         #region Virtuals
-        
+
         protected virtual void OnAcceptPlayRequest(AcceptPlayRequest args)
         {
-            if (AcceptPlayRequest != null) AcceptPlayRequest(args);
+            if (EnablePlayRequest != null) EnablePlayRequest(args);
         }
 
         protected virtual void OnUpdateTablesInProcessRequest(UpdateTablesInProcessRequest args)

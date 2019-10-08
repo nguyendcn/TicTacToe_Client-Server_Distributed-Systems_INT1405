@@ -11,6 +11,7 @@ using System.Security.Authentication;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DCN.TicTacToe.Server
 {
@@ -61,6 +62,10 @@ namespace DCN.TicTacToe.Server
         /// The room number is used to name session with other client 
         /// </summary>
         public InGameProperties InGameProperties { get; set; }
+        /// <summary>
+        /// Timer to send time countdown in play game
+        /// </summary>
+        public System.Windows.Forms.Timer TimerCountDown { get; private set; }
 
         #endregion
 
@@ -73,7 +78,14 @@ namespace DCN.TicTacToe.Server
             Status = StatusEnum.Connected;
 
             InGameProperties = new InGameProperties();
+
+            TimerCountDown = new System.Windows.Forms.Timer();
+
+            TimerCountDown.Interval = 1000;
+            TimerCountDown.Tick += TimerCountDown_Tick;
         }
+
+
 
         /// <summary>
         /// Initializes a new reciever instance
@@ -87,6 +99,15 @@ namespace DCN.TicTacToe.Server
             Client = client;
             Client.ReceiveBufferSize = 1024;
             Client.SendBufferSize = 1024;
+        }
+
+        #endregion
+
+        #region Event Handler
+
+        private void TimerCountDown_Tick(object sender, EventArgs e)
+        {
+            
         }
 
         #endregion
@@ -230,6 +251,25 @@ namespace DCN.TicTacToe.Server
             else if (OtherSideReceiver != null)
             {
                 OtherSideReceiver.SendMessage(msg);
+                if(msg.GetType() == typeof(AcceptPlayRequest))
+                {
+                    if((msg as AcceptPlayRequest).IsAlready)
+                    {
+                        this.InGameProperties.Status = StatusInGame.Ready;
+                        
+                        if(OtherSideReceiver.InGameProperties.Status == StatusInGame.Ready)
+                        {
+                            InitGame initGame = new InitGame();
+                            initGame.properties = this.InGameProperties;
+                            initGame.userName = this.Email;
+                            SendMessage(initGame);
+
+                            initGame.properties = OtherSideReceiver.InGameProperties;
+                            initGame.userName = OtherSideReceiver.Email;
+                            OtherSideReceiver.SendMessage(initGame);
+                        }
+                    }
+                }
             }
         }
 
