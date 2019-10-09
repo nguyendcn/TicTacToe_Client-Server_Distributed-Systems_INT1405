@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DCN.TicTacToe.Shared.Enum
-{
+{   
     [Serializable]
-    public enum StatusInGame
+    public enum StatusGame
     {
-        Ready,
-        NotReady,
-        Decline,
-        InTurn
+        Win,
+        Lost,
+        Tie,
+        Continue
     }
 }

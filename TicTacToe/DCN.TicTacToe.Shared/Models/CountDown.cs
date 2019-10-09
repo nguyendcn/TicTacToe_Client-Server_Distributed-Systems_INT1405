@@ -12,30 +12,33 @@ namespace DCN.TicTacToe.Shared.Models
     {
         public int CurrentTime { get; set; }
         public int Step { get; set; }
+        public int TotalTime { get; set; }
 
-        private Timer timer;
+        public Timer Timer { get; set; }
         
         public CountDown()
         {
-            CurrentTime = Step = 0;
-            timer = new Timer();
+            CurrentTime = TotalTime = 15;
+            Step = 1;
+            Timer = new Timer();
 
-            timer.Interval = 1000;
-            timer.Elapsed += Timer_Elapsed;
+            Timer.Interval = 1000;
+            Timer.Elapsed += Timer_Elapsed;
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            
+            CurrentTime -= Step;
+            OnCountDown(this.CurrentTime);
         }
 
-        public delegate int CountDownAction(int time);
+        public delegate void CountDownAction(int time);
         public event CountDownAction CoutDownEv;
 
-        public virtual void OnCountDown()
+        public virtual void OnCountDown(int time)
         {
             if (this.CoutDownEv != null)
-                CoutDownEv(this.CurrentTime);
+                CoutDownEv(time);
 
         }
     }

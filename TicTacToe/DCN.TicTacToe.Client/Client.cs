@@ -86,6 +86,18 @@ namespace DCN.TicTacToe.Client
         /// 
         /// </summary>
         public event Action<AcceptPlayRequest> EnablePlayRequest;
+        /// <summary>
+        /// 
+        /// </summary>
+        public event Action<UpdateCountDownRequest> UpdateCountDown;
+        /// <summary>
+        /// 
+        /// </summary>
+        public event Action<InitGame> InitGame;
+        /// <summary>
+        /// 
+        /// </summary>
+        public event Action<GameRequest> GameRequest;
 
         #endregion
 
@@ -286,7 +298,13 @@ namespace DCN.TicTacToe.Client
             SendMessage(request);
         }
 
-        //public void RequestAcceptPlay(Action<>)
+        public void RequestGame(int [,] gameBoard)
+        {
+            GameRequest request = new GameRequest();
+            request.BoardGame = gameBoard;
+
+            SendMessage(request);
+        }
 
         #endregion
 
@@ -367,6 +385,10 @@ namespace DCN.TicTacToe.Client
                 {
                     FileUploadResponseHandler(msg as FileUploadResponse);
                 }
+                else if(type == typeof(GameResponse))
+                {
+
+                }
             }
             else
             {
@@ -401,6 +423,18 @@ namespace DCN.TicTacToe.Client
                 else if (type == typeof(AcceptPlayRequest))
                 {
                     OnAcceptPlayRequest(msg as AcceptPlayRequest);
+                }
+                else if(type == typeof(UpdateCountDownRequest))
+                {
+                    OnUpdateCountDownRequest(msg as UpdateCountDownRequest);
+                }
+                else if(type == typeof(InitGame))
+                {
+                    OnInitGame(msg as InitGame);
+                }
+                else if(type == typeof(GameRequest))
+                {
+                    OnGameRequest(msg as GameRequest);
                 }
                 else if (type == typeof(GenericRequest))
                 {
@@ -569,6 +603,21 @@ namespace DCN.TicTacToe.Client
         #endregion
 
         #region Virtuals
+
+        public virtual void OnGameRequest(GameRequest args)
+        {
+            if (GameRequest != null) GameRequest(args);
+        }
+
+        public virtual void OnInitGame(InitGame args)
+        {
+            if (InitGame != null) InitGame(args);
+        }
+
+        public virtual void OnUpdateCountDownRequest(UpdateCountDownRequest args)
+        {
+            if (UpdateCountDown != null) UpdateCountDown(args);
+        }
 
         protected virtual void OnAcceptPlayRequest(AcceptPlayRequest args)
         {

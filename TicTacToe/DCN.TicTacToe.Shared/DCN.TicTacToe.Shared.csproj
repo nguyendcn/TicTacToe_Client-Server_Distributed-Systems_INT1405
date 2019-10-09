@@ -47,10 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllowAllAssemblyVersionsDeserializationBinder.cs" />
+    <Compile Include="Enum\Game.cs" />
     <Compile Include="Enum\StatusEnum.cs" />
+    <Compile Include="Enum\StatusGame.cs" />
     <Compile Include="Enum\StatusInGame.cs" />
+    <Compile Include="ExtensionMethods\BoardGameMethods.cs" />
     <Compile Include="ExtensionMethods\TcpClientMethods.cs" />
     <Compile Include="Messages\AcceptPlayRequest.cs" />
+    <Compile Include="Messages\GameRequest.cs" />
+    <Compile Include="Messages\GameResponse.cs" />
     <Compile Include="Messages\InitGame.cs" />
     <Compile Include="Messages\TablesInProcessRequest.cs" />
     <Compile Include="Messages\TablesInProcessResponse.cs" />

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DCN.TicTacToe.Client;
+using DCN.TicTacToe.Shared.Enum;
 using DCN.TicTacToe.Shared.Models;
 
 namespace DCN.TicTacToe.UI.Client
@@ -49,7 +50,10 @@ namespace DCN.TicTacToe.UI.Client
             client.SessionRequest += client_SessionRequest;
             client.TextMessageReceived += Client_TextMessageReceived;
             client.UpdateTablesInProcess += Client_UpdateTablesInProcess;
-            client.EnablePlayRequest += Client_EnablePlayRequest; ;
+            client.EnablePlayRequest += Client_EnablePlayRequest;
+            client.UpdateCountDown += Client_UpdateCountDown;
+            client.InitGame += Client_InitGame;
+            client.GameRequest += Client_GameRequest;
 
             this.timerReqMesgChat = new Timer();
             this.timerReqMesgChat.Interval = 3000;
@@ -59,6 +63,41 @@ namespace DCN.TicTacToe.UI.Client
             this.timerReceMesgChat.Interval = 3000;
             this.timerReceMesgChat.Tick += timerReceMesgChat_Tick;
 
+            this.pnl_GameBoard.Enabled = false;
+        }
+
+        private void Client_GameRequest(Shared.Messages.GameRequest obj)
+        {
+            this.InvokeUI(() => {
+                this.pnl_GameBoard.Enabled = true;
+                ShowGameBoard_1(obj.BoardGame);
+            });
+        }
+
+        private void Client_InitGame(Shared.Messages.InitGame obj)
+        {
+            this.InvokeUI(() => {
+                this.pnl_GameBoard.Enabled = obj.IsFirst;
+                Debug.WriteLine("client: " + obj.userName+ "|" + obj.IsFirst);
+                //if (!obj.IsFirst)
+                //{
+                //    this.pnl_GameBoard.Enabled = false;
+                //}
+                this.lbl_Score_1.Text = obj.properties.WinGame.ToString();
+                ShowGameBoard(new int[,] { 
+                                           {-1, -1, -1}, 
+                                           {-1, -1, -1}, 
+                                           {-1, -1, -1}
+                                         });
+            });
+        }
+
+        private void Client_UpdateCountDown(Shared.Messages.UpdateCountDownRequest obj)
+        {
+            this.InvokeUI(() =>
+            {
+                this.lbl_Countdown.Text = obj.Time.ToString();
+            });
         }
 
         private void Client_EnablePlayRequest(Shared.Messages.AcceptPlayRequest obj)
@@ -398,6 +437,57 @@ namespace DCN.TicTacToe.UI.Client
         {
             this.label1.Text = "Already";
             client.RequestAlreadyPlayGame();
+        }
+
+        private void Btn_BoardItem_Click(object sender, EventArgs e)
+        {
+            (sender as Button).Text = "0";
+            (sender as Button).Enabled = false;
+            int[,] gameBoard = new int[3, 3];
+            int i = 0;
+            foreach (Control ctr in this.pnl_GameBoard.Controls)
+            {
+                if(ctr is Button)
+                {
+                    gameBoard[i / 3, i % 3] = Convert.ToInt32(ctr.Text);
+                    i++;
+                }
+            }
+
+            client.RequestGame(gameBoard);
+        }
+
+        private void ShowGameBoard(int[,] board)
+        {
+            int ind = board.Length - 1;
+            if(board != null)
+            {
+                foreach(Control ctr in pnl_GameBoard.Controls)
+                {
+                    if (ctr is Button)
+                    {
+                        ctr.Text = board[ind / 3, ind % 3].ToString();
+                        ind--;
+                    }
+                }
+            }
+        }
+        private void ShowGameBoard_1(int[,] board)
+        {
+            int ind = 0;
+            if (board != null)
+            {
+                foreach (Control ctr in pnl_GameBoard.Controls)
+                {
+                    if (ctr is Button)
+                    {
+                        if (board[ind / 3, ind % 3] != (int)Game.SPACE)
+                            ctr.Enabled = false;
+                        ctr.Text = board[ind / 3, ind % 3].ToString();
+                        ind++;
+                    }
+                }
+            }
         }
     }
 }

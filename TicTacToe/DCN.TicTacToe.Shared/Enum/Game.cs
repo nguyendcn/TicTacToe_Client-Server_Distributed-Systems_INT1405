@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 namespace DCN.TicTacToe.Shared.Enum
 {
     [Serializable]
-    public enum StatusInGame
+    public enum Game
     {
-        Ready,
-        NotReady,
-        Decline,
-        InTurn
+        X_VAL = 1,
+        O_VAL = 0,
+        SPACE = -1
     }
 }
