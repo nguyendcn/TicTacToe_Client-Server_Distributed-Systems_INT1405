@@ -105,7 +105,7 @@ namespace DCN.TicTacToe.UI.Client
             this.InvokeUI(() => {
                 this.pnl_GameBoard.Enabled = obj.IsFirst;
 
-                this.lbl_Score_1.Text = obj.properties.WinGame.ToString();
+                this.lbl_Score_1.Text = obj.Properties.WinGame.ToString();
                 ShowGameBoard(new int[,] { 
                                            {-1, -1, -1}, 
                                            {-1, -1, -1}, 

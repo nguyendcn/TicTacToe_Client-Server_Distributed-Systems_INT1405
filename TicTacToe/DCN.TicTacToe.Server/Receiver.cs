@@ -107,8 +107,7 @@ namespace DCN.TicTacToe.Server
         {
             if(time < 0) // no response => end game
             {
-                this.CountDownInGame.Timer.Stop();
-                this.CountDownInGame.ResetTimer();
+                this.CountDownInGame.Stop();
 
                 //Time out
                 if (this.InGameProperties.Status == StatusInGame.InTurn)
@@ -124,7 +123,6 @@ namespace DCN.TicTacToe.Server
                     this.SendMessage(new StatusGameRequest(StatusGame.Win));
                 }
                 this.SendMessage(new AcceptPlayRequest());
-
             }
             else
             {
@@ -272,7 +270,7 @@ namespace DCN.TicTacToe.Server
             {
                 ClientsInProcessRequestHandler(msg as TablesInProcessRequest);
             }
-            if(type == typeof(AcceptPlayRequest))
+            else if(type == typeof(AcceptPlayRequest))
             {
                 AcceptPlayRequestHandler(msg as AcceptPlayRequest);
             }
@@ -281,6 +279,7 @@ namespace DCN.TicTacToe.Server
                 if(type == typeof(GameRequest))
                 {
                     GameRequestHandler(msg as GameRequest);
+                    return;
                     
                 }
                 OtherSideReceiver.SendMessage(msg);
@@ -288,57 +287,81 @@ namespace DCN.TicTacToe.Server
             }
         }
 
+        private void SendMsgToClients(Receiver []clients, MessageBase message)
+        {
+            foreach(Receiver rece in clients)
+            {
+                rece.SendMessage(message);
+            }
+        }
+
+        private void SendMsgToClientsOneByOne(Receiver[] clients, MessageBase[] messages)
+        {
+            if(clients.Length != messages.Length)
+            {
+                throw new IndexOutOfRangeException("Size of clients and messages does not match.");
+            }
+
+            int index = 0;
+            foreach (Receiver rece in clients)
+            {
+                rece.SendMessage(messages[index]);
+                index++;
+            }
+        }
+
+        private void PropertiesForEndGame()
+        {
+            this.InGameProperties.Status = StatusInGame.NotReady;
+            this.OtherSideReceiver.InGameProperties.Status = StatusInGame.NotReady;
+
+            this.CountDownInGame.Stop();
+            this.OtherSideReceiver.CountDownInGame.Stop();
+        }
+
         private void GameRequestHandler(GameRequest request)
         {
             StatusGame sg = request.BoardGame.GetStatementGame();
 
-            this.CountDownInGame.ResetTimer();
-            this.OtherSideReceiver.CountDownInGame.ResetTimer();
+            this.CountDownInGame.Reset();
+            this.OtherSideReceiver.CountDownInGame.Reset();
 
             request.BoardGame = request.BoardGame.SwapZvO();
             this.OtherSideReceiver.SendMessage(request);
 
             if (sg == StatusGame.Win)
-            {
-                GameResponse response_1 = new GameResponse(request);
-                GameResponse response_2 = new GameResponse(request);
+            { 
+                SendMsgToClientsOneByOne(new Receiver[] { this, this.OtherSideReceiver },
+                                         new MessageBase[] { new GameResponse(request, sg),
+                                                             new GameResponse(request, StatusGame.Lose)
+                                                           }
+                                         );
 
-                response_1.Game = sg;
-                response_2.Game = StatusGame.Lose;
+                this.InGameProperties.WinGame += 1;
 
-                this.SendMessage(response_1);
-                this.OtherSideReceiver.SendMessage(response_2);
-                this.CountDownInGame.Timer.Stop();
-                this.CountDownInGame.ResetTimer();
-                this.OtherSideReceiver.CountDownInGame.Timer.Stop();
-                this.OtherSideReceiver.CountDownInGame.ResetTimer();
+                PropertiesForEndGame();
 
-                this.SendMessage(new AcceptPlayRequest());
-                this.OtherSideReceiver.SendMessage(new AcceptPlayRequest());
+                SendMsgToClients(new Receiver[] { this, this.OtherSideReceiver }, new AcceptPlayRequest());
             }
             else if(sg == StatusGame.Tie)
             {
-                GameResponse response_1 = new GameResponse(request);
-                GameResponse response_2 = new GameResponse(request);
+                SendMsgToClientsOneByOne(new Receiver[] { this, this.OtherSideReceiver },
+                                         new MessageBase[] { new GameResponse(request, sg),
+                                                             new GameResponse(request, StatusGame.Tie)
+                                                           }
+                                         );
 
-                response_1.Game = sg;
-                response_2.Game = StatusGame.Tie;
+                this.InGameProperties.WinGame += 1;
+                this.OtherSideReceiver.InGameProperties.WinGame += 1;
 
-                this.SendMessage(response_1);
-                this.OtherSideReceiver.SendMessage(response_2);
-                this.CountDownInGame.Timer.Stop();
-                this.CountDownInGame.ResetTimer();
-                this.OtherSideReceiver.CountDownInGame.Timer.Stop();
-                this.OtherSideReceiver.CountDownInGame.ResetTimer();
+                PropertiesForEndGame();
 
-                this.SendMessage(new AcceptPlayRequest());
-                this.OtherSideReceiver.SendMessage(new AcceptPlayRequest());
+                SendMsgToClients(new Receiver[] { this, this.OtherSideReceiver }, new AcceptPlayRequest());
             }
             
         }
 
         
-
         private void EndSessionRequestHandler(EndSessionRequest request)
         {
             if (OtherSideReceiver != null)
@@ -588,7 +611,7 @@ namespace DCN.TicTacToe.Server
 
                 if (OtherSideReceiver.InGameProperties.Status == StatusInGame.Ready)
                 {
-                    SendDataInitGameForClients();
+                    SetupDataAndSendToClients();
                 }
             }
         }
@@ -597,29 +620,34 @@ namespace DCN.TicTacToe.Server
 
         #region Method
 
-        public void SendDataInitGameForClients()
+
+        private void SetupDataAndSendToClients()
+        {
+            bool isInTurn = RandomBoolean();
+
+            this.InGameProperties.Status = isInTurn ? StatusInGame.InTurn : StatusInGame.Ready;
+            SendDataInitToClient(this, 
+                                    new InitGame(this.InGameProperties, isInTurn, this.Email));
+
+            this.OtherSideReceiver.InGameProperties.Status = !isInTurn ? StatusInGame.InTurn : StatusInGame.Ready;
+            SendDataInitToClient(this.OtherSideReceiver, 
+                                    new InitGame(this.InGameProperties, !isInTurn, this.Email));
+
+            this.OtherSideReceiver.CountDownInGame.Start();
+            this.CountDownInGame.Start();
+        }
+
+        private bool RandomBoolean()
         {
             Random random = new Random();
 
-            int re = random.Next(0, 1);
+            return random.Next(2) == 0 ? false : true;
 
-            InitGame initGame = new InitGame();
+        }
 
-            initGame.properties = this.InGameProperties;
-            initGame.userName = this.Email;
-            initGame.IsFirst = re == 0?false:true;
-            this.InGameProperties.Status = initGame.IsFirst?StatusInGame.InTurn:StatusInGame.Ready;
-            this.SendMessage(initGame);
-
-            InitGame initGame_2 = new InitGame();
-            initGame_2.properties = OtherSideReceiver.InGameProperties;
-            initGame_2.userName = OtherSideReceiver.Email;
-            initGame_2.IsFirst = !initGame.IsFirst;
-            OtherSideReceiver.InGameProperties.Status = initGame_2.IsFirst ? StatusInGame.InTurn : StatusInGame.Ready;
-            OtherSideReceiver.SendMessage(initGame_2);
-
-            this.OtherSideReceiver.CountDownInGame.Timer.Start();
-            this.CountDownInGame.Timer.Start();
+        private void SendDataInitToClient(Receiver client, InitGame data)
+        {
+            client.SendMessage(data);
         }
 
         #endregion

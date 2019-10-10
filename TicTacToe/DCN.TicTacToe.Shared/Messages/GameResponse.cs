@@ -16,6 +16,12 @@ namespace DCN.TicTacToe.Shared.Messages
                
         }
 
+        public GameResponse(GameRequest request, StatusGame gameStatus)
+            : base(request)
+        {
+            Game = gameStatus;
+        }
+
         public StatusGame Game { get; set; }
     }
 }
