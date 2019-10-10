@@ -98,6 +98,14 @@ namespace DCN.TicTacToe.Client
         /// 
         /// </summary>
         public event Action<GameRequest> GameRequest;
+        /// <summary>
+        /// 
+        /// </summary>
+        public event Action<TimeOutRequest> TimeOutRequest;
+        /// <summary>
+        /// 
+        /// </summary>
+        public event Action<GameResponse> GameResponse;
 
         #endregion
 
@@ -387,7 +395,7 @@ namespace DCN.TicTacToe.Client
                 }
                 else if(type == typeof(GameResponse))
                 {
-
+                    OnGameResponse(msg as GameResponse);
                 }
             }
             else
@@ -435,6 +443,10 @@ namespace DCN.TicTacToe.Client
                 else if(type == typeof(GameRequest))
                 {
                     OnGameRequest(msg as GameRequest);
+                }
+                else if(type == typeof(TimeOutRequest))
+                {
+                    OnTimeOutRequest(msg as TimeOutRequest);
                 }
                 else if (type == typeof(GenericRequest))
                 {
@@ -603,6 +615,16 @@ namespace DCN.TicTacToe.Client
         #endregion
 
         #region Virtuals
+
+        public virtual void OnGameResponse(GameResponse args)
+        {
+            if (GameResponse != null) GameResponse(args);
+        }
+
+        public virtual void OnTimeOutRequest(TimeOutRequest args)
+        {
+            if (TimeOutRequest != null) TimeOutRequest(args);
+        }
 
         public virtual void OnGameRequest(GameRequest args)
         {

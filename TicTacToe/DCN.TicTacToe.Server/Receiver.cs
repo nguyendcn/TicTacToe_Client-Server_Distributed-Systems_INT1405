@@ -108,23 +108,29 @@ namespace DCN.TicTacToe.Server
             if(time < 0) // no response => end game
             {
                 this.CountDownInGame.Timer.Stop();
+                this.CountDownInGame.ResetTimer();
 
                 //Time out
-                if(this.InGameProperties.Status == StatusInGame.InTurn)
+                if (this.InGameProperties.Status == StatusInGame.InTurn)
                 {
-
+                    this.InGameProperties.Status = StatusInGame.NotReady;
+                    this.SendMessage(new TimeOutRequest());
+                    this.SendMessage(new StatusGameRequest(StatusGame.Lose));
                 }
-                else if(this.OtherSideReceiver.InGameProperties.Status == StatusInGame.InTurn)
+                else if (this.InGameProperties.Status == StatusInGame.Ready)
                 {
-
+                    this.InGameProperties.WinGame += 1;
+                    this.SendMessage(new TimeOutRequest());
+                    this.SendMessage(new StatusGameRequest(StatusGame.Win));
                 }
+                this.SendMessage(new AcceptPlayRequest());
+
             }
             else
             {
                 UpdateCountDownRequest request = new UpdateCountDownRequest();
                 request.Time = time;
                 this.SendMessage(request);
-                this.OtherSideReceiver.SendMessage(request);
             }
         }
 
@@ -286,6 +292,9 @@ namespace DCN.TicTacToe.Server
         {
             StatusGame sg = request.BoardGame.GetStatementGame();
 
+            this.CountDownInGame.ResetTimer();
+            this.OtherSideReceiver.CountDownInGame.ResetTimer();
+
             request.BoardGame = request.BoardGame.SwapZvO();
             this.OtherSideReceiver.SendMessage(request);
 
@@ -295,10 +304,17 @@ namespace DCN.TicTacToe.Server
                 GameResponse response_2 = new GameResponse(request);
 
                 response_1.Game = sg;
-                response_2.Game = StatusGame.Lost;
+                response_2.Game = StatusGame.Lose;
 
                 this.SendMessage(response_1);
                 this.OtherSideReceiver.SendMessage(response_2);
+                this.CountDownInGame.Timer.Stop();
+                this.CountDownInGame.ResetTimer();
+                this.OtherSideReceiver.CountDownInGame.Timer.Stop();
+                this.OtherSideReceiver.CountDownInGame.ResetTimer();
+
+                this.SendMessage(new AcceptPlayRequest());
+                this.OtherSideReceiver.SendMessage(new AcceptPlayRequest());
             }
             else if(sg == StatusGame.Tie)
             {
@@ -310,7 +326,13 @@ namespace DCN.TicTacToe.Server
 
                 this.SendMessage(response_1);
                 this.OtherSideReceiver.SendMessage(response_2);
-            
+                this.CountDownInGame.Timer.Stop();
+                this.CountDownInGame.ResetTimer();
+                this.OtherSideReceiver.CountDownInGame.Timer.Stop();
+                this.OtherSideReceiver.CountDownInGame.ResetTimer();
+
+                this.SendMessage(new AcceptPlayRequest());
+                this.OtherSideReceiver.SendMessage(new AcceptPlayRequest());
             }
             
         }
@@ -596,6 +618,7 @@ namespace DCN.TicTacToe.Server
             OtherSideReceiver.InGameProperties.Status = initGame_2.IsFirst ? StatusInGame.InTurn : StatusInGame.Ready;
             OtherSideReceiver.SendMessage(initGame_2);
 
+            this.OtherSideReceiver.CountDownInGame.Timer.Start();
             this.CountDownInGame.Timer.Start();
         }
 

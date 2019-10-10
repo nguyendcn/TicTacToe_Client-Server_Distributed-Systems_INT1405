@@ -54,6 +54,8 @@ namespace DCN.TicTacToe.UI.Client
             client.UpdateCountDown += Client_UpdateCountDown;
             client.InitGame += Client_InitGame;
             client.GameRequest += Client_GameRequest;
+            client.TimeOutRequest += Client_TimeOutRequest;
+            client.GameResponse += Client_GameResponse;
 
             this.timerReqMesgChat = new Timer();
             this.timerReqMesgChat.Interval = 3000;
@@ -64,6 +66,30 @@ namespace DCN.TicTacToe.UI.Client
             this.timerReceMesgChat.Tick += timerReceMesgChat_Tick;
 
             this.pnl_GameBoard.Enabled = false;
+        }
+
+        private void Client_GameResponse(Shared.Messages.GameResponse obj)
+        {
+            Status(obj.Game.ToString());
+
+            this.InvokeUI(() =>
+            {
+                pnl_GameBoard.Enabled = false;
+                foreach (Control ctr in pnl_GameBoard.Controls)
+                {
+                    if(ctr is Button)
+                        ctr.Enabled = true;
+                }
+            });
+            
+        }
+
+        private void Client_TimeOutRequest(Shared.Messages.TimeOutRequest obj)
+        {
+            this.InvokeUI(() =>
+            {
+                this.Text = "timeout!";
+            });
         }
 
         private void Client_GameRequest(Shared.Messages.GameRequest obj)
@@ -78,11 +104,7 @@ namespace DCN.TicTacToe.UI.Client
         {
             this.InvokeUI(() => {
                 this.pnl_GameBoard.Enabled = obj.IsFirst;
-                Debug.WriteLine("client: " + obj.userName+ "|" + obj.IsFirst);
-                //if (!obj.IsFirst)
-                //{
-                //    this.pnl_GameBoard.Enabled = false;
-                //}
+
                 this.lbl_Score_1.Text = obj.properties.WinGame.ToString();
                 ShowGameBoard(new int[,] { 
                                            {-1, -1, -1}, 
@@ -110,6 +132,7 @@ namespace DCN.TicTacToe.UI.Client
                 }
                 else
                 {
+                    this.pnl_GameBoard.Enabled = false;
                     this.btn_Already.Visible = true;
                 }
             });
@@ -437,12 +460,14 @@ namespace DCN.TicTacToe.UI.Client
         {
             this.label1.Text = "Already";
             client.RequestAlreadyPlayGame();
+            (sender as Button).Visible = false;
         }
 
         private void Btn_BoardItem_Click(object sender, EventArgs e)
         {
             (sender as Button).Text = "0";
             (sender as Button).Enabled = false;
+            this.pnl_GameBoard.Enabled = false;
             int[,] gameBoard = new int[3, 3];
             int i = 0;
             foreach (Control ctr in this.pnl_GameBoard.Controls)
@@ -466,6 +491,8 @@ namespace DCN.TicTacToe.UI.Client
                 {
                     if (ctr is Button)
                     {
+                        if (board[ind / 3, ind % 3] == (int)Game.SPACE)
+                            ctr.Enabled = true;
                         ctr.Text = board[ind / 3, ind % 3].ToString();
                         ind--;
                     }

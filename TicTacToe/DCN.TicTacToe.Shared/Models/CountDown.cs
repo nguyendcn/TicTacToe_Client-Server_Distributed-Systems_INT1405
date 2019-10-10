@@ -18,7 +18,7 @@ namespace DCN.TicTacToe.Shared.Models
         
         public CountDown()
         {
-            CurrentTime = TotalTime = 15;
+            CurrentTime = TotalTime = 5;
             Step = 1;
             Timer = new Timer();
 
@@ -41,5 +41,16 @@ namespace DCN.TicTacToe.Shared.Models
                 CoutDownEv(time);
 
         }
+
+        #region Methods
+        /// <summary>
+        /// Reset countdown time for timmer.
+        /// </summary>
+        public void ResetTimer()
+        {
+            CurrentTime = TotalTime;
+        }
+
+        #endregion
     }
 }

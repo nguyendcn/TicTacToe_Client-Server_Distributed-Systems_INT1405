@@ -48,7 +48,8 @@ namespace DCN.TicTacToe.Shared.ExtensionMethods
 
         private static bool TicTacToe_row(int chOne, int chTwo, int chThree)
         {
-            if ((chOne == chTwo) && (chOne == chThree))
+            if ((chOne == chTwo) && (chOne == chThree) && 
+                (chOne != (int)Game.SPACE && chTwo != (int)Game.SPACE && chThree != (int)Game.SPACE))
             {
                 return true;
             }
@@ -97,7 +98,7 @@ namespace DCN.TicTacToe.Shared.ExtensionMethods
             {
                 for(int i = 0; i < gameBoard.GetLength(1); i++)
                 {
-                    if(gameBoard[j, i].Equals(Game.SPACE))
+                    if(gameBoard[j, i].Equals((int)Game.SPACE))
                     {
                         return false;
                     }

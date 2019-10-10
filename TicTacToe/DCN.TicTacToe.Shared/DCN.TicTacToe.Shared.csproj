@@ -57,6 +57,7 @@
     <Compile Include="Messages\GameRequest.cs" />
     <Compile Include="Messages\GameResponse.cs" />
     <Compile Include="Messages\InitGame.cs" />
+    <Compile Include="Messages\StatusGameRequest.cs" />
     <Compile Include="Messages\TablesInProcessRequest.cs" />
     <Compile Include="Messages\TablesInProcessResponse.cs" />
     <Compile Include="Messages\CreateTableRequest.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Messages\SessionRequest.cs" />
     <Compile Include="Messages\SessionResponse.cs" />
     <Compile Include="Messages\TextMessageRequest.cs" />
+    <Compile Include="Messages\TimeOutRequest.cs" />
     <Compile Include="Messages\UpdateCountDownRequest.cs" />
     <Compile Include="Messages\UpdateTablesInProcessRequest.cs" />
     <Compile Include="Messages\ValidationRequest.cs" />
