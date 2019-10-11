@@ -37,12 +37,11 @@
             this.pnl_MsgChat_2 = new System.Windows.Forms.Panel();
             this.txt_MessContent_2 = new System.Windows.Forms.TextBox();
             this.pnl_PlayerProps = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbl_Score_2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbl_Score_1 = new System.Windows.Forms.Label();
             this.pnl_MsgChat_1 = new System.Windows.Forms.Panel();
             this.txt_MessContent_1 = new System.Windows.Forms.TextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.pnl_PlayerArea_2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pnl_PlayerArea_1 = new System.Windows.Forms.Panel();
@@ -130,7 +129,6 @@
             this.pnl_GamePlay.Controls.Add(this.pnl_MsgChat_2);
             this.pnl_GamePlay.Controls.Add(this.pnl_PlayerProps);
             this.pnl_GamePlay.Controls.Add(this.pnl_MsgChat_1);
-            this.pnl_GamePlay.Controls.Add(this.panel4);
             this.pnl_GamePlay.Controls.Add(this.pnl_PlayerArea_2);
             this.pnl_GamePlay.Controls.Add(this.pnl_PlayerArea_1);
             this.pnl_GamePlay.Controls.Add(this.pnl_ChatView);
@@ -183,7 +181,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnl_PlayerProps.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.pnl_PlayerProps.Controls.Add(this.label4);
+            this.pnl_PlayerProps.Controls.Add(this.lbl_Score_2);
             this.pnl_PlayerProps.Controls.Add(this.label3);
             this.pnl_PlayerProps.Controls.Add(this.lbl_Score_1);
             this.pnl_PlayerProps.Location = new System.Drawing.Point(672, 41);
@@ -191,15 +189,15 @@
             this.pnl_PlayerProps.Size = new System.Drawing.Size(187, 279);
             this.pnl_PlayerProps.TabIndex = 8;
             // 
-            // label4
+            // lbl_Score_2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(107, 98);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(16, 16);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "0";
+            this.lbl_Score_2.AutoSize = true;
+            this.lbl_Score_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Score_2.Location = new System.Drawing.Point(107, 98);
+            this.lbl_Score_2.Name = "lbl_Score_2";
+            this.lbl_Score_2.Size = new System.Drawing.Size(16, 16);
+            this.lbl_Score_2.TabIndex = 2;
+            this.lbl_Score_2.Text = "0";
             // 
             // label3
             // 
@@ -236,13 +234,6 @@
             this.txt_MessContent_1.Name = "txt_MessContent_1";
             this.txt_MessContent_1.Size = new System.Drawing.Size(100, 69);
             this.txt_MessContent_1.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 100);
-            this.panel4.TabIndex = 12;
             // 
             // pnl_PlayerArea_2
             // 
@@ -812,12 +803,11 @@
         private System.Windows.Forms.TextBox txt_MessContent_2;
         private System.Windows.Forms.Panel pnl_MsgChat_1;
         private System.Windows.Forms.TextBox txt_MessContent_1;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btn_Already;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_Countdown;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbl_Score_2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbl_Score_1;
         private System.Windows.Forms.Button button7;

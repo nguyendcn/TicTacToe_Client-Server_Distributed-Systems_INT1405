@@ -81,7 +81,21 @@ namespace DCN.TicTacToe.UI.Client
                         ctr.Enabled = true;
                 }
             });
-            
+
+            UpdateScoreRequest();
+
+        }
+
+        private void UpdateScoreRequest()
+        {
+            client.RequestUpdateScore((cl, args) =>
+            {
+                this.InvokeUI(() =>
+                {
+                    this.lbl_Score_1.Text = args.Score_1.ToString();
+                    this.lbl_Score_2.Text = args.Score_2.ToString();
+                });
+            });
         }
 
         private void Client_TimeOutRequest(Shared.Messages.TimeOutRequest obj)
@@ -105,7 +119,7 @@ namespace DCN.TicTacToe.UI.Client
             this.InvokeUI(() => {
                 this.pnl_GameBoard.Enabled = obj.IsFirst;
 
-                this.lbl_Score_1.Text = obj.Properties.WinGame.ToString();
+                //this.lbl_Score_1.Text = obj.Properties.WinGame.ToString();
                 ShowGameBoard(new int[,] { 
                                            {-1, -1, -1}, 
                                            {-1, -1, -1}, 

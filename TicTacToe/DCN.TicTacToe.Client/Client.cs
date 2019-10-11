@@ -314,6 +314,13 @@ namespace DCN.TicTacToe.Client
             SendMessage(request);
         }
 
+        public void RequestUpdateScore(Action<Client, UpdateScoreResponse> callback)
+        {
+            UpdateScoreRequest request = new UpdateScoreRequest();
+            AddCallback(callback, request);
+            SendMessage(request);
+        }
+
         #endregion
 
         #region Threads Methods

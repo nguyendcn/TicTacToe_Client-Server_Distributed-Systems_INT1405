@@ -280,8 +280,12 @@ namespace DCN.TicTacToe.Server
                 {
                     GameRequestHandler(msg as GameRequest);
                     return;
-                    
                 }
+                else if(type == typeof(UpdateScoreRequest))
+                {
+                    UpdateScoreRequestHandler(msg as UpdateScoreRequest);
+                }
+
                 OtherSideReceiver.SendMessage(msg);
                 
             }
@@ -361,7 +365,14 @@ namespace DCN.TicTacToe.Server
             
         }
 
-        
+        public void UpdateScoreRequestHandler(UpdateScoreRequest request)
+        {
+            UpdateScoreResponse response = new UpdateScoreResponse(request,
+                                                    this.InGameProperties.WinGame,
+                                                    this.OtherSideReceiver.InGameProperties.WinGame);
+            this.SendMessage(response);
+        }
+
         private void EndSessionRequestHandler(EndSessionRequest request)
         {
             if (OtherSideReceiver != null)

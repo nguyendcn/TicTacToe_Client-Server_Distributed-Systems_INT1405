@@ -79,6 +79,8 @@
     <Compile Include="Messages\TextMessageRequest.cs" />
     <Compile Include="Messages\TimeOutRequest.cs" />
     <Compile Include="Messages\UpdateCountDownRequest.cs" />
+    <Compile Include="Messages\UpdateScoreRequest.cs" />
+    <Compile Include="Messages\UpdateScoreResponse.cs" />
     <Compile Include="Messages\UpdateTablesInProcessRequest.cs" />
     <Compile Include="Messages\ValidationRequest.cs" />
     <Compile Include="Messages\ValidationResponse.cs" />
