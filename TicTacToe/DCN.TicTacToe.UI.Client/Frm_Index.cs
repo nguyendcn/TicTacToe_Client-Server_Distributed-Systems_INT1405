@@ -66,6 +66,46 @@ namespace DCN.TicTacToe.UI.Client
             this.timerReceMesgChat.Tick += timerReceMesgChat_Tick;
 
             this.pnl_GameBoard.Enabled = false;
+
+            SetUpForPopup();
+        }
+
+        public void  SetUpForPopup()
+        {
+            this.frm_Quit.Show();
+            this.frm_Win.Show();
+            this.frm_Lose.Show();
+            this.frm_Tie.Show();
+
+            this.frm_Quit.Visible = this.frm_Win.Visible = this.frm_Lose.Visible = this.frm_Tie.Visible = false;
+        }
+
+        public void frm_Quit_Action(Options option)
+        {
+            this.Text = "quit";
+            frm_Quit.Visible = false;
+            this.tpnl_Popup.Visible = false;
+        }
+
+        public void frm_Win_Action(Options option)
+        {
+            this.Text = "win";
+            frm_Win.Visible = false;
+           // this.tpnl_Popup.Visible = false;
+        }
+
+        public void frm_Lose_Action(Options option)
+        {
+            this.Text = "lose";
+            frm_Lose.Visible = false;
+            this.tpnl_Popup.Visible = false;
+        }
+
+        public void frm_Tie_Action(Options option)
+        {
+            this.Text = "tie";
+            frm_Tie.Visible = false;
+            this.tpnl_Popup.Visible = false;
         }
 
         private void Client_GameResponse(Shared.Messages.GameResponse obj)
@@ -74,6 +114,21 @@ namespace DCN.TicTacToe.UI.Client
 
             this.InvokeUI(() =>
             {
+                if (obj.Game == StatusGame.Win)
+                {
+                    //this.tpnl_Popup.Visible = true;
+                    //this.tpnl_Popup.BringToFront();
+                    this.pnl_GamePlay.Enabled = false;
+                    this.frm_Win.BringToFront();
+                    this.frm_Win.Visible = true;
+                }
+                else if( obj.Game == StatusGame.Lose)
+                {
+                    this.pnl_Notifi.Visible = true;
+                    this.pnl_Notifi.BringToFront();
+                    this.frm_Lose.Visible = true;
+                }
+
                 pnl_GameBoard.Enabled = false;
                 foreach (Control ctr in pnl_GameBoard.Controls)
                 {
@@ -148,6 +203,7 @@ namespace DCN.TicTacToe.UI.Client
                 {
                     this.pnl_GameBoard.Enabled = false;
                     this.btn_Already.Visible = true;
+                    this.label1.Text = "huuuhuusddsa";
                 }
             });
 
@@ -245,7 +301,7 @@ namespace DCN.TicTacToe.UI.Client
         private void pnl_ExitFormLogin_Click(object sender, EventArgs e)
         {
             this.txt_UserName.Text = "";
-            this.tpnl_Login.Visible = false;
+            this.tpnl_Popup.Visible = false;
 
         }
 
@@ -272,7 +328,7 @@ namespace DCN.TicTacToe.UI.Client
 
             });
             this.txt_UserName.Text = "";
-            this.tpnl_Login.Visible = false;
+            this.tpnl_Popup.Visible = false;
             this.pnl_Index.Visible = false;
             this.pnl_Common.Visible = true;
             this.pnl_Common.BringToFront();
@@ -283,8 +339,8 @@ namespace DCN.TicTacToe.UI.Client
         {
             if (client.Status == Shared.Enum.StatusEnum.Connected)
             {
-                this.tpnl_Login.Visible = true;
-                this.tpnl_Login.BringToFront();
+                this.tpnl_Popup.Visible = true;
+                this.tpnl_Popup.BringToFront();
             }
             else
             {
@@ -529,6 +585,11 @@ namespace DCN.TicTacToe.UI.Client
                     }
                 }
             }
+        }
+
+        private void frm_Quit_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

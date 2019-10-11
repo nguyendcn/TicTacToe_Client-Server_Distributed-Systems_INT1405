@@ -31,6 +31,19 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Index));
             this.pnl_form = new System.Windows.Forms.Panel();
+            this.pnl_Common = new System.Windows.Forms.Panel();
+            this.flp_ShowTableGame = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_findOnline = new System.Windows.Forms.Button();
+            this.cmb_Online = new System.Windows.Forms.ComboBox();
+            this.btn_Register = new System.Windows.Forms.Button();
+            this.btn_ConnectToPlayer = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txt_PlayerID = new System.Windows.Forms.TextBox();
+            this.tpnl_Popup = new DCN.TicTacToe.UI.Client.TransparentPanel(this.components);
+            this.btn_Login = new System.Windows.Forms.Button();
+            this.pnl_ExitFormLogin = new System.Windows.Forms.Panel();
+            this.txt_UserName = new System.Windows.Forms.TextBox();
             this.pnl_GamePlay = new System.Windows.Forms.Panel();
             this.lbl_Countdown = new System.Windows.Forms.Label();
             this.btn_Already = new System.Windows.Forms.Button();
@@ -68,25 +81,18 @@
             this.picb_About = new System.Windows.Forms.PictureBox();
             this.picb_QuickPlay = new System.Windows.Forms.PictureBox();
             this.picb_PlayNow = new System.Windows.Forms.PictureBox();
-            this.tpnl_Login = new DCN.TicTacToe.UI.Client.TransparentPanel(this.components);
-            this.btn_Login = new System.Windows.Forms.Button();
-            this.pnl_ExitFormLogin = new System.Windows.Forms.Panel();
-            this.txt_UserName = new System.Windows.Forms.TextBox();
-            this.pnl_Common = new System.Windows.Forms.Panel();
-            this.flp_ShowTableGame = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btn_findOnline = new System.Windows.Forms.Button();
-            this.cmb_Online = new System.Windows.Forms.ComboBox();
-            this.btn_Register = new System.Windows.Forms.Button();
-            this.btn_ConnectToPlayer = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.txt_PlayerID = new System.Windows.Forms.TextBox();
+            this.pnl_Notifi = new System.Windows.Forms.Panel();
             this.pnl_TitleBar = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.btn_Minimise = new System.Windows.Forms.Button();
             this.btn_Maximise = new System.Windows.Forms.Button();
             this.btn_Exit = new System.Windows.Forms.Button();
+            this.frm_Tie = new DCN.TicTacToe.UI.Frm_Tie();
             this.pnl_form.SuspendLayout();
+            this.pnl_Common.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.tpnl_Popup.SuspendLayout();
             this.pnl_GamePlay.SuspendLayout();
             this.pnl_MsgChat_2.SuspendLayout();
             this.pnl_PlayerProps.SuspendLayout();
@@ -102,24 +108,151 @@
             ((System.ComponentModel.ISupportInitialize)(this.picb_About)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_QuickPlay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_PlayNow)).BeginInit();
-            this.tpnl_Login.SuspendLayout();
-            this.pnl_Common.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.pnl_TitleBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_form
             // 
+            this.pnl_form.Controls.Add(this.pnl_Common);
+            this.pnl_form.Controls.Add(this.tpnl_Popup);
             this.pnl_form.Controls.Add(this.pnl_GamePlay);
             this.pnl_form.Controls.Add(this.pnl_Index);
-            this.pnl_form.Controls.Add(this.pnl_Common);
+            this.pnl_form.Controls.Add(this.pnl_Notifi);
             this.pnl_form.Controls.Add(this.pnl_TitleBar);
             this.pnl_form.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_form.Location = new System.Drawing.Point(0, 0);
             this.pnl_form.Name = "pnl_form";
             this.pnl_form.Size = new System.Drawing.Size(873, 644);
             this.pnl_form.TabIndex = 0;
+            // 
+            // pnl_Common
+            // 
+            this.pnl_Common.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnl_Common.Controls.Add(this.flp_ShowTableGame);
+            this.pnl_Common.Controls.Add(this.panel1);
+            this.pnl_Common.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Common.Location = new System.Drawing.Point(0, 34);
+            this.pnl_Common.Name = "pnl_Common";
+            this.pnl_Common.Size = new System.Drawing.Size(873, 610);
+            this.pnl_Common.TabIndex = 2;
+            // 
+            // flp_ShowTableGame
+            // 
+            this.flp_ShowTableGame.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.flp_ShowTableGame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flp_ShowTableGame.Location = new System.Drawing.Point(0, 52);
+            this.flp_ShowTableGame.Name = "flp_ShowTableGame";
+            this.flp_ShowTableGame.Size = new System.Drawing.Size(873, 558);
+            this.flp_ShowTableGame.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.btn_findOnline);
+            this.panel1.Controls.Add(this.cmb_Online);
+            this.panel1.Controls.Add(this.btn_Register);
+            this.panel1.Controls.Add(this.btn_ConnectToPlayer);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(873, 52);
+            this.panel1.TabIndex = 0;
+            // 
+            // btn_findOnline
+            // 
+            this.btn_findOnline.Location = new System.Drawing.Point(707, 12);
+            this.btn_findOnline.Name = "btn_findOnline";
+            this.btn_findOnline.Size = new System.Drawing.Size(75, 23);
+            this.btn_findOnline.TabIndex = 3;
+            this.btn_findOnline.Text = "Online";
+            this.btn_findOnline.UseVisualStyleBackColor = true;
+            this.btn_findOnline.Click += new System.EventHandler(this.btn_findOnline_Click);
+            // 
+            // cmb_Online
+            // 
+            this.cmb_Online.FormattingEnabled = true;
+            this.cmb_Online.Location = new System.Drawing.Point(455, 14);
+            this.cmb_Online.Name = "cmb_Online";
+            this.cmb_Online.Size = new System.Drawing.Size(121, 21);
+            this.cmb_Online.TabIndex = 2;
+            this.cmb_Online.SelectedIndexChanged += new System.EventHandler(this.cmb_Online_SelectedIndexChanged);
+            // 
+            // btn_Register
+            // 
+            this.btn_Register.Location = new System.Drawing.Point(602, 12);
+            this.btn_Register.Name = "btn_Register";
+            this.btn_Register.Size = new System.Drawing.Size(75, 23);
+            this.btn_Register.TabIndex = 4;
+            this.btn_Register.Text = "Register";
+            this.btn_Register.UseVisualStyleBackColor = true;
+            this.btn_Register.Click += new System.EventHandler(this.btn_Register_Click);
+            // 
+            // btn_ConnectToPlayer
+            // 
+            this.btn_ConnectToPlayer.Location = new System.Drawing.Point(280, 3);
+            this.btn_ConnectToPlayer.Name = "btn_ConnectToPlayer";
+            this.btn_ConnectToPlayer.Size = new System.Drawing.Size(75, 34);
+            this.btn_ConnectToPlayer.TabIndex = 1;
+            this.btn_ConnectToPlayer.Text = "Search";
+            this.btn_ConnectToPlayer.UseVisualStyleBackColor = true;
+            this.btn_ConnectToPlayer.Click += new System.EventHandler(this.btn_ConnectToPlayer_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Controls.Add(this.txt_PlayerID);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(251, 52);
+            this.panel2.TabIndex = 0;
+            // 
+            // txt_PlayerID
+            // 
+            this.txt_PlayerID.Location = new System.Drawing.Point(84, 11);
+            this.txt_PlayerID.Name = "txt_PlayerID";
+            this.txt_PlayerID.Size = new System.Drawing.Size(155, 20);
+            this.txt_PlayerID.TabIndex = 0;
+            // 
+            // tpnl_Popup
+            // 
+            this.tpnl_Popup.BackColor = System.Drawing.Color.Transparent;
+            this.tpnl_Popup.Controls.Add(this.btn_Login);
+            this.tpnl_Popup.Controls.Add(this.pnl_ExitFormLogin);
+            this.tpnl_Popup.Controls.Add(this.txt_UserName);
+            this.tpnl_Popup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tpnl_Popup.Location = new System.Drawing.Point(0, 34);
+            this.tpnl_Popup.Name = "tpnl_Popup";
+            this.tpnl_Popup.Opacity = 100;
+            this.tpnl_Popup.Size = new System.Drawing.Size(873, 610);
+            this.tpnl_Popup.TabIndex = 3;
+            // 
+            // btn_Login
+            // 
+            this.btn_Login.Location = new System.Drawing.Point(108, 86);
+            this.btn_Login.Name = "btn_Login";
+            this.btn_Login.Size = new System.Drawing.Size(75, 23);
+            this.btn_Login.TabIndex = 1;
+            this.btn_Login.Text = "Done";
+            this.btn_Login.UseVisualStyleBackColor = true;
+            this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
+            // 
+            // pnl_ExitFormLogin
+            // 
+            this.pnl_ExitFormLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnl_ExitFormLogin.Location = new System.Drawing.Point(241, 14);
+            this.pnl_ExitFormLogin.Name = "pnl_ExitFormLogin";
+            this.pnl_ExitFormLogin.Size = new System.Drawing.Size(21, 19);
+            this.pnl_ExitFormLogin.TabIndex = 2;
+            this.pnl_ExitFormLogin.Click += new System.EventHandler(this.pnl_ExitFormLogin_Click);
+            // 
+            // txt_UserName
+            // 
+            this.txt_UserName.Location = new System.Drawing.Point(73, 52);
+            this.txt_UserName.Name = "txt_UserName";
+            this.txt_UserName.Size = new System.Drawing.Size(134, 20);
+            this.txt_UserName.TabIndex = 0;
             // 
             // pnl_GamePlay
             // 
@@ -420,7 +553,6 @@
             this.pnl_Index.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnl_Index.BackgroundImage")));
             this.pnl_Index.Controls.Add(this.pnl_IndexBar);
             this.pnl_Index.Controls.Add(this.tableLayoutPanel1);
-            this.pnl_Index.Controls.Add(this.tpnl_Login);
             this.pnl_Index.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Index.Location = new System.Drawing.Point(0, 34);
             this.pnl_Index.Name = "pnl_Index";
@@ -507,134 +639,14 @@
             this.picb_PlayNow.TabStop = false;
             this.picb_PlayNow.Click += new System.EventHandler(this.picb_PlayNow_Click);
             // 
-            // tpnl_Login
+            // pnl_Notifi
             // 
-            this.tpnl_Login.BackColor = System.Drawing.Color.Transparent;
-            this.tpnl_Login.Controls.Add(this.btn_Login);
-            this.tpnl_Login.Controls.Add(this.pnl_ExitFormLogin);
-            this.tpnl_Login.Controls.Add(this.txt_UserName);
-            this.tpnl_Login.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tpnl_Login.Location = new System.Drawing.Point(0, 0);
-            this.tpnl_Login.Name = "tpnl_Login";
-            this.tpnl_Login.Opacity = 10;
-            this.tpnl_Login.Size = new System.Drawing.Size(873, 610);
-            this.tpnl_Login.TabIndex = 3;
-            // 
-            // btn_Login
-            // 
-            this.btn_Login.Location = new System.Drawing.Point(108, 86);
-            this.btn_Login.Name = "btn_Login";
-            this.btn_Login.Size = new System.Drawing.Size(75, 23);
-            this.btn_Login.TabIndex = 1;
-            this.btn_Login.Text = "Done";
-            this.btn_Login.UseVisualStyleBackColor = true;
-            this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
-            // 
-            // pnl_ExitFormLogin
-            // 
-            this.pnl_ExitFormLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.pnl_ExitFormLogin.Location = new System.Drawing.Point(241, 14);
-            this.pnl_ExitFormLogin.Name = "pnl_ExitFormLogin";
-            this.pnl_ExitFormLogin.Size = new System.Drawing.Size(21, 19);
-            this.pnl_ExitFormLogin.TabIndex = 2;
-            this.pnl_ExitFormLogin.Click += new System.EventHandler(this.pnl_ExitFormLogin_Click);
-            // 
-            // txt_UserName
-            // 
-            this.txt_UserName.Location = new System.Drawing.Point(73, 52);
-            this.txt_UserName.Name = "txt_UserName";
-            this.txt_UserName.Size = new System.Drawing.Size(134, 20);
-            this.txt_UserName.TabIndex = 0;
-            // 
-            // pnl_Common
-            // 
-            this.pnl_Common.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pnl_Common.Controls.Add(this.flp_ShowTableGame);
-            this.pnl_Common.Controls.Add(this.panel1);
-            this.pnl_Common.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Common.Location = new System.Drawing.Point(0, 34);
-            this.pnl_Common.Name = "pnl_Common";
-            this.pnl_Common.Size = new System.Drawing.Size(873, 610);
-            this.pnl_Common.TabIndex = 2;
-            // 
-            // flp_ShowTableGame
-            // 
-            this.flp_ShowTableGame.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.flp_ShowTableGame.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flp_ShowTableGame.Location = new System.Drawing.Point(0, 52);
-            this.flp_ShowTableGame.Name = "flp_ShowTableGame";
-            this.flp_ShowTableGame.Size = new System.Drawing.Size(873, 558);
-            this.flp_ShowTableGame.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel1.Controls.Add(this.btn_findOnline);
-            this.panel1.Controls.Add(this.cmb_Online);
-            this.panel1.Controls.Add(this.btn_Register);
-            this.panel1.Controls.Add(this.btn_ConnectToPlayer);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(873, 52);
-            this.panel1.TabIndex = 0;
-            // 
-            // btn_findOnline
-            // 
-            this.btn_findOnline.Location = new System.Drawing.Point(707, 12);
-            this.btn_findOnline.Name = "btn_findOnline";
-            this.btn_findOnline.Size = new System.Drawing.Size(75, 23);
-            this.btn_findOnline.TabIndex = 3;
-            this.btn_findOnline.Text = "Online";
-            this.btn_findOnline.UseVisualStyleBackColor = true;
-            this.btn_findOnline.Click += new System.EventHandler(this.btn_findOnline_Click);
-            // 
-            // cmb_Online
-            // 
-            this.cmb_Online.FormattingEnabled = true;
-            this.cmb_Online.Location = new System.Drawing.Point(455, 14);
-            this.cmb_Online.Name = "cmb_Online";
-            this.cmb_Online.Size = new System.Drawing.Size(121, 21);
-            this.cmb_Online.TabIndex = 2;
-            this.cmb_Online.SelectedIndexChanged += new System.EventHandler(this.cmb_Online_SelectedIndexChanged);
-            // 
-            // btn_Register
-            // 
-            this.btn_Register.Location = new System.Drawing.Point(602, 12);
-            this.btn_Register.Name = "btn_Register";
-            this.btn_Register.Size = new System.Drawing.Size(75, 23);
-            this.btn_Register.TabIndex = 4;
-            this.btn_Register.Text = "Register";
-            this.btn_Register.UseVisualStyleBackColor = true;
-            this.btn_Register.Click += new System.EventHandler(this.btn_Register_Click);
-            // 
-            // btn_ConnectToPlayer
-            // 
-            this.btn_ConnectToPlayer.Location = new System.Drawing.Point(280, 3);
-            this.btn_ConnectToPlayer.Name = "btn_ConnectToPlayer";
-            this.btn_ConnectToPlayer.Size = new System.Drawing.Size(75, 34);
-            this.btn_ConnectToPlayer.TabIndex = 1;
-            this.btn_ConnectToPlayer.Text = "Search";
-            this.btn_ConnectToPlayer.UseVisualStyleBackColor = true;
-            this.btn_ConnectToPlayer.Click += new System.EventHandler(this.btn_ConnectToPlayer_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.Controls.Add(this.txt_PlayerID);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(251, 52);
-            this.panel2.TabIndex = 0;
-            // 
-            // txt_PlayerID
-            // 
-            this.txt_PlayerID.Location = new System.Drawing.Point(84, 11);
-            this.txt_PlayerID.Name = "txt_PlayerID";
-            this.txt_PlayerID.Size = new System.Drawing.Size(155, 20);
-            this.txt_PlayerID.TabIndex = 0;
+            this.pnl_Notifi.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.pnl_Notifi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_Notifi.Location = new System.Drawing.Point(0, 34);
+            this.pnl_Notifi.Name = "pnl_Notifi";
+            this.pnl_Notifi.Size = new System.Drawing.Size(873, 610);
+            this.pnl_Notifi.TabIndex = 1;
             // 
             // pnl_TitleBar
             // 
@@ -718,6 +730,22 @@
             this.btn_Exit.UseVisualStyleBackColor = true;
             this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
+            // frm_Tie
+            // 
+            this.frm_Tie.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.frm_Tie.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("frm_Tie.BackgroundImage")));
+            this.frm_Tie.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.frm_Tie.ClientSize = new System.Drawing.Size(292, 321);
+            this.frm_Tie.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.frm_Tie.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.frm_Tie.Location = new System.Drawing.Point(182, 182);
+            this.frm_Tie.Name = "frm_Tie";
+            this.frm_Tie.ShowInTaskbar = false;
+            this.frm_Tie.Text = "Frm_Tie";
+            this.frm_Tie.TransparencyKey = System.Drawing.SystemColors.ButtonShadow;
+            this.frm_Tie.Visible = false;
+            this.frm_Tie.ActionForm += new System.Action<DCN.TicTacToe.Shared.Enum.Options>(this.frm_Tie_Action);
+            // 
             // Frm_Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -728,6 +756,12 @@
             this.Name = "Frm_Index";
             this.Text = "Form3";
             this.pnl_form.ResumeLayout(false);
+            this.pnl_Common.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.tpnl_Popup.ResumeLayout(false);
+            this.tpnl_Popup.PerformLayout();
             this.pnl_GamePlay.ResumeLayout(false);
             this.pnl_GamePlay.PerformLayout();
             this.pnl_MsgChat_2.ResumeLayout(false);
@@ -750,12 +784,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picb_About)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_QuickPlay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_PlayNow)).EndInit();
-            this.tpnl_Login.ResumeLayout(false);
-            this.tpnl_Login.PerformLayout();
-            this.pnl_Common.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.pnl_TitleBar.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -765,6 +793,7 @@
 
         private System.Windows.Forms.Panel pnl_form;
         private System.Windows.Forms.Panel pnl_Index;
+        private System.Windows.Forms.Panel pnl_Notifi;
         private System.Windows.Forms.Panel pnl_GamePlay;
         private System.Windows.Forms.Panel pnl_TitleBar;
         private System.Windows.Forms.Button btn_Minimise;
@@ -775,7 +804,7 @@
         private System.Windows.Forms.Panel pnl_ExitFormLogin;
         private System.Windows.Forms.Button btn_Login;
         private System.Windows.Forms.TextBox txt_UserName;
-        private TransparentPanel tpnl_Login;
+        private TransparentPanel tpnl_Popup;
         private System.Windows.Forms.Panel pnl_PlayerArea_2;
         private System.Windows.Forms.Panel pnl_PlayerArea_1;
         private System.Windows.Forms.Panel pnl_ChatView;
@@ -819,6 +848,7 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button8;
+        private Frm_Tie frm_Tie;
     }
 }
 

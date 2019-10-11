@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DCN.TicTacToe.Shared.Messages
+namespace DCN.TicTacToe.Shared.Enum
 {
-    [Serializable]
-    public class TablesInProcessRequest : RequestMessageBase
+    public enum Options
     {
-
+        YES,
+        NO,
+        CANCEL,
+        Continute
     }
 }

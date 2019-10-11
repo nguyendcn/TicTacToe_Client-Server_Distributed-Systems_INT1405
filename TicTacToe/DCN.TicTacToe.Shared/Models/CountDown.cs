@@ -36,6 +36,7 @@ namespace DCN.TicTacToe.Shared.Models
         public delegate void CountDownAction(int time);
         public event CountDownAction CoutDownEv;
 
+
         public virtual void OnCountDown(int time)
         {
             if (this.CoutDownEv != null)

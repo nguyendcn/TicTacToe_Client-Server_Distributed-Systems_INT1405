@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="AllowAllAssemblyVersionsDeserializationBinder.cs" />
     <Compile Include="Enum\Game.cs" />
+    <Compile Include="Enum\Options.cs" />
     <Compile Include="Enum\StatusEnum.cs" />
     <Compile Include="Enum\StatusGame.cs" />
     <Compile Include="Enum\StatusInGame.cs" />
