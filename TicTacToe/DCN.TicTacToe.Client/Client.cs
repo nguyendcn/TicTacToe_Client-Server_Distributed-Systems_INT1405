@@ -106,6 +106,11 @@ namespace DCN.TicTacToe.Client
         /// 
         /// </summary>
         public event Action<GameResponse> GameResponse;
+        /// <summary>
+        /// 
+        /// </summary>
+        public event Action<Client> AutoAccepInvite;
+
 
         #endregion
 
@@ -576,6 +581,7 @@ namespace DCN.TicTacToe.Client
                 response.IsConfirmed = true;
                 response.Email = request.Email;
                 SendMessage(response);
+                OnAutoAcceptInvite(this);
             }
 
         }
@@ -622,6 +628,11 @@ namespace DCN.TicTacToe.Client
         #endregion
 
         #region Virtuals
+
+        public virtual void OnAutoAcceptInvite(Client client)
+        {
+            if (AutoAccepInvite != null) AutoAccepInvite(client);
+        }
 
         public virtual void OnGameResponse(GameResponse args)
         {

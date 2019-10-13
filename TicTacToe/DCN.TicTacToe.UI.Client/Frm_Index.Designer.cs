@@ -31,20 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Index));
             this.pnl_form = new System.Windows.Forms.Panel();
-            this.pnl_Common = new System.Windows.Forms.Panel();
-            this.flp_ShowTableGame = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btn_findOnline = new System.Windows.Forms.Button();
-            this.cmb_Online = new System.Windows.Forms.ComboBox();
-            this.btn_Register = new System.Windows.Forms.Button();
-            this.btn_ConnectToPlayer = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.txt_PlayerID = new System.Windows.Forms.TextBox();
-            this.tpnl_Popup = new DCN.TicTacToe.UI.Client.TransparentPanel(this.components);
-            this.btn_Login = new System.Windows.Forms.Button();
-            this.pnl_ExitFormLogin = new System.Windows.Forms.Panel();
-            this.txt_UserName = new System.Windows.Forms.TextBox();
             this.pnl_GamePlay = new System.Windows.Forms.Panel();
+            this.rtb_HistoryMess = new System.Windows.Forms.RichTextBox();
             this.lbl_Countdown = new System.Windows.Forms.Label();
             this.btn_Already = new System.Windows.Forms.Button();
             this.pnl_MsgChat_2 = new System.Windows.Forms.Panel();
@@ -59,20 +47,32 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pnl_PlayerArea_1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.pnl_ChatView = new System.Windows.Forms.Panel();
             this.pnl_GameBoard = new System.Windows.Forms.Panel();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pnl_ChatControl = new System.Windows.Forms.Panel();
             this.btn_SendMessage = new System.Windows.Forms.Button();
             this.txt_Message = new System.Windows.Forms.TextBox();
+            this.pnl_Common = new System.Windows.Forms.Panel();
+            this.flp_ShowTableGame = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_findOnline = new System.Windows.Forms.Button();
+            this.cmb_Online = new System.Windows.Forms.ComboBox();
+            this.btn_Register = new System.Windows.Forms.Button();
+            this.btn_ConnectToPlayer = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txt_PlayerID = new System.Windows.Forms.TextBox();
+            this.tpnl_Popup = new DCN.TicTacToe.UI.Client.TransparentPanel(this.components);
+            this.btn_Login = new System.Windows.Forms.Button();
+            this.pnl_ExitFormLogin = new System.Windows.Forms.Panel();
+            this.txt_UserName = new System.Windows.Forms.TextBox();
             this.pnl_Index = new System.Windows.Forms.Panel();
             this.pnl_IndexBar = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -81,18 +81,12 @@
             this.picb_About = new System.Windows.Forms.PictureBox();
             this.picb_QuickPlay = new System.Windows.Forms.PictureBox();
             this.picb_PlayNow = new System.Windows.Forms.PictureBox();
-            this.pnl_Notifi = new System.Windows.Forms.Panel();
             this.pnl_TitleBar = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_Previous = new System.Windows.Forms.Button();
             this.btn_Minimise = new System.Windows.Forms.Button();
             this.btn_Maximise = new System.Windows.Forms.Button();
             this.btn_Exit = new System.Windows.Forms.Button();
-            this.frm_Tie = new DCN.TicTacToe.UI.Frm_Tie();
             this.pnl_form.SuspendLayout();
-            this.pnl_Common.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.tpnl_Popup.SuspendLayout();
             this.pnl_GamePlay.SuspendLayout();
             this.pnl_MsgChat_2.SuspendLayout();
             this.pnl_PlayerProps.SuspendLayout();
@@ -101,6 +95,10 @@
             this.pnl_PlayerArea_1.SuspendLayout();
             this.pnl_GameBoard.SuspendLayout();
             this.pnl_ChatControl.SuspendLayout();
+            this.pnl_Common.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.tpnl_Popup.SuspendLayout();
             this.pnl_Index.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -113,17 +111,371 @@
             // 
             // pnl_form
             // 
+            this.pnl_form.Controls.Add(this.pnl_GamePlay);
             this.pnl_form.Controls.Add(this.pnl_Common);
             this.pnl_form.Controls.Add(this.tpnl_Popup);
-            this.pnl_form.Controls.Add(this.pnl_GamePlay);
             this.pnl_form.Controls.Add(this.pnl_Index);
-            this.pnl_form.Controls.Add(this.pnl_Notifi);
             this.pnl_form.Controls.Add(this.pnl_TitleBar);
             this.pnl_form.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_form.Location = new System.Drawing.Point(0, 0);
             this.pnl_form.Name = "pnl_form";
             this.pnl_form.Size = new System.Drawing.Size(873, 644);
             this.pnl_form.TabIndex = 0;
+            // 
+            // pnl_GamePlay
+            // 
+            this.pnl_GamePlay.BackColor = System.Drawing.Color.Azure;
+            this.pnl_GamePlay.Controls.Add(this.rtb_HistoryMess);
+            this.pnl_GamePlay.Controls.Add(this.lbl_Countdown);
+            this.pnl_GamePlay.Controls.Add(this.btn_Already);
+            this.pnl_GamePlay.Controls.Add(this.pnl_MsgChat_2);
+            this.pnl_GamePlay.Controls.Add(this.pnl_PlayerProps);
+            this.pnl_GamePlay.Controls.Add(this.pnl_MsgChat_1);
+            this.pnl_GamePlay.Controls.Add(this.pnl_PlayerArea_2);
+            this.pnl_GamePlay.Controls.Add(this.pnl_PlayerArea_1);
+            this.pnl_GamePlay.Controls.Add(this.pnl_GameBoard);
+            this.pnl_GamePlay.Controls.Add(this.pnl_ChatControl);
+            this.pnl_GamePlay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_GamePlay.Location = new System.Drawing.Point(0, 34);
+            this.pnl_GamePlay.Name = "pnl_GamePlay";
+            this.pnl_GamePlay.Size = new System.Drawing.Size(873, 610);
+            this.pnl_GamePlay.TabIndex = 1;
+            this.pnl_GamePlay.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_GamePlay_Paint);
+            // 
+            // rtb_HistoryMess
+            // 
+            this.rtb_HistoryMess.Location = new System.Drawing.Point(22, 31);
+            this.rtb_HistoryMess.Name = "rtb_HistoryMess";
+            this.rtb_HistoryMess.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.rtb_HistoryMess.Size = new System.Drawing.Size(189, 178);
+            this.rtb_HistoryMess.TabIndex = 17;
+            this.rtb_HistoryMess.Text = "";
+            // 
+            // lbl_Countdown
+            // 
+            this.lbl_Countdown.AutoSize = true;
+            this.lbl_Countdown.Location = new System.Drawing.Point(432, 11);
+            this.lbl_Countdown.Name = "lbl_Countdown";
+            this.lbl_Countdown.Size = new System.Drawing.Size(13, 13);
+            this.lbl_Countdown.TabIndex = 16;
+            this.lbl_Countdown.Text = "0";
+            // 
+            // btn_Already
+            // 
+            this.btn_Already.Location = new System.Drawing.Point(403, 479);
+            this.btn_Already.Name = "btn_Already";
+            this.btn_Already.Size = new System.Drawing.Size(94, 41);
+            this.btn_Already.TabIndex = 15;
+            this.btn_Already.Text = "Ready";
+            this.btn_Already.UseVisualStyleBackColor = true;
+            this.btn_Already.Click += new System.EventHandler(this.btn_Already_Click);
+            // 
+            // pnl_MsgChat_2
+            // 
+            this.pnl_MsgChat_2.Controls.Add(this.txt_MessContent_2);
+            this.pnl_MsgChat_2.Location = new System.Drawing.Point(679, 274);
+            this.pnl_MsgChat_2.Name = "pnl_MsgChat_2";
+            this.pnl_MsgChat_2.Size = new System.Drawing.Size(103, 75);
+            this.pnl_MsgChat_2.TabIndex = 14;
+            // 
+            // txt_MessContent_2
+            // 
+            this.txt_MessContent_2.Location = new System.Drawing.Point(0, 3);
+            this.txt_MessContent_2.Multiline = true;
+            this.txt_MessContent_2.Name = "txt_MessContent_2";
+            this.txt_MessContent_2.Size = new System.Drawing.Size(100, 69);
+            this.txt_MessContent_2.TabIndex = 0;
+            // 
+            // pnl_PlayerProps
+            // 
+            this.pnl_PlayerProps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnl_PlayerProps.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.pnl_PlayerProps.Controls.Add(this.lbl_Score_2);
+            this.pnl_PlayerProps.Controls.Add(this.label3);
+            this.pnl_PlayerProps.Controls.Add(this.lbl_Score_1);
+            this.pnl_PlayerProps.Location = new System.Drawing.Point(672, 41);
+            this.pnl_PlayerProps.Name = "pnl_PlayerProps";
+            this.pnl_PlayerProps.Size = new System.Drawing.Size(187, 279);
+            this.pnl_PlayerProps.TabIndex = 8;
+            // 
+            // lbl_Score_2
+            // 
+            this.lbl_Score_2.AutoSize = true;
+            this.lbl_Score_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Score_2.Location = new System.Drawing.Point(107, 98);
+            this.lbl_Score_2.Name = "lbl_Score_2";
+            this.lbl_Score_2.Size = new System.Drawing.Size(16, 16);
+            this.lbl_Score_2.TabIndex = 2;
+            this.lbl_Score_2.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(78, 98);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(12, 16);
+            this.label3.TabIndex = 1;
+            this.label3.Text = ":";
+            // 
+            // lbl_Score_1
+            // 
+            this.lbl_Score_1.AutoSize = true;
+            this.lbl_Score_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Score_1.Location = new System.Drawing.Point(44, 98);
+            this.lbl_Score_1.Name = "lbl_Score_1";
+            this.lbl_Score_1.Size = new System.Drawing.Size(16, 16);
+            this.lbl_Score_1.TabIndex = 0;
+            this.lbl_Score_1.Text = "0";
+            // 
+            // pnl_MsgChat_1
+            // 
+            this.pnl_MsgChat_1.Controls.Add(this.txt_MessContent_1);
+            this.pnl_MsgChat_1.Location = new System.Drawing.Point(104, 277);
+            this.pnl_MsgChat_1.Name = "pnl_MsgChat_1";
+            this.pnl_MsgChat_1.Size = new System.Drawing.Size(103, 75);
+            this.pnl_MsgChat_1.TabIndex = 13;
+            // 
+            // txt_MessContent_1
+            // 
+            this.txt_MessContent_1.Location = new System.Drawing.Point(0, 3);
+            this.txt_MessContent_1.Multiline = true;
+            this.txt_MessContent_1.Name = "txt_MessContent_1";
+            this.txt_MessContent_1.Size = new System.Drawing.Size(100, 69);
+            this.txt_MessContent_1.TabIndex = 0;
+            // 
+            // pnl_PlayerArea_2
+            // 
+            this.pnl_PlayerArea_2.BackColor = System.Drawing.Color.Transparent;
+            this.pnl_PlayerArea_2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnl_PlayerArea_2.BackgroundImage")));
+            this.pnl_PlayerArea_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnl_PlayerArea_2.Controls.Add(this.label2);
+            this.pnl_PlayerArea_2.Location = new System.Drawing.Point(672, 352);
+            this.pnl_PlayerArea_2.Name = "pnl_PlayerArea_2";
+            this.pnl_PlayerArea_2.Size = new System.Drawing.Size(107, 168);
+            this.pnl_PlayerArea_2.TabIndex = 11;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(32, 123);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "label2";
+            // 
+            // pnl_PlayerArea_1
+            // 
+            this.pnl_PlayerArea_1.BackColor = System.Drawing.Color.Transparent;
+            this.pnl_PlayerArea_1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnl_PlayerArea_1.BackgroundImage")));
+            this.pnl_PlayerArea_1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnl_PlayerArea_1.Controls.Add(this.label1);
+            this.pnl_PlayerArea_1.Location = new System.Drawing.Point(101, 352);
+            this.pnl_PlayerArea_1.Name = "pnl_PlayerArea_1";
+            this.pnl_PlayerArea_1.Size = new System.Drawing.Size(100, 168);
+            this.pnl_PlayerArea_1.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(35, 123);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
+            // 
+            // pnl_GameBoard
+            // 
+            this.pnl_GameBoard.BackColor = System.Drawing.Color.Transparent;
+            this.pnl_GameBoard.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.board;
+            this.pnl_GameBoard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnl_GameBoard.Controls.Add(this.button8);
+            this.pnl_GameBoard.Controls.Add(this.button9);
+            this.pnl_GameBoard.Controls.Add(this.button10);
+            this.pnl_GameBoard.Controls.Add(this.button5);
+            this.pnl_GameBoard.Controls.Add(this.button6);
+            this.pnl_GameBoard.Controls.Add(this.button7);
+            this.pnl_GameBoard.Controls.Add(this.button3);
+            this.pnl_GameBoard.Controls.Add(this.button2);
+            this.pnl_GameBoard.Controls.Add(this.button1);
+            this.pnl_GameBoard.Location = new System.Drawing.Point(228, 31);
+            this.pnl_GameBoard.Name = "pnl_GameBoard";
+            this.pnl_GameBoard.Size = new System.Drawing.Size(425, 425);
+            this.pnl_GameBoard.TabIndex = 7;
+            // 
+            // button8
+            // 
+            this.button8.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.X_value;
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button8.FlatAppearance.BorderSize = 0;
+            this.button8.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.button8.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Location = new System.Drawing.Point(28, 295);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(108, 108);
+            this.button8.TabIndex = 8;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.Btn_BoardItem_Click);
+            // 
+            // button9
+            // 
+            this.button9.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.X_value;
+            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button9.FlatAppearance.BorderSize = 0;
+            this.button9.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.button9.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Location = new System.Drawing.Point(159, 295);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(108, 108);
+            this.button9.TabIndex = 7;
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.Btn_BoardItem_Click);
+            // 
+            // button10
+            // 
+            this.button10.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.X_value;
+            this.button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button10.FlatAppearance.BorderSize = 0;
+            this.button10.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.button10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Location = new System.Drawing.Point(292, 295);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(108, 108);
+            this.button10.TabIndex = 6;
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.Btn_BoardItem_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.X_value;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Location = new System.Drawing.Point(28, 161);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(108, 108);
+            this.button5.TabIndex = 5;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Btn_BoardItem_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.X_value;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Location = new System.Drawing.Point(159, 161);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(108, 108);
+            this.button6.TabIndex = 4;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Btn_BoardItem_Click);
+            // 
+            // button7
+            // 
+            this.button7.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.X_value;
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Location = new System.Drawing.Point(292, 161);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(108, 108);
+            this.button7.TabIndex = 3;
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.Btn_BoardItem_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.X_value;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(292, 28);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(108, 108);
+            this.button3.TabIndex = 2;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Btn_BoardItem_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.X_value;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(159, 28);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(108, 108);
+            this.button2.TabIndex = 1;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Btn_BoardItem_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.X_value;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(28, 28);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(108, 108);
+            this.button1.TabIndex = 0;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Btn_BoardItem_Click);
+            // 
+            // pnl_ChatControl
+            // 
+            this.pnl_ChatControl.BackColor = System.Drawing.SystemColors.Highlight;
+            this.pnl_ChatControl.Controls.Add(this.btn_SendMessage);
+            this.pnl_ChatControl.Controls.Add(this.txt_Message);
+            this.pnl_ChatControl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnl_ChatControl.Location = new System.Drawing.Point(0, 531);
+            this.pnl_ChatControl.Name = "pnl_ChatControl";
+            this.pnl_ChatControl.Size = new System.Drawing.Size(873, 79);
+            this.pnl_ChatControl.TabIndex = 6;
+            // 
+            // btn_SendMessage
+            // 
+            this.btn_SendMessage.Location = new System.Drawing.Point(483, 18);
+            this.btn_SendMessage.Name = "btn_SendMessage";
+            this.btn_SendMessage.Size = new System.Drawing.Size(75, 23);
+            this.btn_SendMessage.TabIndex = 1;
+            this.btn_SendMessage.Text = "Send";
+            this.btn_SendMessage.UseVisualStyleBackColor = true;
+            this.btn_SendMessage.Click += new System.EventHandler(this.btn_SendMessage_Click);
+            // 
+            // txt_Message
+            // 
+            this.txt_Message.Location = new System.Drawing.Point(155, 21);
+            this.txt_Message.Name = "txt_Message";
+            this.txt_Message.Size = new System.Drawing.Size(312, 20);
+            this.txt_Message.TabIndex = 0;
             // 
             // pnl_Common
             // 
@@ -135,6 +487,7 @@
             this.pnl_Common.Name = "pnl_Common";
             this.pnl_Common.Size = new System.Drawing.Size(873, 610);
             this.pnl_Common.TabIndex = 2;
+            this.pnl_Common.VisibleChanged += new System.EventHandler(this.pnl_Common_VisibleChanged);
             // 
             // flp_ShowTableGame
             // 
@@ -254,299 +607,6 @@
             this.txt_UserName.Size = new System.Drawing.Size(134, 20);
             this.txt_UserName.TabIndex = 0;
             // 
-            // pnl_GamePlay
-            // 
-            this.pnl_GamePlay.BackColor = System.Drawing.Color.Azure;
-            this.pnl_GamePlay.Controls.Add(this.lbl_Countdown);
-            this.pnl_GamePlay.Controls.Add(this.btn_Already);
-            this.pnl_GamePlay.Controls.Add(this.pnl_MsgChat_2);
-            this.pnl_GamePlay.Controls.Add(this.pnl_PlayerProps);
-            this.pnl_GamePlay.Controls.Add(this.pnl_MsgChat_1);
-            this.pnl_GamePlay.Controls.Add(this.pnl_PlayerArea_2);
-            this.pnl_GamePlay.Controls.Add(this.pnl_PlayerArea_1);
-            this.pnl_GamePlay.Controls.Add(this.pnl_ChatView);
-            this.pnl_GamePlay.Controls.Add(this.pnl_GameBoard);
-            this.pnl_GamePlay.Controls.Add(this.pnl_ChatControl);
-            this.pnl_GamePlay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_GamePlay.Location = new System.Drawing.Point(0, 34);
-            this.pnl_GamePlay.Name = "pnl_GamePlay";
-            this.pnl_GamePlay.Size = new System.Drawing.Size(873, 610);
-            this.pnl_GamePlay.TabIndex = 1;
-            // 
-            // lbl_Countdown
-            // 
-            this.lbl_Countdown.AutoSize = true;
-            this.lbl_Countdown.Location = new System.Drawing.Point(432, 11);
-            this.lbl_Countdown.Name = "lbl_Countdown";
-            this.lbl_Countdown.Size = new System.Drawing.Size(13, 13);
-            this.lbl_Countdown.TabIndex = 16;
-            this.lbl_Countdown.Text = "0";
-            // 
-            // btn_Already
-            // 
-            this.btn_Already.Location = new System.Drawing.Point(403, 479);
-            this.btn_Already.Name = "btn_Already";
-            this.btn_Already.Size = new System.Drawing.Size(94, 41);
-            this.btn_Already.TabIndex = 15;
-            this.btn_Already.Text = "Ready";
-            this.btn_Already.UseVisualStyleBackColor = true;
-            this.btn_Already.Click += new System.EventHandler(this.btn_Already_Click);
-            // 
-            // pnl_MsgChat_2
-            // 
-            this.pnl_MsgChat_2.Controls.Add(this.txt_MessContent_2);
-            this.pnl_MsgChat_2.Location = new System.Drawing.Point(679, 274);
-            this.pnl_MsgChat_2.Name = "pnl_MsgChat_2";
-            this.pnl_MsgChat_2.Size = new System.Drawing.Size(103, 75);
-            this.pnl_MsgChat_2.TabIndex = 14;
-            // 
-            // txt_MessContent_2
-            // 
-            this.txt_MessContent_2.Location = new System.Drawing.Point(0, 3);
-            this.txt_MessContent_2.Multiline = true;
-            this.txt_MessContent_2.Name = "txt_MessContent_2";
-            this.txt_MessContent_2.Size = new System.Drawing.Size(100, 69);
-            this.txt_MessContent_2.TabIndex = 0;
-            // 
-            // pnl_PlayerProps
-            // 
-            this.pnl_PlayerProps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnl_PlayerProps.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.pnl_PlayerProps.Controls.Add(this.lbl_Score_2);
-            this.pnl_PlayerProps.Controls.Add(this.label3);
-            this.pnl_PlayerProps.Controls.Add(this.lbl_Score_1);
-            this.pnl_PlayerProps.Location = new System.Drawing.Point(672, 41);
-            this.pnl_PlayerProps.Name = "pnl_PlayerProps";
-            this.pnl_PlayerProps.Size = new System.Drawing.Size(187, 279);
-            this.pnl_PlayerProps.TabIndex = 8;
-            // 
-            // lbl_Score_2
-            // 
-            this.lbl_Score_2.AutoSize = true;
-            this.lbl_Score_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Score_2.Location = new System.Drawing.Point(107, 98);
-            this.lbl_Score_2.Name = "lbl_Score_2";
-            this.lbl_Score_2.Size = new System.Drawing.Size(16, 16);
-            this.lbl_Score_2.TabIndex = 2;
-            this.lbl_Score_2.Text = "0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(78, 98);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(12, 16);
-            this.label3.TabIndex = 1;
-            this.label3.Text = ":";
-            // 
-            // lbl_Score_1
-            // 
-            this.lbl_Score_1.AutoSize = true;
-            this.lbl_Score_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Score_1.Location = new System.Drawing.Point(44, 98);
-            this.lbl_Score_1.Name = "lbl_Score_1";
-            this.lbl_Score_1.Size = new System.Drawing.Size(16, 16);
-            this.lbl_Score_1.TabIndex = 0;
-            this.lbl_Score_1.Text = "0";
-            // 
-            // pnl_MsgChat_1
-            // 
-            this.pnl_MsgChat_1.Controls.Add(this.txt_MessContent_1);
-            this.pnl_MsgChat_1.Location = new System.Drawing.Point(104, 277);
-            this.pnl_MsgChat_1.Name = "pnl_MsgChat_1";
-            this.pnl_MsgChat_1.Size = new System.Drawing.Size(103, 75);
-            this.pnl_MsgChat_1.TabIndex = 13;
-            // 
-            // txt_MessContent_1
-            // 
-            this.txt_MessContent_1.Location = new System.Drawing.Point(0, 3);
-            this.txt_MessContent_1.Multiline = true;
-            this.txt_MessContent_1.Name = "txt_MessContent_1";
-            this.txt_MessContent_1.Size = new System.Drawing.Size(100, 69);
-            this.txt_MessContent_1.TabIndex = 0;
-            // 
-            // pnl_PlayerArea_2
-            // 
-            this.pnl_PlayerArea_2.BackColor = System.Drawing.SystemColors.GrayText;
-            this.pnl_PlayerArea_2.Controls.Add(this.label2);
-            this.pnl_PlayerArea_2.Location = new System.Drawing.Point(672, 370);
-            this.pnl_PlayerArea_2.Name = "pnl_PlayerArea_2";
-            this.pnl_PlayerArea_2.Size = new System.Drawing.Size(110, 150);
-            this.pnl_PlayerArea_2.TabIndex = 11;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 123);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
-            // 
-            // pnl_PlayerArea_1
-            // 
-            this.pnl_PlayerArea_1.BackColor = System.Drawing.SystemColors.GrayText;
-            this.pnl_PlayerArea_1.Controls.Add(this.label1);
-            this.pnl_PlayerArea_1.Location = new System.Drawing.Point(101, 370);
-            this.pnl_PlayerArea_1.Name = "pnl_PlayerArea_1";
-            this.pnl_PlayerArea_1.Size = new System.Drawing.Size(110, 150);
-            this.pnl_PlayerArea_1.TabIndex = 10;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 123);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
-            // 
-            // pnl_ChatView
-            // 
-            this.pnl_ChatView.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.pnl_ChatView.Location = new System.Drawing.Point(12, 52);
-            this.pnl_ChatView.Name = "pnl_ChatView";
-            this.pnl_ChatView.Size = new System.Drawing.Size(189, 161);
-            this.pnl_ChatView.TabIndex = 9;
-            // 
-            // pnl_GameBoard
-            // 
-            this.pnl_GameBoard.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.pnl_GameBoard.Controls.Add(this.button10);
-            this.pnl_GameBoard.Controls.Add(this.button9);
-            this.pnl_GameBoard.Controls.Add(this.button8);
-            this.pnl_GameBoard.Controls.Add(this.button7);
-            this.pnl_GameBoard.Controls.Add(this.button6);
-            this.pnl_GameBoard.Controls.Add(this.button5);
-            this.pnl_GameBoard.Controls.Add(this.button3);
-            this.pnl_GameBoard.Controls.Add(this.button2);
-            this.pnl_GameBoard.Controls.Add(this.button1);
-            this.pnl_GameBoard.Location = new System.Drawing.Point(228, 31);
-            this.pnl_GameBoard.Name = "pnl_GameBoard";
-            this.pnl_GameBoard.Size = new System.Drawing.Size(425, 425);
-            this.pnl_GameBoard.TabIndex = 7;
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(195, 195);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(100, 100);
-            this.button10.TabIndex = 8;
-            this.button10.Text = "button10";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.Btn_BoardItem_Click);
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(97, 195);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(100, 100);
-            this.button9.TabIndex = 7;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.Btn_BoardItem_Click);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(0, 195);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(100, 100);
-            this.button8.TabIndex = 6;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.Btn_BoardItem_Click);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(195, 97);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(100, 100);
-            this.button7.TabIndex = 5;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.Btn_BoardItem_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(97, 97);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(100, 100);
-            this.button6.TabIndex = 4;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Btn_BoardItem_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(0, 97);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(100, 100);
-            this.button5.TabIndex = 3;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Btn_BoardItem_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(195, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 100);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Btn_BoardItem_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(97, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 100);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Btn_BoardItem_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 100);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Btn_BoardItem_Click);
-            // 
-            // pnl_ChatControl
-            // 
-            this.pnl_ChatControl.BackColor = System.Drawing.SystemColors.Highlight;
-            this.pnl_ChatControl.Controls.Add(this.btn_SendMessage);
-            this.pnl_ChatControl.Controls.Add(this.txt_Message);
-            this.pnl_ChatControl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_ChatControl.Location = new System.Drawing.Point(0, 531);
-            this.pnl_ChatControl.Name = "pnl_ChatControl";
-            this.pnl_ChatControl.Size = new System.Drawing.Size(873, 79);
-            this.pnl_ChatControl.TabIndex = 6;
-            // 
-            // btn_SendMessage
-            // 
-            this.btn_SendMessage.Location = new System.Drawing.Point(483, 18);
-            this.btn_SendMessage.Name = "btn_SendMessage";
-            this.btn_SendMessage.Size = new System.Drawing.Size(75, 23);
-            this.btn_SendMessage.TabIndex = 1;
-            this.btn_SendMessage.Text = "Send";
-            this.btn_SendMessage.UseVisualStyleBackColor = true;
-            this.btn_SendMessage.Click += new System.EventHandler(this.btn_SendMessage_Click);
-            // 
-            // txt_Message
-            // 
-            this.txt_Message.Location = new System.Drawing.Point(155, 21);
-            this.txt_Message.Name = "txt_Message";
-            this.txt_Message.Size = new System.Drawing.Size(312, 20);
-            this.txt_Message.TabIndex = 0;
-            // 
             // pnl_Index
             // 
             this.pnl_Index.BackColor = System.Drawing.SystemColors.ControlDark;
@@ -639,19 +699,10 @@
             this.picb_PlayNow.TabStop = false;
             this.picb_PlayNow.Click += new System.EventHandler(this.picb_PlayNow_Click);
             // 
-            // pnl_Notifi
-            // 
-            this.pnl_Notifi.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pnl_Notifi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_Notifi.Location = new System.Drawing.Point(0, 34);
-            this.pnl_Notifi.Name = "pnl_Notifi";
-            this.pnl_Notifi.Size = new System.Drawing.Size(873, 610);
-            this.pnl_Notifi.TabIndex = 1;
-            // 
             // pnl_TitleBar
             // 
             this.pnl_TitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.pnl_TitleBar.Controls.Add(this.button4);
+            this.pnl_TitleBar.Controls.Add(this.btn_Previous);
             this.pnl_TitleBar.Controls.Add(this.btn_Minimise);
             this.pnl_TitleBar.Controls.Add(this.btn_Maximise);
             this.pnl_TitleBar.Controls.Add(this.btn_Exit);
@@ -662,22 +713,22 @@
             this.pnl_TitleBar.TabIndex = 0;
             this.pnl_TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnl_titleBar_MouseDown);
             // 
-            // button4
+            // btn_Previous
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.SystemColors.Control;
-            this.button4.Location = new System.Drawing.Point(0, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(36, 34);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "<--";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btn_Previous.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btn_Previous.FlatAppearance.BorderSize = 0;
+            this.btn_Previous.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btn_Previous.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.btn_Previous.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
+            this.btn_Previous.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Previous.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_Previous.Location = new System.Drawing.Point(0, 0);
+            this.btn_Previous.Name = "btn_Previous";
+            this.btn_Previous.Size = new System.Drawing.Size(36, 34);
+            this.btn_Previous.TabIndex = 3;
+            this.btn_Previous.Text = "<--";
+            this.btn_Previous.UseVisualStyleBackColor = true;
+            this.btn_Previous.Click += new System.EventHandler(this.Btn_Previous_Click);
             // 
             // btn_Minimise
             // 
@@ -730,22 +781,6 @@
             this.btn_Exit.UseVisualStyleBackColor = true;
             this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
-            // frm_Tie
-            // 
-            this.frm_Tie.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.frm_Tie.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("frm_Tie.BackgroundImage")));
-            this.frm_Tie.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.frm_Tie.ClientSize = new System.Drawing.Size(292, 321);
-            this.frm_Tie.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.frm_Tie.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.frm_Tie.Location = new System.Drawing.Point(182, 182);
-            this.frm_Tie.Name = "frm_Tie";
-            this.frm_Tie.ShowInTaskbar = false;
-            this.frm_Tie.Text = "Frm_Tie";
-            this.frm_Tie.TransparencyKey = System.Drawing.SystemColors.ButtonShadow;
-            this.frm_Tie.Visible = false;
-            this.frm_Tie.ActionForm += new System.Action<DCN.TicTacToe.Shared.Enum.Options>(this.frm_Tie_Action);
-            // 
             // Frm_Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -756,12 +791,6 @@
             this.Name = "Frm_Index";
             this.Text = "Form3";
             this.pnl_form.ResumeLayout(false);
-            this.pnl_Common.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.tpnl_Popup.ResumeLayout(false);
-            this.tpnl_Popup.PerformLayout();
             this.pnl_GamePlay.ResumeLayout(false);
             this.pnl_GamePlay.PerformLayout();
             this.pnl_MsgChat_2.ResumeLayout(false);
@@ -777,6 +806,12 @@
             this.pnl_GameBoard.ResumeLayout(false);
             this.pnl_ChatControl.ResumeLayout(false);
             this.pnl_ChatControl.PerformLayout();
+            this.pnl_Common.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.tpnl_Popup.ResumeLayout(false);
+            this.tpnl_Popup.PerformLayout();
             this.pnl_Index.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -793,13 +828,12 @@
 
         private System.Windows.Forms.Panel pnl_form;
         private System.Windows.Forms.Panel pnl_Index;
-        private System.Windows.Forms.Panel pnl_Notifi;
         private System.Windows.Forms.Panel pnl_GamePlay;
         private System.Windows.Forms.Panel pnl_TitleBar;
         private System.Windows.Forms.Button btn_Minimise;
         private System.Windows.Forms.Button btn_Maximise;
         private System.Windows.Forms.Button btn_Exit;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_Previous;
         private System.Windows.Forms.Panel pnl_IndexBar;
         private System.Windows.Forms.Panel pnl_ExitFormLogin;
         private System.Windows.Forms.Button btn_Login;
@@ -807,7 +841,6 @@
         private TransparentPanel tpnl_Popup;
         private System.Windows.Forms.Panel pnl_PlayerArea_2;
         private System.Windows.Forms.Panel pnl_PlayerArea_1;
-        private System.Windows.Forms.Panel pnl_ChatView;
         private System.Windows.Forms.Panel pnl_PlayerProps;
         private System.Windows.Forms.Panel pnl_GameBoard;
         private System.Windows.Forms.Panel pnl_ChatControl;
@@ -839,16 +872,16 @@
         private System.Windows.Forms.Label lbl_Score_2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbl_Score_1;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.RichTextBox rtb_HistoryMess;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private Frm_Tie frm_Tie;
     }
 }
 

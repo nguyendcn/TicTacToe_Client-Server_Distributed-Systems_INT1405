@@ -19,7 +19,7 @@ namespace DCN.TicTacToe.Shared.Models
 
         public CountDown()
         {
-            CurrentTime = TotalTime = 5;
+            CurrentTime = TotalTime = 45;
             Step = 1;
             Timer = new Timer();
 

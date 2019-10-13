@@ -51,29 +51,17 @@
     <Compile Include="CircularButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Frm_Lose.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frm_Lose.Designer.cs">
-      <DependentUpon>Frm_Lose.cs</DependentUpon>
-    </Compile>
     <Compile Include="Frm_Quit.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frm_Quit.Designer.cs">
       <DependentUpon>Frm_Quit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_Tie.cs">
+    <Compile Include="Frm_StatusGame.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Tie.Designer.cs">
-      <DependentUpon>Frm_Tie.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frm_Win.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frm_Win.Designer.cs">
-      <DependentUpon>Frm_Win.cs</DependentUpon>
+    <Compile Include="Frm_StatusGame.Designer.cs">
+      <DependentUpon>Frm_StatusGame.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -88,22 +76,22 @@
     <Compile Include="TransparentPanel.Designer.cs">
       <DependentUpon>TransparentPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="TransRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TransRichTextBox.Designer.cs">
+      <DependentUpon>TransRichTextBox.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Frm_Lose.resx">
-      <DependentUpon>Frm_Lose.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Quit.resx">
       <DependentUpon>Frm_Quit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_Tie.resx">
-      <DependentUpon>Frm_Tie.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Frm_Win.resx">
-      <DependentUpon>Frm_Win.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_StatusGame.resx">
+      <DependentUpon>Frm_StatusGame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -133,6 +121,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TieTable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text-lose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text-tie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text-win.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Warning1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

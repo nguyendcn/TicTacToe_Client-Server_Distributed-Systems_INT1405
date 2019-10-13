@@ -18,6 +18,13 @@ namespace DCN.TicTacToe.UI
             InitializeComponent();
         }
 
+        public Frm_Quit(Point locationShow)
+        {
+            InitializeComponent();
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = locationShow;
+        }
+
         public event Action<Options> ActionForm;
 
         public virtual void OnActionForm(Options option)
@@ -25,20 +32,13 @@ namespace DCN.TicTacToe.UI
             if (ActionForm != null) ActionForm(option);
         }
 
-        private void cbtn_Yes_Click(object sender, EventArgs e)
+        private void cbtn_Option_Click(object sender, EventArgs e)
         {
-            OnActionForm(Options.YES);
-            this.Visible = false;
-        }
-
-        private void cbtn_No_Click(object sender, EventArgs e)
-        {
-            OnActionForm(Options.NO);
-            this.Visible = false;
-        }
-
-        private void cbtn_Option_MouseHover(object sender, EventArgs e)
-        {
+            if((sender as CircularButton).Tag.Equals("yes"))
+                OnActionForm(Options.YES);
+            else
+                OnActionForm(Options.NO);
+            this.Close();
         }
     }
 }

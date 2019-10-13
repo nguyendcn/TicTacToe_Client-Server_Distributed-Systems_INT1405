@@ -48,6 +48,7 @@ namespace DCN.TicTacToe.UI.Client
             client.Connect("localhost", 9999);
 
             client.SessionRequest += client_SessionRequest;
+            client.SessionEndedByTheRemoteClient += Client_SessionEndedByTheRemoteClient;
             client.TextMessageReceived += Client_TextMessageReceived;
             client.UpdateTablesInProcess += Client_UpdateTablesInProcess;
             client.EnablePlayRequest += Client_EnablePlayRequest;
@@ -56,6 +57,7 @@ namespace DCN.TicTacToe.UI.Client
             client.GameRequest += Client_GameRequest;
             client.TimeOutRequest += Client_TimeOutRequest;
             client.GameResponse += Client_GameResponse;
+            client.AutoAccepInvite += Client_AutoAccepInvite;
 
             this.timerReqMesgChat = new Timer();
             this.timerReqMesgChat.Interval = 3000;
@@ -67,45 +69,31 @@ namespace DCN.TicTacToe.UI.Client
 
             this.pnl_GameBoard.Enabled = false;
 
-            SetUpForPopup();
+
+            InitShowForStart();
         }
 
-        public void  SetUpForPopup()
+        private void Client_AutoAccepInvite(TicTacToe.Client.Client obj)
         {
-            this.frm_Quit.Show();
-            this.frm_Win.Show();
-            this.frm_Lose.Show();
-            this.frm_Tie.Show();
-
-            this.frm_Quit.Visible = this.frm_Win.Visible = this.frm_Lose.Visible = this.frm_Tie.Visible = false;
+            this.InvokeUI(() => {
+                this.pnl_PlayerArea_2.Visible = true;
+                this.pnl_PlayerArea_2.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_girl;
+            });
+            
         }
 
-        public void frm_Quit_Action(Options option)
+        private void InitShowForStart()
         {
-            this.Text = "quit";
-            frm_Quit.Visible = false;
-            this.tpnl_Popup.Visible = false;
+            this.pnl_Common.Visible = false;
+            this.pnl_GamePlay.Visible = false;
+            this.btn_Previous.Visible = false;
+            this.pnl_PlayerArea_2.Visible = false;
         }
 
-        public void frm_Win_Action(Options option)
+        private void Client_SessionEndedByTheRemoteClient(TicTacToe.Client.Client obj)
         {
-            this.Text = "win";
-            frm_Win.Visible = false;
-           // this.tpnl_Popup.Visible = false;
-        }
-
-        public void frm_Lose_Action(Options option)
-        {
-            this.Text = "lose";
-            frm_Lose.Visible = false;
-            this.tpnl_Popup.Visible = false;
-        }
-
-        public void frm_Tie_Action(Options option)
-        {
-            this.Text = "tie";
-            frm_Tie.Visible = false;
-            this.tpnl_Popup.Visible = false;
+            this.pnl_GamePlay.BringToFront();
+            this.btn_Already.Visible = true;
         }
 
         private void Client_GameResponse(Shared.Messages.GameResponse obj)
@@ -114,22 +102,9 @@ namespace DCN.TicTacToe.UI.Client
 
             this.InvokeUI(() =>
             {
-                if (obj.Game == StatusGame.Win)
-                {
-                    //this.tpnl_Popup.Visible = true;
-                    //this.tpnl_Popup.BringToFront();
-                    this.pnl_GamePlay.Enabled = false;
-                    this.frm_Win.BringToFront();
-                    this.frm_Win.Visible = true;
-                }
-                else if( obj.Game == StatusGame.Lose)
-                {
-                    this.pnl_Notifi.Visible = true;
-                    this.pnl_Notifi.BringToFront();
-                    this.frm_Lose.Visible = true;
-                }
+                Frm_StatusGame frm_StatusGame = new Frm_StatusGame(obj.Game, this.Location);
+                frm_StatusGame.ShowDialog();
 
-                pnl_GameBoard.Enabled = false;
                 foreach (Control ctr in pnl_GameBoard.Controls)
                 {
                     if(ctr is Button)
@@ -262,8 +237,30 @@ namespace DCN.TicTacToe.UI.Client
 
         private void btn_Exit_Click(object sender, EventArgs e)
         {
-            this.Dispose();
-            this.Close();
+            Frm_Quit quit = new Frm_Quit(this.Location);
+            quit.ActionForm += Quit_ActionForm;
+            quit.ShowDialog();
+        }
+
+        private void Quit_ActionForm(Options obj)
+        {
+            if(obj == Options.YES)
+            {
+                if(this.pnl_GamePlay.Visible)
+                    client.EndCurrentSession((senderClient, response) => {
+                        this.InvokeUI(() =>{
+                            client.Disconnect();
+                            this.Close();
+                        });
+                    });
+                else
+                {
+                    client.Disconnect();
+                    this.Close();
+                }
+               
+            }
+            
         }
 
         private void btn_Maximise_Click(object sender, EventArgs e)
@@ -317,6 +314,13 @@ namespace DCN.TicTacToe.UI.Client
                     this.InvokeUI(() =>
                     {
                         this.Text = "Client - " + txt_UserName.Text;
+                        this.txt_UserName.Text = "";
+                        this.tpnl_Popup.Visible = false;
+                        this.pnl_Index.Visible = false;
+                        this.pnl_Common.Visible = true;
+                        this.pnl_Common.BringToFront();
+                        this.btn_Previous.Visible = true;
+                        this.btn_findOnline.PerformClick();
 
                     });
                 }
@@ -327,12 +331,7 @@ namespace DCN.TicTacToe.UI.Client
                 }
 
             });
-            this.txt_UserName.Text = "";
-            this.tpnl_Popup.Visible = false;
-            this.pnl_Index.Visible = false;
-            this.pnl_Common.Visible = true;
-            this.pnl_Common.BringToFront();
-            this.btn_findOnline.PerformClick();
+            
         }
 
         private void picb_PlayNow_Click(object sender, EventArgs e)
@@ -370,7 +369,7 @@ namespace DCN.TicTacToe.UI.Client
             });
         }
 
-        void client_SessionRequest(DCN.TicTacToe.Client.Client client, TicTacToe.Client.EventArguments.SessionRequestEventArguments args)
+        private void client_SessionRequest(DCN.TicTacToe.Client.Client client, TicTacToe.Client.EventArguments.SessionRequestEventArguments args)
         {
             this.InvokeUI(() =>
             {
@@ -393,10 +392,42 @@ namespace DCN.TicTacToe.UI.Client
             });
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Btn_Previous_Click(object sender, EventArgs e)
         {
+            if (this.pnl_GamePlay.Visible)
+            {
+                Frm_Quit quit = new Frm_Quit(this.Location);
+                quit.ActionForm += Quit_ActionForm_ForPrevious;
+                quit.ShowDialog();
+            }
+            else if(this.pnl_Common.Visible)
+            {
+                this.pnl_Index.Visible = true;
+                this.pnl_Index.BringToFront();
+                (sender as Button).Visible = false;
+            }
+        }
 
-            client.SendTextMessage(client.Address);
+        private void Quit_ActionForm_ForPrevious(Options obj)
+        {
+            if(obj == Options.YES)
+            {
+                if (this.pnl_GamePlay.Visible)
+                {
+                    client.EndCurrentSession((senderClient, response) => {
+                        this.InvokeUI(() =>
+                        {
+                            if (!response.HasError)
+                            {
+                                this.pnl_GamePlay.Visible = false;
+                                this.pnl_Common.Visible = true;
+                                this.pnl_Common.BringToFront();
+                            }
+                        });
+                    });
+                }
+                
+            }
         }
 
         private void btn_findOnline_Click(object sender, EventArgs e)
@@ -438,7 +469,11 @@ namespace DCN.TicTacToe.UI.Client
                     if (args.IsConfirmed)
                     {
                         this.Text = args.Email;
+                        pnl_GamePlay.Visible = true;
                         pnl_GamePlay.BringToFront();
+
+                        this.pnl_PlayerArea_2.Visible = true;
+                        this.pnl_PlayerArea_2.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_girl;
                     }
                 });
 
@@ -447,15 +482,18 @@ namespace DCN.TicTacToe.UI.Client
 
         private void btn_Register_Click(object sender, EventArgs e)
         {
-            client.RequestCreateTable(true, -1, (client, args) =>
+            client.RequestCreateTable(true, -1, (client, response) =>
             {
-                if (args.IsSuccess)
+                if (response.IsSuccess)
                 {
                     //this.Text = "Create table success!";
                     Status("Create table success!");
                     this.InvokeUI(() =>
                     {
+                        this.pnl_GamePlay.Visible = true;
                         this.pnl_GamePlay.BringToFront();
+                        this.btn_Already.Visible = true;
+                        this.pnl_PlayerArea_1.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_boy;
                     });
                     //redirect to table game.
                 }
@@ -493,6 +531,9 @@ namespace DCN.TicTacToe.UI.Client
                 this.timerReqMesgChat.Start();
                 this.pnl_MsgChat_1.Visible = true;
                 this.txt_MessContent_1.Text = txt_Message.Text;
+                this.rtb_HistoryMess.AppendText(txt_MessContent_1.Text + Environment.NewLine);
+                rtb_HistoryMess.SelectionStart = rtb_HistoryMess.Text.Length;
+                rtb_HistoryMess.ScrollToCaret();
                 client.SendTextMessage(txt_Message.Text);
             }
             else
@@ -535,7 +576,8 @@ namespace DCN.TicTacToe.UI.Client
 
         private void Btn_BoardItem_Click(object sender, EventArgs e)
         {
-            (sender as Button).Text = "0";
+            (sender as Button).Tag = (int)Game.O_VAL;
+            (sender as Button).BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.O_value;
             (sender as Button).Enabled = false;
             this.pnl_GameBoard.Enabled = false;
             int[,] gameBoard = new int[3, 3];
@@ -544,7 +586,7 @@ namespace DCN.TicTacToe.UI.Client
             {
                 if(ctr is Button)
                 {
-                    gameBoard[i / 3, i % 3] = Convert.ToInt32(ctr.Text);
+                    gameBoard[i / 3, i % 3] = Convert.ToInt32(ctr.Tag);
                     i++;
                 }
             }
@@ -563,7 +605,11 @@ namespace DCN.TicTacToe.UI.Client
                     {
                         if (board[ind / 3, ind % 3] == (int)Game.SPACE)
                             ctr.Enabled = true;
-                        ctr.Text = board[ind / 3, ind % 3].ToString();
+                        else
+                            ctr.Enabled = false;
+
+                        SetUpImageBoard(ctr, (Game)board[ind / 3, ind % 3]);
+
                         ind--;
                     }
                 }
@@ -580,7 +626,9 @@ namespace DCN.TicTacToe.UI.Client
                     {
                         if (board[ind / 3, ind % 3] != (int)Game.SPACE)
                             ctr.Enabled = false;
-                        ctr.Text = board[ind / 3, ind % 3].ToString();
+                        else
+                            ctr.Enabled = true;
+                        SetUpImageBoard(ctr, (Game)board[ind / 3, ind % 3]);
                         ind++;
                     }
                 }
@@ -590,6 +638,36 @@ namespace DCN.TicTacToe.UI.Client
         private void frm_Quit_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void pnl_GamePlay_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void SetUpImageBoard(Control control, Game game)
+        {
+            control.Tag = (int)game;
+            if (game== Game.X_VAL)
+            {
+                control.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.X_value;
+            }
+            else if(game == Game.O_VAL)
+            {
+                control.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.O_value;
+            }
+            else if(game == Game.SPACE)
+            {
+                control.BackgroundImage = null;
+            }
+        }
+
+        private void pnl_Common_VisibleChanged(object sender, EventArgs e)
+        {
+            if(pnl_Common.Visible)
+            {
+                this.btn_findOnline.PerformClick();
+            }
         }
     }
 }

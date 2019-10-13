@@ -1,6 +1,7 @@
 ﻿using DCN.TicTacToe.Shared.Enum;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,17 @@ namespace DCN.TicTacToe.Shared.ExtensionMethods
 
         public static StatusGame GetStatementGame(this int[,] array)
         {
-            if(TicTacToe_IsWin(array))
+            for(int i = 0; i < array.GetLength(0); i++)
+            {
+                for(int  j = 0; j < array.GetLength(1); j++)
+                {
+                    Debug.Write(array[i, j] + "  ");
+                }
+                Debug.WriteLine("");
+            }
+            Debug.WriteLine("new turn");
+
+            if (TicTacToe_IsWin(array))
             {
                 return StatusGame.Win;
             }

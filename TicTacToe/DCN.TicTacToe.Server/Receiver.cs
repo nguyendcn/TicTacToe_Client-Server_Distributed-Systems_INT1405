@@ -378,13 +378,10 @@ namespace DCN.TicTacToe.Server
             if (OtherSideReceiver != null)
             {
                 OtherSideReceiver.SendMessage(new EndSessionRequest());
-                OtherSideReceiver.Status = StatusEnum.Validated;
-                OtherSideReceiver.OtherSideReceiver = null;
-
-                this.OtherSideReceiver = null;
-                this.Status = StatusEnum.Validated;
-                this.SendMessage(new EndSessionResponse(request));
+                ResetPropertiesClientInProcess(OtherSideReceiver);
             }
+            ResetPropertiesClient(this);
+            this.SendMessage(new EndSessionResponse(request));
         }
 
         private void DisconnectRequestHandler(DisconnectRequest request)
@@ -659,6 +656,23 @@ namespace DCN.TicTacToe.Server
         private void SendDataInitToClient(Receiver client, InitGame data)
         {
             client.SendMessage(data);
+        }
+
+        private void ResetPropertiesClient(Receiver receiver)
+        {
+            receiver.CountDownInGame.Stop();
+            receiver.InGameProperties.Reset();
+            receiver.Status = StatusEnum.Validated;
+            receiver.OtherSideReceiver = null;
+        }
+
+        private void ResetPropertiesClientInProcess(Receiver receiver)
+        {
+            receiver.CountDownInGame.Stop();
+            receiver.InGameProperties.Status = StatusInGame.NotReady;
+            receiver.InGameProperties.WinGame = 0;
+            receiver.Status = StatusEnum.Validated;
+            receiver.OtherSideReceiver = null;
         }
 
         #endregion
