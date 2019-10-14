@@ -51,11 +51,23 @@
     <Compile Include="CircularButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Frm_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Login.Designer.cs">
+      <DependentUpon>Frm_Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Quit.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frm_Quit.Designer.cs">
       <DependentUpon>Frm_Quit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_SettingConnect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_SettingConnect.Designer.cs">
+      <DependentUpon>Frm_SettingConnect.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_StatusGame.cs">
       <SubType>Form</SubType>
@@ -87,8 +99,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Frm_Login.resx">
+      <DependentUpon>Frm_Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Quit.resx">
       <DependentUpon>Frm_Quit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_SettingConnect.resx">
+      <DependentUpon>Frm_SettingConnect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_StatusGame.resx">
       <DependentUpon>Frm_StatusGame.cs</DependentUpon>
@@ -136,6 +154,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Warning1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\setting-form.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\username-exists-text.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

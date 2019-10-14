@@ -73,6 +73,16 @@ namespace DCN.TicTacToe.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap login {
+            get {
+                object obj = ResourceManager.GetObject("login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LoseTable {
             get {
                 object obj = ResourceManager.GetObject("LoseTable", resourceCulture);
@@ -86,6 +96,26 @@ namespace DCN.TicTacToe.UI.Properties {
         internal static System.Drawing.Bitmap Play_btn {
             get {
                 object obj = ResourceManager.GetObject("Play btn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap setting_form {
+            get {
+                object obj = ResourceManager.GetObject("setting-form", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap setting_form1 {
+            get {
+                object obj = ResourceManager.GetObject("setting-form1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -136,6 +166,16 @@ namespace DCN.TicTacToe.UI.Properties {
         internal static System.Drawing.Bitmap TieTable {
             get {
                 object obj = ResourceManager.GetObject("TieTable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap username_exists_text {
+            get {
+                object obj = ResourceManager.GetObject("username-exists-text", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
