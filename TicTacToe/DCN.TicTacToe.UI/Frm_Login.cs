@@ -18,14 +18,16 @@ namespace DCN.TicTacToe.UI
         }
 
 
+        private bool userIsExists;
 
         public bool UserIsExists{
-            get { return UserIsExists; }
+            get { return this.userIsExists; }
+
             set {
                 this.pnl_Exists.Visible = value;
-                UserIsExists = value;
+                this.userIsExists = value;
 
-                if (!UserIsExists)
+                if (!this.userIsExists)
                 {
                     this.Close();
                 }

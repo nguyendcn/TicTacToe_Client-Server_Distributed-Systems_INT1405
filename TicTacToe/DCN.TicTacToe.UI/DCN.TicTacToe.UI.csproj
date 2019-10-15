@@ -51,6 +51,12 @@
     <Compile Include="CircularButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Frm_ConnectError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_ConnectError.Designer.cs">
+      <DependentUpon>Frm_ConnectError.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Frm_ConnectError.resx">
+      <DependentUpon>Frm_ConnectError.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Login.resx">
       <DependentUpon>Frm_Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +122,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
@@ -163,6 +173,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\username-exists-text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\connect-error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

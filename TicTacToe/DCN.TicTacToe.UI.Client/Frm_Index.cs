@@ -47,7 +47,8 @@ namespace DCN.TicTacToe.UI.Client
             this.pnl_MsgChat_2.Visible = false;
             this.btn_Already.Visible = false;
 
-            client.Connect(_addressServer, _portConnect);
+            ConnectToServer();
+            
 
             client.SessionRequest += client_SessionRequest;
             client.SessionEndedByTheRemoteClient += Client_SessionEndedByTheRemoteClient;
@@ -234,8 +235,13 @@ namespace DCN.TicTacToe.UI.Client
                 foreach (TablePropertiesBase table in msg.ClientsInProcess)
                 {
                     Button btn = new Button();
-                    btn.Size = new Size(100, 100);
+                    btn.Size = new Size(150, 150);
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.FlatAppearance.BorderSize = 0;
+                    btn.FlatAppearance.MouseDownBackColor = btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+                    btn.Image = global::DCN.TicTacToe.UI.Client.Client_Resx.table150x150;
                     btn.Text = table.Room.ToString();
+                    btn.TextAlign = ContentAlignment.BottomCenter;
                     btn.Name = table.IDUser_1;
                     btn.Click += Btn_TableGame_Click;
 
@@ -471,9 +477,14 @@ namespace DCN.TicTacToe.UI.Client
                         args.ClientsInProcess.ForEach((table) =>
                         {
                             Button btn = new Button();
-                            btn.Size = new Size(100, 100);
+                            btn.Size = new Size(150, 150);
+                            btn.FlatStyle = FlatStyle.Flat;
+                            btn.FlatAppearance.BorderSize = 0;
+                            btn.FlatAppearance.MouseDownBackColor = btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+                            btn.Image = global::DCN.TicTacToe.UI.Client.Client_Resx.table150x150;
                             btn.Text = table.Room.ToString();
-                            btn.Name = table.IDUser_1.ToString();
+                            btn.TextAlign = ContentAlignment.BottomCenter;
+                            btn.Name = table.IDUser_1;
                             btn.Click += Btn_TableGame_Click;
 
                             flp_ShowTableGame.Controls.Add(btn);
@@ -719,10 +730,22 @@ namespace DCN.TicTacToe.UI.Client
 
         private void SettingConnect_ActionForm(string address, int port)
         {
-            client.Disconnect();
-            this._addressServer = address;
-            this._portConnect = port;
-            client.Connect(address, port);
+            try
+            {
+                if(client.TcpClient.Connected)
+                    client.Disconnect();
+                this._addressServer = address;
+                this._portConnect = port;
+                client.Connect(address, port);
+            }
+            catch(Exception ex)
+            {
+                Frm_ConnectError error = new Frm_ConnectError();
+                error.TopLevel = false;
+                this.Controls.Add(error);
+                error.BringToFront();
+                error.Show();
+            }
         }
 
         private void Login()
@@ -735,24 +758,45 @@ namespace DCN.TicTacToe.UI.Client
             login.Show();
         }
 
+        private void ConnectToServer()
+        {
+            try
+            {
+                client.Connect(_addressServer, _portConnect);
+            }
+            catch (Exception ex)
+            {
+                Frm_ConnectError error = new Frm_ConnectError();
+                error.TopLevel = false;
+                this.Controls.Add(error);
+                error.BringToFront();
+                error.Show();
+            }
+        }
+
         private void Login_ActionForm(Frm_Login frmSender, string userName)
         {
             client.Login(userName, (senderClient, args) => {
                 if (args.IsValid)
                 {
                     this.InvokeUI(() => {
-                        frmSender.UserIsExists = true;
+                        frmSender.UserIsExists = false;
                         this.pnl_Index.Visible = false;
                         this.pnl_Common.Visible = true;
                         this.pnl_Common.BringToFront();
                         this.btn_Previous.Visible = true;
                         this.btn_findOnline.PerformClick();
+
                     });
                    
                 }
                 if (args.HasError)
                 {
-                    frmSender.UserIsExists = false;
+                    this.InvokeUI(() =>
+                    {
+                        frmSender.UserIsExists = true;
+                    });
+                    
                 }
             });
         }
