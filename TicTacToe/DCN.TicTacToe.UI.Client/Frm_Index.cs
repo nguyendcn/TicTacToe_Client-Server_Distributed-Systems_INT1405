@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using DCN.TicTacToe.Client;
 using DCN.TicTacToe.Shared.Enum;
 using DCN.TicTacToe.Shared.Models;
+using DCN.TicTacToe.UI;
 
 namespace DCN.TicTacToe.UI.Client
 {
@@ -37,7 +38,7 @@ namespace DCN.TicTacToe.UI.Client
 
         public Frm_Index()
         {
-
+            
             client = new DCN.TicTacToe.Client.Client();
             InitializeComponent();
 
@@ -799,6 +800,16 @@ namespace DCN.TicTacToe.UI.Client
                     
                 }
             });
+        }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flp_ShowTableGame_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

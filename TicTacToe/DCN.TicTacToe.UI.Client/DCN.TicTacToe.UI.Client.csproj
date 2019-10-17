@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
@@ -60,7 +61,6 @@
     <EmbeddedResource Include="Frm_Index.resx">
       <DependentUpon>Frm_Index.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -139,9 +139,6 @@
     <None Include="Resources\in-turn.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Bg.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\login.png" />
   </ItemGroup>
   <ItemGroup>
@@ -163,10 +160,13 @@
     <None Include="Resources\setting.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\table.png" />
+    <None Include="Resources\table150x150.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\table150x150.png" />
+    <None Include="Resources\Bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Layer-1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

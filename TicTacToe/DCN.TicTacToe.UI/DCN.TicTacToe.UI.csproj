@@ -51,6 +51,13 @@
     <Compile Include="CircularButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Common\Utils.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_ConnectError.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +95,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SkinComponents\RegionCollection.cs" />
+    <Compile Include="SkinComponents\SkinControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SkinNotifyGame.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="TransparentPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -105,6 +119,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_ConnectError.resx">
       <DependentUpon>Frm_ConnectError.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,12 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Accept btn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DCN.TicTacToe.Shared\DCN.TicTacToe.Shared.csproj">
-      <Project>{FE0EAE6A-6E88-4004-B23C-813C86F04827}</Project>
-      <Name>DCN.TicTacToe.Shared</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\WinTable.png" />
@@ -179,6 +190,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\table1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DCN.TicTacToe.Shared\DCN.TicTacToe.Shared.csproj">
+      <Project>{fe0eae6a-6e88-4004-b23c-813c86f04827}</Project>
+      <Name>DCN.TicTacToe.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
