@@ -102,6 +102,9 @@
     <Compile Include="SkinNotifyGame.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Transp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="TransparentPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -141,6 +144,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkinNotifyGame.resx">
+      <DependentUpon>SkinNotifyGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transp.resx">
+      <DependentUpon>Transp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +205,15 @@
       <Project>{fe0eae6a-6e88-4004-b23c-813c86f04827}</Project>
       <Name>DCN.TicTacToe.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star-tie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star-win.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star-lose.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -106,11 +106,16 @@ namespace DCN.TicTacToe.UI.Client
 
             this.InvokeUI(() =>
             {
-                Frm_StatusGame frm_StatusGame = new Frm_StatusGame(obj.Game, new Point(0, 0));
-                frm_StatusGame.TopLevel = false;
-                this.Controls.Add(frm_StatusGame);
-                frm_StatusGame.BringToFront();
-                frm_StatusGame.Show();
+                //Frm_StatusGame frm_StatusGame = new Frm_StatusGame(obj.Game, new Point(0, 0));
+                //frm_StatusGame.TopLevel = false;
+                //this.Controls.Add(frm_StatusGame);
+                //frm_StatusGame.BringToFront();
+                //frm_StatusGame.Show();
+
+                SkinNotifyGame skinNotifyGame = new SkinNotifyGame(obj.Game);
+                this.Controls.Add(skinNotifyGame);
+                skinNotifyGame.Location = new Point(0, 0);
+                skinNotifyGame.BringToFront();
 
                 foreach (Control ctr in pnl_GameBoard.Controls)
                 {
@@ -124,6 +129,7 @@ namespace DCN.TicTacToe.UI.Client
             UpdateScoreRequest();
 
         }
+
 
         private void UpdateScoreRequest()
         {
