@@ -311,7 +311,7 @@ namespace DCN.TicTacToe.Client
             SendMessage(request);
         }
 
-        public void RequestGame(int [,] gameBoard)
+        public void RequestGame(int[,] gameBoard)
         {
             GameRequest request = new GameRequest();
             request.BoardGame = gameBoard;
@@ -405,7 +405,7 @@ namespace DCN.TicTacToe.Client
                 {
                     FileUploadResponseHandler(msg as FileUploadResponse);
                 }
-                else if(type == typeof(GameResponse))
+                else if (type == typeof(GameResponse))
                 {
                     OnGameResponse(msg as GameResponse);
                 }
@@ -444,21 +444,25 @@ namespace DCN.TicTacToe.Client
                 {
                     OnAcceptPlayRequest(msg as AcceptPlayRequest);
                 }
-                else if(type == typeof(UpdateCountDownRequest))
+                else if (type == typeof(UpdateCountDownRequest))
                 {
                     OnUpdateCountDownRequest(msg as UpdateCountDownRequest);
                 }
-                else if(type == typeof(InitGame))
+                else if (type == typeof(InitGame))
                 {
                     OnInitGame(msg as InitGame);
                 }
-                else if(type == typeof(GameRequest))
+                else if (type == typeof(GameRequest))
                 {
                     OnGameRequest(msg as GameRequest);
                 }
-                else if(type == typeof(TimeOutRequest))
+                else if (type == typeof(TimeOutRequest))
                 {
                     OnTimeOutRequest(msg as TimeOutRequest);
+                }
+                else if (type == typeof(JoinTableRequest))
+                {
+                    JoinTableHandler(msg as JoinTableRequest);
                 }
                 else if (type == typeof(GenericRequest))
                 {
@@ -552,38 +556,36 @@ namespace DCN.TicTacToe.Client
             SendMessage(response);
         }
 
+        private void JoinTableHandler(JoinTableRequest request)
+        {
+            SessionResponse response = new SessionResponse(request);
+            response.Email = request.Email;
+            response.IsConfirmed = true;
+            SendMessage(response);
+            OnAutoAcceptInvite(this);
+        }
+
         private void SessionRequestHandler(SessionRequest request)
         {
             SessionResponse response = new SessionResponse(request);
 
-            if (this.Status == StatusEnum.Validated)
-            {
-                EventArguments.SessionRequestEventArguments args = new EventArguments.SessionRequestEventArguments(() =>
-                {
+            EventArguments.SessionRequestEventArguments args = new EventArguments.SessionRequestEventArguments(() =>
+                           {
                     //Confirm Session
                     response.IsConfirmed = true;
-                    response.Email = request.Email;
-                    SendMessage(response);
-                },
-                () =>
-                {
+                               response.Email = request.Email;
+                               SendMessage(response);
+                           },
+                           () =>
+                           {
                     //Refuse Session
                     response.IsConfirmed = false;
-                    response.Email = request.Email;
-                    SendMessage(response);
-                });
+                               response.Email = request.Email;
+                               SendMessage(response);
+                           });
 
-                args.Request = request;
-                OnSessionRequest(args);
-            }
-            else
-            {
-                response.IsConfirmed = true;
-                response.Email = request.Email;
-                SendMessage(response);
-                OnAutoAcceptInvite(this);
-            }
-
+            args.Request = request;
+            OnSessionRequest(args);
         }
 
         public void UpdateTablesInProcessRequestHandler(UpdateTablesInProcessRequest request)

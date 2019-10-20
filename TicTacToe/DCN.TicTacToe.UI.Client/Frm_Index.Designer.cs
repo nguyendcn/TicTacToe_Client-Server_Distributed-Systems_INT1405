@@ -38,9 +38,6 @@
             this.cmb_Online = new System.Windows.Forms.ComboBox();
             this.btn_Register = new System.Windows.Forms.Button();
             this.btn_ConnectToPlayer = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.txt_PlayerID = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.pnl_Index = new System.Windows.Forms.Panel();
             this.pnl_IndexBar = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -92,11 +89,10 @@
             this.btn_Minimise = new System.Windows.Forms.Button();
             this.btn_Maximise = new System.Windows.Forms.Button();
             this.btn_Exit = new System.Windows.Forms.Button();
-            this.transp1 = new DCN.TicTacToe.UI.Transp(this.components);
+            this.pnl_Notify = new System.Windows.Forms.Panel();
             this.pnl_form.SuspendLayout();
             this.pnl_Common.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.pnl_Index.SuspendLayout();
             this.pnl_IndexBar.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -116,7 +112,6 @@
             this.pnl_ChatControl.SuspendLayout();
             this.tpnl_Popup.SuspendLayout();
             this.pnl_TitleBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.transp1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnl_form
@@ -135,11 +130,9 @@
             // pnl_Common
             // 
             this.pnl_Common.BackColor = System.Drawing.Color.Transparent;
-            this.pnl_Common.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnl_Common.BackgroundImage")));
-            this.pnl_Common.Controls.Add(this.transp1);
+            this.pnl_Common.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.Bg;
             this.pnl_Common.Controls.Add(this.flp_ShowTableGame);
             this.pnl_Common.Controls.Add(this.panel1);
-            this.pnl_Common.Controls.Add(this.button4);
             this.pnl_Common.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Common.Location = new System.Drawing.Point(0, 34);
             this.pnl_Common.Name = "pnl_Common";
@@ -149,21 +142,21 @@
             // 
             // flp_ShowTableGame
             // 
-            this.flp_ShowTableGame.BackColor = System.Drawing.Color.White;
-            this.flp_ShowTableGame.Location = new System.Drawing.Point(699, 58);
+            this.flp_ShowTableGame.BackColor = System.Drawing.Color.Transparent;
+            this.flp_ShowTableGame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flp_ShowTableGame.Location = new System.Drawing.Point(0, 52);
             this.flp_ShowTableGame.Name = "flp_ShowTableGame";
-            this.flp_ShowTableGame.Size = new System.Drawing.Size(134, 524);
+            this.flp_ShowTableGame.Size = new System.Drawing.Size(873, 558);
             this.flp_ShowTableGame.TabIndex = 1;
             this.flp_ShowTableGame.Paint += new System.Windows.Forms.PaintEventHandler(this.flp_ShowTableGame_Paint);
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.btn_findOnline);
             this.panel1.Controls.Add(this.cmb_Online);
             this.panel1.Controls.Add(this.btn_Register);
             this.panel1.Controls.Add(this.btn_ConnectToPlayer);
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -172,7 +165,7 @@
             // 
             // btn_findOnline
             // 
-            this.btn_findOnline.Location = new System.Drawing.Point(707, 12);
+            this.btn_findOnline.Location = new System.Drawing.Point(793, 12);
             this.btn_findOnline.Name = "btn_findOnline";
             this.btn_findOnline.Size = new System.Drawing.Size(75, 23);
             this.btn_findOnline.TabIndex = 3;
@@ -183,57 +176,42 @@
             // cmb_Online
             // 
             this.cmb_Online.FormattingEnabled = true;
-            this.cmb_Online.Location = new System.Drawing.Point(455, 14);
+            this.cmb_Online.Location = new System.Drawing.Point(699, 14);
             this.cmb_Online.Name = "cmb_Online";
-            this.cmb_Online.Size = new System.Drawing.Size(121, 21);
+            this.cmb_Online.Size = new System.Drawing.Size(88, 21);
             this.cmb_Online.TabIndex = 2;
             this.cmb_Online.SelectedIndexChanged += new System.EventHandler(this.cmb_Online_SelectedIndexChanged);
             // 
             // btn_Register
             // 
-            this.btn_Register.Location = new System.Drawing.Point(602, 12);
+            this.btn_Register.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.create;
+            this.btn_Register.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Register.FlatAppearance.BorderSize = 0;
+            this.btn_Register.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btn_Register.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn_Register.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Register.Location = new System.Drawing.Point(127, 6);
             this.btn_Register.Name = "btn_Register";
-            this.btn_Register.Size = new System.Drawing.Size(75, 23);
+            this.btn_Register.Size = new System.Drawing.Size(108, 40);
             this.btn_Register.TabIndex = 4;
-            this.btn_Register.Text = "Register";
             this.btn_Register.UseVisualStyleBackColor = true;
             this.btn_Register.Click += new System.EventHandler(this.btn_Register_Click);
             // 
             // btn_ConnectToPlayer
             // 
-            this.btn_ConnectToPlayer.Location = new System.Drawing.Point(280, 3);
+            this.btn_ConnectToPlayer.BackColor = System.Drawing.Color.Transparent;
+            this.btn_ConnectToPlayer.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.find;
+            this.btn_ConnectToPlayer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_ConnectToPlayer.FlatAppearance.BorderSize = 0;
+            this.btn_ConnectToPlayer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btn_ConnectToPlayer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn_ConnectToPlayer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_ConnectToPlayer.Location = new System.Drawing.Point(12, 6);
             this.btn_ConnectToPlayer.Name = "btn_ConnectToPlayer";
-            this.btn_ConnectToPlayer.Size = new System.Drawing.Size(75, 34);
+            this.btn_ConnectToPlayer.Size = new System.Drawing.Size(108, 40);
             this.btn_ConnectToPlayer.TabIndex = 1;
-            this.btn_ConnectToPlayer.Text = "Search";
-            this.btn_ConnectToPlayer.UseVisualStyleBackColor = true;
+            this.btn_ConnectToPlayer.UseVisualStyleBackColor = false;
             this.btn_ConnectToPlayer.Click += new System.EventHandler(this.btn_ConnectToPlayer_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.Controls.Add(this.txt_PlayerID);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(274, 52);
-            this.panel2.TabIndex = 0;
-            // 
-            // txt_PlayerID
-            // 
-            this.txt_PlayerID.Location = new System.Drawing.Point(12, 5);
-            this.txt_PlayerID.Name = "txt_PlayerID";
-            this.txt_PlayerID.Size = new System.Drawing.Size(155, 20);
-            this.txt_PlayerID.TabIndex = 0;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(387, 59);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // pnl_Index
             // 
@@ -277,7 +255,7 @@
             this.btn_SettingConnect.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btn_SettingConnect.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btn_SettingConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_SettingConnect.Image = global::DCN.TicTacToe.UI.Client.Client_Resx.setting;
+            this.btn_SettingConnect.Image = ((System.Drawing.Image)(resources.GetObject("btn_SettingConnect.Image")));
             this.btn_SettingConnect.Location = new System.Drawing.Point(0, 0);
             this.btn_SettingConnect.Name = "btn_SettingConnect";
             this.btn_SettingConnect.Size = new System.Drawing.Size(46, 46);
@@ -551,7 +529,7 @@
             // pnl_PlayerArea_2
             // 
             this.pnl_PlayerArea_2.BackColor = System.Drawing.Color.Transparent;
-            this.pnl_PlayerArea_2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnl_PlayerArea_2.BackgroundImage")));
+            this.pnl_PlayerArea_2.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_girl;
             this.pnl_PlayerArea_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnl_PlayerArea_2.Controls.Add(this.label2);
             this.pnl_PlayerArea_2.Location = new System.Drawing.Point(672, 362);
@@ -571,7 +549,7 @@
             // pnl_PlayerArea_1
             // 
             this.pnl_PlayerArea_1.BackColor = System.Drawing.Color.Transparent;
-            this.pnl_PlayerArea_1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnl_PlayerArea_1.BackgroundImage")));
+            this.pnl_PlayerArea_1.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_boy;
             this.pnl_PlayerArea_1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnl_PlayerArea_1.Controls.Add(this.label1);
             this.pnl_PlayerArea_1.Location = new System.Drawing.Point(101, 362);
@@ -909,17 +887,13 @@
             this.btn_Exit.UseVisualStyleBackColor = true;
             this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
             // 
-            // transp1
+            // pnl_Notify
             // 
-            this.transp1.BackColor = System.Drawing.Color.Transparent;
-            this.transp1.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.transp1.Location = new System.Drawing.Point(0, 58);
-            this.transp1.Name = "transp1";
-            this.transp1.PatternBitmap = ((System.Drawing.Bitmap)(resources.GetObject("transp1.PatternBitmap")));
-            this.transp1.Size = new System.Drawing.Size(873, 478);
-            this.transp1.TabIndex = 4;
-            this.transp1.TransparentColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.transp1.UseCashing = false;
+            this.pnl_Notify.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnl_Notify.BackgroundImage")));
+            this.pnl_Notify.Location = new System.Drawing.Point(0, 34);
+            this.pnl_Notify.Name = "pnl_Notify";
+            this.pnl_Notify.Size = new System.Drawing.Size(873, 610);
+            this.pnl_Notify.TabIndex = 1;
             // 
             // Frm_Index
             // 
@@ -927,14 +901,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(873, 644);
             this.Controls.Add(this.pnl_form);
+            this.Controls.Add(this.pnl_Notify);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Frm_Index";
             this.Text = "Form3";
             this.pnl_form.ResumeLayout(false);
             this.pnl_Common.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.pnl_Index.ResumeLayout(false);
             this.pnl_IndexBar.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -961,7 +934,6 @@
             this.tpnl_Popup.ResumeLayout(false);
             this.tpnl_Popup.PerformLayout();
             this.pnl_TitleBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.transp1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1027,10 +999,7 @@
         private System.Windows.Forms.ComboBox cmb_Online;
         private System.Windows.Forms.Button btn_Register;
         private System.Windows.Forms.Button btn_ConnectToPlayer;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txt_PlayerID;
-        private System.Windows.Forms.Button button4;
-        private Transp transp1;
+        private System.Windows.Forms.Panel pnl_Notify;
     }
 }
 

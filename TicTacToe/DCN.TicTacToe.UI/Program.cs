@@ -16,7 +16,7 @@ namespace DCN.TicTacToe.UI.Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_StatusGame());
+            Application.Run();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace DCN.TicTacToe.UI
     [
     ToolboxItem(true),
     ]
-    public class SkinNotifyGame : DCN.TicTacToe.UI.SkinControl.SkinControl
+    public class SkinNotifyGame : DCN.TicTacToe.UI.SkinComponents.SkinControl
     {
         private CircularButton cbtn_Continute;
         private System.Windows.Forms.Button btn_Title;

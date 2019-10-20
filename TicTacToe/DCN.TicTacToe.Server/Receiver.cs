@@ -410,6 +410,7 @@ namespace DCN.TicTacToe.Server
                         this.Status = StatusEnum.InSession;
                         receiver.Status = StatusEnum.InSession;
 
+
                         if (this.InGameProperties.Room == -1 && receiver.InGameProperties.Room == -1)
                         {
                             this.InGameProperties.Room = receiver.InGameProperties.Room = GetRandomTable(Server.Receivers);
@@ -486,9 +487,17 @@ namespace DCN.TicTacToe.Server
                 {
                     if (IsAvaliable(receiver.Status))
                     {
-                        request.Email = this.Email;
-                        receiver.SendMessage(request);
-                        return;
+                        if (receiver.Status == StatusEnum.Validated)
+                        {
+                            request.Email = this.Email;
+                            receiver.SendMessage(request);
+                            return;
+                        }
+                        else if(receiver.Status == StatusEnum.InProcess)
+                        {
+                            receiver.SendMessage(new JoinTableRequest(this.Email, request));
+                            return;
+                        }
                     } 
                 }
             }

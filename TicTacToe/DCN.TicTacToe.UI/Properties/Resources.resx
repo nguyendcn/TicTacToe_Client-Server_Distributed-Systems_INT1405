@@ -121,14 +121,29 @@
   <data name="username-exists-text" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\username-exists-text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="find-player" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\find-player.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="star_lose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\star-lose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="WinTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WinTable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="text-tie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\text-tie.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="text-win" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\text-win.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="connect-error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\connect-error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="find-text1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\find-text1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="star_win" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\star-win.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Table" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Table.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -138,6 +153,9 @@
   </data>
   <data name="Play btn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Play btn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="star_tie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\star-tie.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,8 +172,11 @@
   <data name="Warning1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Warning1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="text-tie" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\text-tie.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="decline-invite-text" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\decline-invite-text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="find-text" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\find-text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TieTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TieTable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,13 +187,7 @@
   <data name="login" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="star_lose" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\star-lose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="star_tie" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\star-tie.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="star_win" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\star-win.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="request-session" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\request-session.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

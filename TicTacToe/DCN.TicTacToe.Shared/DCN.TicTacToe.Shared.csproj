@@ -58,6 +58,7 @@
     <Compile Include="Messages\GameRequest.cs" />
     <Compile Include="Messages\GameResponse.cs" />
     <Compile Include="Messages\InitGame.cs" />
+    <Compile Include="Messages\JoinTableRequest.cs" />
     <Compile Include="Messages\StatusGameRequest.cs" />
     <Compile Include="Messages\TablesInProcessRequest.cs" />
     <Compile Include="Messages\TablesInProcessResponse.cs" />

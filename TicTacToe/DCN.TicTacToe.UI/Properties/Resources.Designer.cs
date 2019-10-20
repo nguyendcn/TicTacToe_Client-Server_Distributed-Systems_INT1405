@@ -83,6 +83,46 @@ namespace DCN.TicTacToe.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap decline_invite_text {
+            get {
+                object obj = ResourceManager.GetObject("decline-invite-text", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap find_player {
+            get {
+                object obj = ResourceManager.GetObject("find-player", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap find_text {
+            get {
+                object obj = ResourceManager.GetObject("find-text", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap find_text1 {
+            get {
+                object obj = ResourceManager.GetObject("find-text1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap login {
             get {
                 object obj = ResourceManager.GetObject("login", resourceCulture);
@@ -106,6 +146,16 @@ namespace DCN.TicTacToe.UI.Properties {
         internal static System.Drawing.Bitmap Play_btn {
             get {
                 object obj = ResourceManager.GetObject("Play btn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap request_session {
+            get {
+                object obj = ResourceManager.GetObject("request-session", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

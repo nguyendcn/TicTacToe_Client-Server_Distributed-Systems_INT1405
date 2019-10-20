@@ -1,22 +1,9 @@
-﻿///////////////////////////////////////////////////////////////////////////////
-//
-//  File:           RegionCollection.cs
-// 
-//  Facility:		The unit contains the RegionCollection class.
-//
-//  Abstract:       The collection class of the Region class objects.
-//
-//  Environment:    VC 7.1
-//
-//  Author:         DCN Ltd.
-//
-///////////////////////////////////////////////////////////////////////////////
-
+﻿
 using System;
 using System.Collections;
 using System.Drawing;
 
-namespace DCN.TicTacToe.UI.SkinControl
+namespace DCN.TicTacToe.UI.SkinComponents
 {
     /// <summary>
     /// The collection class of regions.

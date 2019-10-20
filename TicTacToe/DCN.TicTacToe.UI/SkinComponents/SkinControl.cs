@@ -22,7 +22,7 @@ using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 
-namespace DCN.TicTacToe.UI.SkinControl
+namespace DCN.TicTacToe.UI.SkinComponents
 {
     /// <summary>
     /// The base class providing an arbitrary shape of the control basing 
