@@ -11,5 +11,15 @@ namespace DCN.TicTacToe.Shared.Messages
     public class UpdateTablesInProcessRequest : RequestMessageBase
     {
         public List<TablePropertiesBase> ClientsInProcess { get; set; }
+
+        public UpdateTablesInProcessRequest()
+        {
+            this.ClientsInProcess = new List<TablePropertiesBase>();
+        }
+
+        public UpdateTablesInProcessRequest(List<TablePropertiesBase> list)
+        {
+            this.ClientsInProcess = list;
+        }
     }
 }

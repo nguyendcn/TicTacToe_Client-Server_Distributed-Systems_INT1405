@@ -102,6 +102,9 @@
     <Compile Include="SkinNotifyGame.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="SkinOtherQuit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="SkinRequestSession.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -150,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SkinNotifyGame.resx">
       <DependentUpon>SkinNotifyGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkinOtherQuit.resx">
+      <DependentUpon>SkinOtherQuit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SkinRequestSession.resx">
       <DependentUpon>SkinRequestSession.cs</DependentUpon>
@@ -235,6 +241,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\request-session.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\other-play-out.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

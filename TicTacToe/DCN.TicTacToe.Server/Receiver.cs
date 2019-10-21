@@ -379,9 +379,18 @@ namespace DCN.TicTacToe.Server
             {
                 OtherSideReceiver.SendMessage(new EndSessionRequest());
                 ResetPropertiesClientInProcess(OtherSideReceiver);
+                OtherSideReceiver.Status = StatusEnum.InProcess;
             }
             ResetPropertiesClient(this);
             this.SendMessage(new EndSessionResponse(request));
+
+            UpdateTablesInProcessRequest processRequest = new UpdateTablesInProcessRequest();
+            processRequest.ClientsInProcess = GetListTableInProcess(Server.Receivers);
+            foreach (Receiver re in this.Server.Receivers)
+            {
+                if (re.Status == StatusEnum.Validated)
+                    re.SendMessage(processRequest);
+            }
         }
 
         private void DisconnectRequestHandler(DisconnectRequest request)
@@ -389,7 +398,7 @@ namespace DCN.TicTacToe.Server
             if (OtherSideReceiver != null)
             {
                 OtherSideReceiver.SendMessage(new DisconnectRequest());
-                OtherSideReceiver.Status = StatusEnum.Validated;
+                OtherSideReceiver.Status = StatusEnum.InProcess;
             }
 
             Disconnect();
@@ -422,6 +431,13 @@ namespace DCN.TicTacToe.Server
                         else
                         {
                             receiver.InGameProperties.Room = this.InGameProperties.Room;
+                        }
+
+                        UpdateTablesInProcessRequest processRequest = new UpdateTablesInProcessRequest(GetListTableInProcess(Server.Receivers));
+                        foreach (Receiver re in Server.Receivers)
+                        {
+                            if (re.Status == StatusEnum.Validated)
+                                re.SendMessage(processRequest);
                         }
 
                     }

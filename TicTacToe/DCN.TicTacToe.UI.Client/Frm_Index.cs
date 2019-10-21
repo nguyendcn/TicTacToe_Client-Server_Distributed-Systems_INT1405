@@ -77,6 +77,7 @@ namespace DCN.TicTacToe.UI.Client
             InitShowForStart();
         }
 
+
         private void Client_AutoAccepInvite(TicTacToe.Client.Client obj)
         {
             this.InvokeUI(() => {
@@ -96,12 +97,25 @@ namespace DCN.TicTacToe.UI.Client
 
         private void Client_SessionEndedByTheRemoteClient(TicTacToe.Client.Client obj)
         {
-            this.InvokeUI(() =>
-            {
-                this.pnl_GamePlay.BringToFront();
-                this.btn_Already.Visible = true;
+            this.InvokeUI(() => {
+                if (this.pnl_GamePlay.Visible)
+                {
+                    SkinOtherQuit otherQuit = new SkinOtherQuit();
+                    otherQuit.ActionForm += (option) => {
+                        if (option == Options.YES)
+                        {
+                            this.pnl_Notify.SendToBack();
+                        }
+                    };
+                    this.pnl_Notify.Controls.Add(otherQuit);
+                    this.pnl_Notify.BringToFront();
+
+                    this.pnl_PlayerArea_2.Visible = false;
+                    this.btn_Player_1_Notify.Visible = this.btn_Player_2_Notify.Visible = false;
+                    this.btn_Already.Visible = false;
+                }
             });
-            
+
         }
 
         private void Client_GameResponse(Shared.Messages.GameResponse obj)
@@ -212,7 +226,6 @@ namespace DCN.TicTacToe.UI.Client
             {
                 if (obj.IsAlready)
                 {
-                    this.label2.Text = "Already";
                     this.btn_Player_2_Notify.Visible = true;
                     this.btn_Player_2_Notify.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.ok_text;
                 }
@@ -220,7 +233,6 @@ namespace DCN.TicTacToe.UI.Client
                 {
                     this.pnl_GameBoard.Enabled = false;
                     this.btn_Already.Visible = true;
-                    this.label1.Text = "huuuhuusddsa";
                 }
             });
 
@@ -612,7 +624,7 @@ namespace DCN.TicTacToe.UI.Client
                     {
                         this.pnl_GamePlay.Visible = true;
                         this.pnl_GamePlay.BringToFront();
-                        this.btn_Already.Visible = true;
+                        this.btn_Already.Visible = false;
                         this.pnl_PlayerArea_1.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_boy;
                     });
                     //redirect to table game.
@@ -651,9 +663,7 @@ namespace DCN.TicTacToe.UI.Client
                 this.timerReqMesgChat.Start();
                 this.pnl_MsgChat_1.Visible = true;
                 this.txt_MessContent_1.Text = txt_Message.Text;
-                this.rtb_HistoryMess.AppendText(txt_MessContent_1.Text + Environment.NewLine);
-                rtb_HistoryMess.SelectionStart = rtb_HistoryMess.Text.Length;
-                rtb_HistoryMess.ScrollToCaret();
+                ShowChatQueue(this.pnl_HisChat.Controls, txt_Message.Text);
                 client.SendTextMessage(txt_Message.Text);
             }
             else
@@ -661,6 +671,7 @@ namespace DCN.TicTacToe.UI.Client
                 this.timerReqMesgChat.Start();
                 this.pnl_MsgChat_1.Visible = true;
                 this.txt_MessContent_1.Text = txt_Message.Text;
+                ShowChatQueue(this.pnl_HisChat.Controls, txt_Message.Text);
                 client.SendTextMessage(txt_Message.Text);
             }
         }
@@ -675,6 +686,7 @@ namespace DCN.TicTacToe.UI.Client
                     this.timerReceMesgChat.Start();
                     this.pnl_MsgChat_2.Visible = true;
                     this.pnl_MsgChat_2.BringToFront();
+                    ShowChatQueue(this.pnl_HisChat.Controls, msgs);
                     txt_MessContent_2.Text = msgs;
                 }
                 else
@@ -682,6 +694,7 @@ namespace DCN.TicTacToe.UI.Client
                     this.timerReceMesgChat.Start();
                     this.pnl_MsgChat_2.Visible = true;
                     this.pnl_MsgChat_2.BringToFront();
+                    ShowChatQueue(this.pnl_HisChat.Controls, msgs);
                     txt_MessContent_2.Text = msgs;
                 }
             });
@@ -689,7 +702,6 @@ namespace DCN.TicTacToe.UI.Client
 
         private void btn_Already_Click(object sender, EventArgs e)
         {
-            this.label1.Text = "Already";
             this.btn_Player_1_Notify.Visible = true;
             this.btn_Player_1_Notify.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.ok_text;
             client.RequestAlreadyPlayGame();
@@ -851,6 +863,26 @@ namespace DCN.TicTacToe.UI.Client
                 error.BringToFront();
                 error.Show();
             }
+        }
+
+        private void ShowChatQueue(Control.ControlCollection queue , String newMess)
+        {
+            Control temp = new Control();
+            int count = 0;
+            foreach(Control ctr in queue)
+            {
+                if(count == 0)
+                {
+                    temp = ctr;
+                }
+                else
+                {
+                    temp.Text = ctr.Text;
+                    temp = ctr;
+                }
+                count++;
+            }
+            temp.Text = newMess;
         }
 
         private void Login_ActionForm(SkinFrmLogin frmSender, string userName)
