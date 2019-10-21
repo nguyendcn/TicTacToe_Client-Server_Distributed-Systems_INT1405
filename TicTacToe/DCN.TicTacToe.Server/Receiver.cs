@@ -1,10 +1,12 @@
 ﻿using DCN.TicTacToe.Shared.Enum;
 using DCN.TicTacToe.Shared.ExtensionMethods;
 using DCN.TicTacToe.Shared.Messages;
+using DCN.TicTacToe.Shared.Messages.PublicPark;
 using DCN.TicTacToe.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -67,6 +69,10 @@ namespace DCN.TicTacToe.Server
         /// Timer to send time countdown in play game
         /// </summary>
         public CountDown CountDownInGame { get; set; }
+        /// <summary>
+        /// Location of this player inside Public Park
+        /// </summary>
+        public Point LocationPP { get; set; }
 
         #endregion
 
@@ -273,6 +279,14 @@ namespace DCN.TicTacToe.Server
             else if(type == typeof(AcceptPlayRequest))
             {
                 AcceptPlayRequestHandler(msg as AcceptPlayRequest);
+            }
+            else if(type == typeof(JoinPublicParkRequest))
+            {
+                JoinPublicParkRequestHandler(msg as JoinPublicParkRequest);
+            }
+            else if(type == typeof(UpdateLocationPlayerRequest))
+            {
+                UpdateLocationPlayerRequestHandler(msg as UpdateLocationPlayerRequest);
             }
             else if (OtherSideReceiver != null)
             {
@@ -649,10 +663,55 @@ namespace DCN.TicTacToe.Server
             }
         }
 
+        public void JoinPublicParkRequestHandler(JoinPublicParkRequest request)
+        {
+            this.Status = StatusEnum.InPublicPark;
+            this.LocationPP = new Point(0, 0);
+            AddNewPlayRequest playRequest = new AddNewPlayRequest(this.Email, this.LocationPP);
+           
+            foreach(Receiver receiver in Server.Receivers.Where(x => x != this))
+            {
+                if(receiver.Status == StatusEnum.InPublicPark)
+                {
+                    receiver.SendMessage(playRequest);
+                }
+            }
+
+            JoinPublicParkResponse response = 
+                new JoinPublicParkResponse(request, GetAllPlayerInPublicPark(Server.Receivers),
+                                           this.Email, this.LocationPP);
+            this.SendMessage(response);
+        }
+
+        public void UpdateLocationPlayerRequestHandler(UpdateLocationPlayerRequest request)
+        {
+            request.UserName = this.Email;
+            this.LocationPP = request.Location;
+            foreach (Receiver receiver in Server.Receivers.Where(x => x != this))
+            {
+                if (receiver.Status == StatusEnum.InPublicPark)
+                {
+                    receiver.SendMessage(request);
+                }
+            }
+        }
+
         #endregion
 
         #region Method
 
+        public Dictionary<String, Point> GetAllPlayerInPublicPark(List<Receiver> lReceiver)
+        {
+            Dictionary<String, Point> lPlayer = new Dictionary<string, Point>();
+            foreach(Receiver receiver in lReceiver.Where(x=>(x!=this)))
+            {
+                if(receiver.Status == StatusEnum.InPublicPark)
+                {
+                    lPlayer.Add(receiver.Email, receiver.LocationPP);
+                }
+            }
+            return lPlayer;
+        }
 
         private void SetupDataAndSendToClients()
         {

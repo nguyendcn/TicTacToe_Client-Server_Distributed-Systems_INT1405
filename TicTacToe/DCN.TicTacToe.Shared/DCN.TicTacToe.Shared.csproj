@@ -62,6 +62,7 @@
     <Compile Include="Messages\JoinTableRequest.cs" />
     <Compile Include="Messages\PublicPark\AddNewPlayRequest.cs" />
     <Compile Include="Messages\PublicPark\JoinPublicParkRequest.cs" />
+    <Compile Include="Messages\PublicPark\JoinPublicParkResponse.cs" />
     <Compile Include="Messages\PublicPark\SendMessagePublicPark.cs" />
     <Compile Include="Messages\PublicPark\UpdateLocationPlayerRequest.cs" />
     <Compile Include="Messages\StatusGameRequest.cs" />

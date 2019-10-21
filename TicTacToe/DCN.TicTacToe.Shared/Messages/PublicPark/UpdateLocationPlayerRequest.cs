@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace DCN.TicTacToe.Shared.Messages.PublicPark
 {
     [Serializable]
-    class UpdateLocationPlayerRequest:RequestMessageBase
+    public class UpdateLocationPlayerRequest : RequestMessageBase
     {
         public String UserName { get; set; }
         public Point Location { get; set; }

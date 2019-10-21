@@ -80,7 +80,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.picb_Exit = new System.Windows.Forms.PictureBox();
             this.picb_About = new System.Windows.Forms.PictureBox();
-            this.picb_QuickPlay = new System.Windows.Forms.PictureBox();
+            this.picb_PublicPark = new System.Windows.Forms.PictureBox();
             this.picb_PlayNow = new System.Windows.Forms.PictureBox();
             this.tpnl_Popup = new DCN.TicTacToe.UI.Client.TransparentPanel(this.components);
             this.btn_Login = new System.Windows.Forms.Button();
@@ -109,7 +109,7 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picb_Exit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_About)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picb_QuickPlay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picb_PublicPark)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_PlayNow)).BeginInit();
             this.tpnl_Popup.SuspendLayout();
             this.pnl_TitleBar.SuspendLayout();
@@ -117,9 +117,9 @@
             // 
             // pnl_form
             // 
+            this.pnl_form.Controls.Add(this.pnl_Index);
             this.pnl_form.Controls.Add(this.pnl_GamePlay);
             this.pnl_form.Controls.Add(this.pnl_Common);
-            this.pnl_form.Controls.Add(this.pnl_Index);
             this.pnl_form.Controls.Add(this.tpnl_Popup);
             this.pnl_form.Controls.Add(this.pnl_TitleBar);
             this.pnl_form.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -772,7 +772,7 @@
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.picb_Exit);
             this.panel3.Controls.Add(this.picb_About);
-            this.panel3.Controls.Add(this.picb_QuickPlay);
+            this.panel3.Controls.Add(this.picb_PublicPark);
             this.panel3.Controls.Add(this.picb_PlayNow);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(253, 64);
@@ -801,15 +801,16 @@
             this.picb_About.TabIndex = 2;
             this.picb_About.TabStop = false;
             // 
-            // picb_QuickPlay
+            // picb_PublicPark
             // 
-            this.picb_QuickPlay.Image = ((System.Drawing.Image)(resources.GetObject("picb_QuickPlay.Image")));
-            this.picb_QuickPlay.Location = new System.Drawing.Point(114, 256);
-            this.picb_QuickPlay.Name = "picb_QuickPlay";
-            this.picb_QuickPlay.Size = new System.Drawing.Size(158, 52);
-            this.picb_QuickPlay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picb_QuickPlay.TabIndex = 1;
-            this.picb_QuickPlay.TabStop = false;
+            this.picb_PublicPark.Image = ((System.Drawing.Image)(resources.GetObject("picb_PublicPark.Image")));
+            this.picb_PublicPark.Location = new System.Drawing.Point(114, 256);
+            this.picb_PublicPark.Name = "picb_PublicPark";
+            this.picb_PublicPark.Size = new System.Drawing.Size(158, 52);
+            this.picb_PublicPark.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picb_PublicPark.TabIndex = 1;
+            this.picb_PublicPark.TabStop = false;
+            this.picb_PublicPark.Click += new System.EventHandler(this.picb_PublicPark_Click);
             // 
             // picb_PlayNow
             // 
@@ -983,7 +984,7 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picb_Exit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_About)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picb_QuickPlay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picb_PublicPark)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picb_PlayNow)).EndInit();
             this.tpnl_Popup.ResumeLayout(false);
             this.tpnl_Popup.PerformLayout();
@@ -1016,7 +1017,7 @@
         private System.Windows.Forms.PictureBox picb_PlayNow;
         private System.Windows.Forms.PictureBox picb_Exit;
         private System.Windows.Forms.PictureBox picb_About;
-        private System.Windows.Forms.PictureBox picb_QuickPlay;
+        private System.Windows.Forms.PictureBox picb_PublicPark;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btn_SendMessage;
         private System.Windows.Forms.TextBox txt_Message;

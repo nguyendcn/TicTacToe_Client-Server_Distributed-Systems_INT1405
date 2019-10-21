@@ -56,10 +56,19 @@
     <Compile Include="Frm_Index.Designer.cs">
       <DependentUpon>Frm_Index.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_PublicPark.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_PublicPark.Designer.cs">
+      <DependentUpon>Frm_PublicPark.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Frm_Index.resx">
       <DependentUpon>Frm_Index.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_PublicPark.resx">
+      <DependentUpon>Frm_PublicPark.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

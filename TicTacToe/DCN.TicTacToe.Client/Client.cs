@@ -1,5 +1,6 @@
 ﻿using DCN.TicTacToe.Shared.Enum;
 using DCN.TicTacToe.Shared.Messages;
+using DCN.TicTacToe.Shared.Messages.PublicPark;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 using DCN.TicTacToe.Shared.Models;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace DCN.TicTacToe.Client
 {
@@ -110,6 +112,18 @@ namespace DCN.TicTacToe.Client
         /// 
         /// </summary>
         public event Action<Client> AutoAccepInvite;
+        /// <summary>
+        /// 
+        /// </summary>
+        public event Action<AddNewPlayRequest> AddNewPlayer;
+        /// <summary>
+        /// 
+        /// </summary>
+        public event Action<UpdateLocationPlayerRequest> UpdateLocationP;
+        /// <summary>
+        /// 
+        /// </summary>
+        public event Action<JoinPublicParkResponse> JoinPPResponse;
 
 
         #endregion
@@ -326,6 +340,20 @@ namespace DCN.TicTacToe.Client
             SendMessage(request);
         }
 
+        public void RequestJoinPublicPark()
+        {
+            JoinPublicParkRequest request = new JoinPublicParkRequest();
+            SendMessage(request);
+        }
+
+        public void RequestUpdateLocation(String userName, Point location)
+        {
+            UpdateLocationPlayerRequest request = new UpdateLocationPlayerRequest();
+            request.UserName = userName;
+            request.Location = location;
+            SendMessage(request);
+        }
+
         #endregion
 
         #region Threads Methods
@@ -393,6 +421,11 @@ namespace DCN.TicTacToe.Client
                 if (type == typeof(GenericResponse))
                 {
                     msg = (msg as GenericResponse).ExtractInnerMessage();
+                }
+
+                if(type == typeof(JoinPublicParkResponse))
+                {
+                    OnJoinPublicParkResponse(msg as JoinPublicParkResponse);
                 }
 
                 InvokeMessageCallback(msg, (msg as ResponseMessageBase).DeleteCallbackAfterInvoke);
@@ -463,6 +496,15 @@ namespace DCN.TicTacToe.Client
                 else if (type == typeof(JoinTableRequest))
                 {
                     JoinTableHandler(msg as JoinTableRequest);
+                }
+                else if(type == typeof(AddNewPlayRequest))
+                {
+                    OnAddNewPlayer(msg as AddNewPlayRequest);
+                    Debug.WriteLine((msg as AddNewPlayRequest).UserName);
+                }
+                else if(type == typeof(UpdateLocationPlayerRequest))
+                {
+                    OnUpdateLocationPlayerRequest(msg as UpdateLocationPlayerRequest);
                 }
                 else if (type == typeof(GenericRequest))
                 {
@@ -630,6 +672,22 @@ namespace DCN.TicTacToe.Client
         #endregion
 
         #region Virtuals
+
+
+        public virtual void OnJoinPublicParkResponse(JoinPublicParkResponse args)
+        {
+            if (JoinPPResponse != null) JoinPPResponse(args);
+        }
+
+        public virtual void OnUpdateLocationPlayerRequest(UpdateLocationPlayerRequest args)
+        {
+            if (UpdateLocationP != null) UpdateLocationP(args);
+        }
+
+        public virtual void OnAddNewPlayer(AddNewPlayRequest args)
+        {
+            if (AddNewPlayer != null) AddNewPlayer(args);
+        }
 
         public virtual void OnAutoAcceptInvite(Client client)
         {

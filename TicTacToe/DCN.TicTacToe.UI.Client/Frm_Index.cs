@@ -922,5 +922,12 @@ namespace DCN.TicTacToe.UI.Client
         {
 
         }
+
+        private void picb_PublicPark_Click(object sender, EventArgs e)
+        {
+            client.RequestJoinPublicPark();
+            Frm_PublicPark publicPark = new Frm_PublicPark(this.client);
+            publicPark.Show();
+        }
     }
 }
