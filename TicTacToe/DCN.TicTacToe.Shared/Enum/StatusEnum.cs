@@ -11,7 +11,8 @@ namespace DCN.TicTacToe.Shared.Enum
         Disconnected,
         Validated,
         InSession,
-        InProcess
+        InProcess,
+        InPublicPark
     }
 
 }
