@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DCN.TicTacToe.Server;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -105,5 +106,29 @@ namespace DCN.TicTacToe.UI.Server
             btnStop.Enabled = true;
             btnStart.Enabled = false;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Frm_ChartConnect chartConnect = new Frm_ChartConnect();
+            chartConnect.UpdateChart += (data) => {
+                if(data.Count >= 30)
+                    data.RemoveAt(0);
+                data.Add(GetQuantityConnect());
+                chartConnect.Data = data;
+            };
+            chartConnect.Show();
+        }
+
+        private int GetQuantityConnect()
+        {
+            int count = 0;
+            foreach(Receiver re in server.Receivers)
+            {
+                if (re.Status != Shared.Enum.StatusEnum.Disconnected)
+                    count++;
+            }
+            return count;
+        }
+
     }
 }

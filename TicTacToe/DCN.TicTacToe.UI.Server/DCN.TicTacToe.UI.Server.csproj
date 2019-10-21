@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frm_ChartConnect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_ChartConnect.Designer.cs">
+      <DependentUpon>Frm_ChartConnect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Index.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Frm_ChartConnect.resx">
+      <DependentUpon>Frm_ChartConnect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Index.resx">
       <DependentUpon>Frm_Index.cs</DependentUpon>
     </EmbeddedResource>
