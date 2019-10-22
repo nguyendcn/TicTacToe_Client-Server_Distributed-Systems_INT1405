@@ -108,8 +108,8 @@
     <Compile Include="SkinRequestSession.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Transp.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="TextBoxAutoDisposeByTime.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TransparentPanel.cs">
       <SubType>Component</SubType>
@@ -159,9 +159,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SkinRequestSession.resx">
       <DependentUpon>SkinRequestSession.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transp.resx">
-      <DependentUpon>Transp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

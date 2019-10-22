@@ -64,6 +64,8 @@
     <Compile Include="Messages\PublicPark\ChangeLocationRequest.cs" />
     <Compile Include="Messages\PublicPark\JoinPublicParkRequest.cs" />
     <Compile Include="Messages\PublicPark\JoinPublicParkResponse.cs" />
+    <Compile Include="Messages\PublicPark\LeavePublicParkRequest.cs" />
+    <Compile Include="Messages\PublicPark\RemovePlayerRequest.cs" />
     <Compile Include="Messages\PublicPark\SendMessagePublicPark.cs" />
     <Compile Include="Messages\PublicPark\UpdateLocationPlayerRequest.cs" />
     <Compile Include="Messages\StatusGameRequest.cs" />

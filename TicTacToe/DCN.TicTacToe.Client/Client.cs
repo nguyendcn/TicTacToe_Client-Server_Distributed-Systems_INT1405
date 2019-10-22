@@ -124,6 +124,14 @@ namespace DCN.TicTacToe.Client
         /// 
         /// </summary>
         public event Action<JoinPublicParkResponse> JoinPPResponse;
+        /// <summary>
+        /// 
+        /// </summary>
+        public event Action<SendMessagePublicPark> ShowMessPP;
+        ///
+        ///
+        ///
+        public event Action<RemovePlayerRequest> RemovePlayerRequest;
 
 
         #endregion
@@ -362,6 +370,18 @@ namespace DCN.TicTacToe.Client
             SendMessage(request);
         }
 
+        public void RequestSendMessagePP(String message)
+        {
+            SendMessagePublicPark messagePublicPark = new SendMessagePublicPark();
+            messagePublicPark.Message = message;
+            SendMessage(messagePublicPark);
+        }
+
+        public void RequestOutPublicPark()
+        {
+            SendMessage(new LeavePublicParkRequest());
+        }
+
         #endregion
 
         #region Threads Methods
@@ -508,11 +528,18 @@ namespace DCN.TicTacToe.Client
                 else if(type == typeof(AddNewPlayRequest))
                 {
                     OnAddNewPlayer(msg as AddNewPlayRequest);
-                    Debug.WriteLine((msg as AddNewPlayRequest).UserName);
                 }
                 else if(type == typeof(UpdateLocationPlayerRequest))
                 {
                     OnUpdateLocationPlayerRequest(msg as UpdateLocationPlayerRequest);
+                }
+                else if(type == typeof(SendMessagePublicPark))
+                {
+                    OnSendMessagePublicPark(msg as SendMessagePublicPark);
+                }
+                else if(type == typeof(RemovePlayerRequest))
+                {
+                    OnRemovePlayer(msg as RemovePlayerRequest);
                 }
                 else if (type == typeof(GenericRequest))
                 {
@@ -681,6 +708,15 @@ namespace DCN.TicTacToe.Client
 
         #region Virtuals
 
+        public virtual void OnRemovePlayer(RemovePlayerRequest args)
+        {
+            if (RemovePlayerRequest != null) RemovePlayerRequest(args);
+        }
+
+        public virtual void OnSendMessagePublicPark(SendMessagePublicPark args)
+        {
+            if (ShowMessPP != null) ShowMessPP(args);
+        }
 
         public virtual void OnJoinPublicParkResponse(JoinPublicParkResponse args)
         {

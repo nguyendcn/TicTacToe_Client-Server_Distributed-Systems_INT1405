@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -35,13 +36,51 @@ namespace DCN.TicTacToe.UI.Client
             client.AddNewPlayer += Client_AddNewPlayer;
             client.UpdateLocationP += Client_UpdateLocationP;
             client.JoinPPResponse += Client_JoinPPResponse;
+            client.ShowMessPP += Client_ShowMessPP;
+            client.RemovePlayerRequest += Client_RemovePlayerRequest;
+
+        }
+
+        private void Client_RemovePlayerRequest(RemovePlayerRequest obj)
+        {
+            foreach (Control control in this.pnl_AreaPark.Controls)
+            {
+                if ((String)control.Tag == obj.UserName)
+                {
+                    this.InvokeUI(()=> {
+                        control.Dispose();
+                    });
+                }
+            }
+        }
+
+        private void Client_ShowMessPP(SendMessagePublicPark obj)
+        {
+
+            foreach (Control control in this.pnl_AreaPark.Controls)
+            {
+                if ((String)control.Tag == obj.UserName)
+                {
+                    this.InvokeUI(() =>
+                    {
+                        TextBoxAutoDisposeByTime txt_Time = new TextBoxAutoDisposeByTime();
+                        txt_Time.Location = new Point(control.Location.X, control.Location.Y - 30);
+                        txt_Time.Text = obj.Message;
+                        this.pnl_AreaPark.Controls.Add(txt_Time);
+                        Debug.WriteLine(obj.Message);
+                    });
+                    return;
+                }
+            }
 
 
         }
+
         private void Client_JoinPPResponse(JoinPublicParkResponse obj)
         {
-            this.Controls.Clear();
-            this.InvokeUI(() => {
+            this.InvokeUI(() =>
+            {
+                //this.pnl_AreaPark.Controls.Clear();
                 foreach (KeyValuePair<String, Point> kvp in obj.ListOtherPlayer)
                 {
                     Button btn = new Button();
@@ -55,7 +94,7 @@ namespace DCN.TicTacToe.UI.Client
                     btn.Image = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_public_park;
                     btn.ImageAlign = ContentAlignment.BottomCenter;
                     btn.TextAlign = ContentAlignment.TopCenter;
-                    this.Controls.Add(btn);
+                    this.pnl_AreaPark.Controls.Add(btn);
                 }
 
                 Button btnCurrentPlayer = new Button();
@@ -70,7 +109,7 @@ namespace DCN.TicTacToe.UI.Client
                 btnCurrentPlayer.ImageAlign = ContentAlignment.BottomCenter;
                 btnCurrentPlayer.TextAlign = ContentAlignment.TopCenter;
                 btnCurrentPlayer.LocationChanged += Btn_LocationChanged;
-                this.Controls.Add(btnCurrentPlayer);
+                this.pnl_AreaPark.Controls.Add(btnCurrentPlayer);
 
                 this.userName = obj.UserNameCurrent;
             });
@@ -78,15 +117,17 @@ namespace DCN.TicTacToe.UI.Client
 
         private void Client_UpdateLocationP(UpdateLocationPlayerRequest obj)
         {
-            foreach (Control ctr in this.Controls)
+            foreach (Control ctr in this.pnl_AreaPark.Controls)
             {
-                if (ctr.Tag.Equals(obj.UserName))
-                {
-                    this.InvokeUI(()=> {
-                        ctr.Location = obj.Location;
-                    });
-                    
-                }
+                if (ctr.Tag != null)
+                    if (ctr.Tag.Equals(obj.UserName))
+                    {
+                        this.InvokeUI(() =>
+                        {
+                            ctr.Location = obj.Location;
+                        });
+
+                    }
             }
         }
 
@@ -106,13 +147,13 @@ namespace DCN.TicTacToe.UI.Client
                 btn.ImageAlign = ContentAlignment.BottomCenter;
                 btn.TextAlign = ContentAlignment.TopCenter;
                 btn.TabStop = false;
-                this.Controls.Add(btn);
+                this.pnl_AreaPark.Controls.Add(btn);
             });
 
         }
 
         private void Btn_LocationChanged(object sender, EventArgs e)
-        { 
+        {
             //client.RequestUpdateLocation(this.userName, (sender as Button).Location);
         }
 
@@ -121,7 +162,19 @@ namespace DCN.TicTacToe.UI.Client
             this.Invoke(action);
         }
 
-        private void Frm_PublicPark_MouseUp(object sender, MouseEventArgs e)
+
+        private void btn_Exit_Click(object sender, EventArgs e)
+        {
+            client.RequestOutPublicPark();
+            this.Dispose();
+        }
+
+        private void btn_SendMess_Click(object sender, EventArgs e)
+        {
+            client.RequestSendMessagePP(txt_Message.Text);
+        }
+
+        private void pnl_AreaPark_MouseUp(object sender, MouseEventArgs e)
         {
             client.RequestChangeLocation(new Point(), e.Location);
         }

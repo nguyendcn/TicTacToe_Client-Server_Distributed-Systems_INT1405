@@ -301,6 +301,14 @@ namespace DCN.TicTacToe.Server
             {
                 ChangeLocationRequestHandler(msg as ChangeLocationRequest);
             }
+            else if(type == typeof(SendMessagePublicPark))
+            {
+                SendMessagePublicParkHandler(msg as SendMessagePublicPark);
+            }
+            else if(type == typeof(LeavePublicParkRequest))
+            {
+                LeavePublicParkRequestHandler();
+            }
             else if (OtherSideReceiver != null)
             {
                 if(type == typeof(GameRequest))
@@ -726,6 +734,27 @@ namespace DCN.TicTacToe.Server
                 {
                     receiver.SendMessage(request);
                 }
+            }
+        }
+
+        public void SendMessagePublicParkHandler(SendMessagePublicPark request)
+        {
+            request.UserName = this.Email;
+            foreach(Receiver receiver in Server.Receivers)
+            {
+                receiver.SendMessage(request);
+            }
+        }
+
+        public void LeavePublicParkRequestHandler()
+        {
+            RemovePlayerRequest request = new RemovePlayerRequest();
+            request.UserName = this.Email;
+            this.Status = StatusEnum.Validated;
+
+            foreach(Receiver receiver in Server.Receivers.Where(x => (x != this)))
+            {
+                receiver.SendMessage(request);
             }
         }
 
