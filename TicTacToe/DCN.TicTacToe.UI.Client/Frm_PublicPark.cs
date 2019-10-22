@@ -35,8 +35,9 @@ namespace DCN.TicTacToe.UI.Client
             client.AddNewPlayer += Client_AddNewPlayer;
             client.UpdateLocationP += Client_UpdateLocationP;
             client.JoinPPResponse += Client_JoinPPResponse;
-        }
 
+
+        }
         private void Client_JoinPPResponse(JoinPublicParkResponse obj)
         {
             this.Controls.Clear();
@@ -44,18 +45,30 @@ namespace DCN.TicTacToe.UI.Client
                 foreach (KeyValuePair<String, Point> kvp in obj.ListOtherPlayer)
                 {
                     Button btn = new Button();
-                    btn.Size = new Size(50, 50);
+                    btn.Size = new Size(100, 150);
                     btn.Text = kvp.Key;
                     btn.Tag = kvp.Key;
                     btn.Location = kvp.Value;
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.FlatAppearance.BorderSize = 0;
+                    btn.FlatAppearance.MouseDownBackColor = btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+                    btn.Image = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_public_park;
+                    btn.ImageAlign = ContentAlignment.BottomCenter;
+                    btn.TextAlign = ContentAlignment.TopCenter;
                     this.Controls.Add(btn);
                 }
 
                 Button btnCurrentPlayer = new Button();
-                btnCurrentPlayer.Size = new Size(50, 50);
+                btnCurrentPlayer.Size = new Size(100, 150);
                 btnCurrentPlayer.Text = obj.UserNameCurrent;
                 btnCurrentPlayer.Tag = obj.UserNameCurrent;
                 btnCurrentPlayer.Location = obj.LocationCurrent;
+                btnCurrentPlayer.FlatStyle = FlatStyle.Flat;
+                btnCurrentPlayer.FlatAppearance.BorderSize = 0;
+                btnCurrentPlayer.FlatAppearance.MouseDownBackColor = btnCurrentPlayer.FlatAppearance.MouseOverBackColor = Color.Transparent;
+                btnCurrentPlayer.Image = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_public_park;
+                btnCurrentPlayer.ImageAlign = ContentAlignment.BottomCenter;
+                btnCurrentPlayer.TextAlign = ContentAlignment.TopCenter;
                 btnCurrentPlayer.LocationChanged += Btn_LocationChanged;
                 this.Controls.Add(btnCurrentPlayer);
 
@@ -83,17 +96,24 @@ namespace DCN.TicTacToe.UI.Client
             {
                 Button btn = new Button();
                 btn.Location = obj.Location;
-                btn.Size = new Size(30, 30);
+                btn.Size = new Size(100, 150);
                 btn.Text = obj.UserName;
                 btn.Tag = obj.UserName;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.FlatAppearance.MouseDownBackColor = btn.FlatAppearance.MouseOverBackColor = Color.Transparent;
+                btn.Image = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_public_park;
+                btn.ImageAlign = ContentAlignment.BottomCenter;
+                btn.TextAlign = ContentAlignment.TopCenter;
+                btn.TabStop = false;
                 this.Controls.Add(btn);
             });
 
         }
 
         private void Btn_LocationChanged(object sender, EventArgs e)
-        {
-            client.RequestUpdateLocation(this.userName, (sender as Button).Location);
+        { 
+            //client.RequestUpdateLocation(this.userName, (sender as Button).Location);
         }
 
         private void InvokeUI(Action action)
@@ -103,13 +123,7 @@ namespace DCN.TicTacToe.UI.Client
 
         private void Frm_PublicPark_MouseUp(object sender, MouseEventArgs e)
         {
-            foreach(Control ctr in this.Controls)
-            {
-                if(ctr.Tag.Equals(this.userName))
-                {
-                    ctr.Location = e.Location;
-                }
-            }
+            client.RequestChangeLocation(new Point(), e.Location);
         }
     }
 }

@@ -73,6 +73,10 @@ namespace DCN.TicTacToe.Server
         /// Location of this player inside Public Park
         /// </summary>
         public Point LocationPP { get; set; }
+        /// <summary>
+        /// Action when player move in Public Park
+        /// </summary>
+        private PlayerMoveAction MoveAction { get; set; }
 
         #endregion
 
@@ -88,7 +92,12 @@ namespace DCN.TicTacToe.Server
 
             CountDownInGame = new CountDown();
             CountDownInGame.CoutDownEv += CountDownInGame_CoutDownEv;
+
+            MoveAction = new PlayerMoveAction();
+            MoveAction.ChangeLocationPlayer += MoveAction_ChangeLocationPlayer;
         }
+
+        
 
 
         /// <summary>
@@ -287,6 +296,10 @@ namespace DCN.TicTacToe.Server
             else if(type == typeof(UpdateLocationPlayerRequest))
             {
                 UpdateLocationPlayerRequestHandler(msg as UpdateLocationPlayerRequest);
+            }
+            else if( type == typeof(ChangeLocationRequest))
+            {
+                ChangeLocationRequestHandler(msg as ChangeLocationRequest);
             }
             else if (OtherSideReceiver != null)
             {
@@ -688,6 +701,26 @@ namespace DCN.TicTacToe.Server
             request.UserName = this.Email;
             this.LocationPP = request.Location;
             foreach (Receiver receiver in Server.Receivers.Where(x => x != this))
+            {
+                if (receiver.Status == StatusEnum.InPublicPark)
+                {
+                    receiver.SendMessage(request);
+                }
+            }
+        }
+
+        public void ChangeLocationRequestHandler(ChangeLocationRequest request)
+        {
+            MoveAction.SetProperty(this.LocationPP, request.lcEnd);
+        }
+
+        private void MoveAction_ChangeLocationPlayer(Point lc)
+        {
+            UpdateLocationPlayerRequest request = new UpdateLocationPlayerRequest();
+            request.UserName = this.Email;
+            request.Location = lc;
+            this.LocationPP = lc;
+            foreach (Receiver receiver in Server.Receivers)
             {
                 if (receiver.Status == StatusEnum.InPublicPark)
                 {

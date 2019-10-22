@@ -61,6 +61,7 @@
     <Compile Include="Messages\InitGame.cs" />
     <Compile Include="Messages\JoinTableRequest.cs" />
     <Compile Include="Messages\PublicPark\AddNewPlayRequest.cs" />
+    <Compile Include="Messages\PublicPark\ChangeLocationRequest.cs" />
     <Compile Include="Messages\PublicPark\JoinPublicParkRequest.cs" />
     <Compile Include="Messages\PublicPark\JoinPublicParkResponse.cs" />
     <Compile Include="Messages\PublicPark\SendMessagePublicPark.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Messages\ValidationResponse.cs" />
     <Compile Include="Models\CountDown.cs" />
     <Compile Include="Models\InGameProperties.cs" />
+    <Compile Include="Models\PlayerMoveAction.cs" />
     <Compile Include="Models\ResponseCallbackObject.cs" />
     <Compile Include="Models\TablePropertiesBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

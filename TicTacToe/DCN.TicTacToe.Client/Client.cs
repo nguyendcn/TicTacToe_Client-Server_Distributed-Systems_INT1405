@@ -354,6 +354,14 @@ namespace DCN.TicTacToe.Client
             SendMessage(request);
         }
 
+        public void RequestChangeLocation(Point pStart, Point pEnd)
+        {
+            ChangeLocationRequest request = new ChangeLocationRequest();
+            request.lcStart = pStart;
+            request.lcEnd = pEnd;
+            SendMessage(request);
+        }
+
         #endregion
 
         #region Threads Methods

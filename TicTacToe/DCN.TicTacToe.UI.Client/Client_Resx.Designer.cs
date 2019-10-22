@@ -93,6 +93,36 @@ namespace DCN.TicTacToe.UI.Client {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap avatar_player_1 {
+            get {
+                object obj = ResourceManager.GetObject("avatar-player-1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap avatar_player_2 {
+            get {
+                object obj = ResourceManager.GetObject("avatar-player-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap avatar_public_park {
+            get {
+                object obj = ResourceManager.GetObject("avatar_public_park", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Bg {
             get {
                 object obj = ResourceManager.GetObject("Bg", resourceCulture);
@@ -126,6 +156,16 @@ namespace DCN.TicTacToe.UI.Client {
         internal static System.Drawing.Bitmap exit {
             get {
                 object obj = ResourceManager.GetObject("exit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap exit1 {
+            get {
+                object obj = ResourceManager.GetObject("exit1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +236,16 @@ namespace DCN.TicTacToe.UI.Client {
         internal static System.Drawing.Bitmap play_now {
             get {
                 object obj = ResourceManager.GetObject("play-now", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap public_park {
+            get {
+                object obj = ResourceManager.GetObject("public-park", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

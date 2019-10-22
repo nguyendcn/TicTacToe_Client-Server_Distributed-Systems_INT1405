@@ -82,7 +82,7 @@ namespace DCN.TicTacToe.UI.Client
         {
             this.InvokeUI(() => {
                 this.pnl_PlayerArea_2.Visible = true;
-                this.pnl_PlayerArea_2.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_girl;
+                this.pnl_PlayerArea_2.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_player_2;
             });
             
         }
@@ -363,12 +363,6 @@ namespace DCN.TicTacToe.UI.Client
             this.Invoke(action);
         }
 
-        private void pnl_ExitFormLogin_Click(object sender, EventArgs e)
-        {
-            this.txt_UserName.Text = "";
-            this.tpnl_Popup.Visible = false;
-
-        }
 
         private void btn_Login_Click(object sender, EventArgs e)
         {
@@ -383,7 +377,6 @@ namespace DCN.TicTacToe.UI.Client
                     {
                         this.Text = "Client - " + txt_UserName.Text;
                         this.txt_UserName.Text = "";
-                        this.tpnl_Popup.Visible = false;
                         this.pnl_Index.Visible = false;
                         this.pnl_Common.Visible = true;
                         this.pnl_Common.BringToFront();
@@ -625,7 +618,7 @@ namespace DCN.TicTacToe.UI.Client
                         this.pnl_GamePlay.Visible = true;
                         this.pnl_GamePlay.BringToFront();
                         this.btn_Already.Visible = false;
-                        this.pnl_PlayerArea_1.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_boy;
+                        this.pnl_PlayerArea_1.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_player_1;
                     });
                     //redirect to table game.
                 }
