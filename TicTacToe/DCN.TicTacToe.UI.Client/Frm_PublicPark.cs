@@ -39,6 +39,9 @@ namespace DCN.TicTacToe.UI.Client
             client.ShowMessPP += Client_ShowMessPP;
             client.RemovePlayerRequest += Client_RemovePlayerRequest;
 
+            
+            
+
         }
 
         private void Client_RemovePlayerRequest(RemovePlayerRequest obj)
@@ -80,7 +83,6 @@ namespace DCN.TicTacToe.UI.Client
         {
             this.InvokeUI(() =>
             {
-                //this.pnl_AreaPark.Controls.Clear();
                 foreach (KeyValuePair<String, Point> kvp in obj.ListOtherPlayer)
                 {
                     Button btn = new Button();
@@ -165,8 +167,18 @@ namespace DCN.TicTacToe.UI.Client
 
         private void btn_Exit_Click(object sender, EventArgs e)
         {
-            client.RequestOutPublicPark();
-            this.Dispose();
+            client.RequestOutPublicPark((clientSender, mess)=> {
+                this.InvokeUI(() =>
+                {
+                    client.AddNewPlayer -= Client_AddNewPlayer;
+                    client.UpdateLocationP -= Client_UpdateLocationP;
+                    client.JoinPPResponse -= Client_JoinPPResponse;
+                    client.ShowMessPP -= Client_ShowMessPP;
+                    client.RemovePlayerRequest -= Client_RemovePlayerRequest;
+                    this.client = null;
+                    this.Dispose();
+                });
+            });
         }
 
         private void btn_SendMess_Click(object sender, EventArgs e)
@@ -177,6 +189,24 @@ namespace DCN.TicTacToe.UI.Client
         private void pnl_AreaPark_MouseUp(object sender, MouseEventArgs e)
         {
             client.RequestChangeLocation(new Point(), e.Location);
+        }
+
+        private void txt_Message_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                this.btn_SendMess.PerformClick();
+            }
+        }
+
+        private void Frm_PublicPark_Shown(object sender, EventArgs e)
+        {
+            client.RequestJoinPublicPark();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

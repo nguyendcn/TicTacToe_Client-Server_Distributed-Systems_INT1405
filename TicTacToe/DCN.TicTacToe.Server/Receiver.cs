@@ -307,7 +307,7 @@ namespace DCN.TicTacToe.Server
             }
             else if(type == typeof(LeavePublicParkRequest))
             {
-                LeavePublicParkRequestHandler();
+                LeavePublicParkRequestHandler(msg as LeavePublicParkRequest);
             }
             else if (OtherSideReceiver != null)
             {
@@ -746,15 +746,18 @@ namespace DCN.TicTacToe.Server
             }
         }
 
-        public void LeavePublicParkRequestHandler()
+        public void LeavePublicParkRequestHandler(LeavePublicParkRequest request)
         {
-            RemovePlayerRequest request = new RemovePlayerRequest();
-            request.UserName = this.Email;
+            LeavePublicParkResponse response = new LeavePublicParkResponse(request);
+            this.SendMessage(response);
+
+            RemovePlayerRequest requestR = new RemovePlayerRequest();
+            requestR.UserName = this.Email;
             this.Status = StatusEnum.Validated;
 
             foreach(Receiver receiver in Server.Receivers.Where(x => (x != this)))
             {
-                receiver.SendMessage(request);
+                receiver.SendMessage(requestR);
             }
         }
 

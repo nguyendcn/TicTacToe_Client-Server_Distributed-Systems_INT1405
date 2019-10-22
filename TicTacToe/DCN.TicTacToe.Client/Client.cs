@@ -377,9 +377,12 @@ namespace DCN.TicTacToe.Client
             SendMessage(messagePublicPark);
         }
 
-        public void RequestOutPublicPark()
+        public void RequestOutPublicPark(Action<Client, LeavePublicParkResponse> callBack)
         {
-            SendMessage(new LeavePublicParkRequest());
+            LeavePublicParkRequest request = new LeavePublicParkRequest();
+            AddCallback(callBack, request);
+            SendMessage(request);
+            
         }
 
         #endregion
