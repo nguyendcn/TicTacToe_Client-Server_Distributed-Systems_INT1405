@@ -538,9 +538,14 @@ namespace DCN.TicTacToe.UI.Client
                         {
                             if (!response.HasError)
                             {
+                                this.pnl_Notify.SendToBack();
                                 this.pnl_GamePlay.Visible = false;
                                 this.pnl_Common.Visible = true;
                                 this.pnl_Common.BringToFront();
+                            }
+                            else
+                            {
+                                Debug.WriteLine(response.Exception);
                             }
                         });
                     });
@@ -598,7 +603,7 @@ namespace DCN.TicTacToe.UI.Client
                         pnl_GamePlay.BringToFront();
 
                         this.pnl_PlayerArea_2.Visible = true;
-                        this.pnl_PlayerArea_2.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_girl;
+                        this.pnl_PlayerArea_2.BackgroundImage = global::DCN.TicTacToe.UI.Client.Client_Resx.avatar_player_2;
                     }
                 });
 
