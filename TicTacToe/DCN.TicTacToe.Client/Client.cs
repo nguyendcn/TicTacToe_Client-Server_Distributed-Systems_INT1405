@@ -459,6 +459,12 @@ namespace DCN.TicTacToe.Client
                     OnJoinPublicParkResponse(msg as JoinPublicParkResponse);
                 }
 
+                if(type == typeof(ValidationResponse))
+                {
+                    if((msg as ValidationResponse).IsValid)
+                        this.Status = StatusEnum.Validated;
+                }
+
                 InvokeMessageCallback(msg, (msg as ResponseMessageBase).DeleteCallbackAfterInvoke);
 
                 if (type == typeof(RemoteDesktopResponse))

@@ -114,9 +114,9 @@
             // 
             // pnl_form
             // 
+            this.pnl_form.Controls.Add(this.pnl_Index);
             this.pnl_form.Controls.Add(this.pnl_Common);
             this.pnl_form.Controls.Add(this.pnl_GamePlay);
-            this.pnl_form.Controls.Add(this.pnl_Index);
             this.pnl_form.Controls.Add(this.pnl_TitleBar);
             this.pnl_form.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_form.Location = new System.Drawing.Point(0, 0);

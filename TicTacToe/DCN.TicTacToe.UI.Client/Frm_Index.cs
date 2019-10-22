@@ -403,7 +403,11 @@ namespace DCN.TicTacToe.UI.Client
             }
             else
             {
-                MessageBox.Show("You had login.");
+                //MessageBox.Show("You had login.");
+                this.pnl_Index.Visible = false;
+                this.pnl_Common.Visible = true;
+                this.pnl_Common.BringToFront();
+                this.btn_Previous.Visible = true;
             }
         }
 
@@ -895,7 +899,7 @@ namespace DCN.TicTacToe.UI.Client
                         this.pnl_Common.Visible = true;
                         this.pnl_Common.BringToFront();
                         this.btn_Previous.Visible = true;
-                        this.btn_findOnline.PerformClick();
+                        //this.btn_findOnline.PerformClick();
 
                     });
                    
