@@ -399,7 +399,7 @@ namespace DCN.TicTacToe.UI.Client
         {
             if (client.Status == Shared.Enum.StatusEnum.Connected)
             {
-                Login();
+                Login(1);
             }
             else
             {
@@ -842,13 +842,41 @@ namespace DCN.TicTacToe.UI.Client
             }
         }
 
-        private void Login()
+        private void Login(int type)
         {
             SkinFrmLogin login = new SkinFrmLogin();
 
             this.pnl_Notify.Controls.Add(login);
             this.pnl_Notify.BringToFront();
-            login.ActionForm += Login_ActionForm; 
+            if(type == 1)
+                login.ActionForm += Login_ActionForm; 
+            else if(type == 2)
+                login.ActionForm += Login_ActionForm1;
+        }
+
+        private void Login_ActionForm1(SkinFrmLogin frmSender, string userName)
+        {
+            client.Login(userName, (senderClient, args) => {
+                if (args.IsValid)
+                {
+                    this.InvokeUI(() => {
+                        frmSender.UserIsExists = false;
+                        this.pnl_Notify.SendToBack();
+
+                        Frm_PublicPark publicPark = new Frm_PublicPark(this.client);
+                        publicPark.Show();
+                    });
+
+                }
+                if (args.HasError)
+                {
+                    this.InvokeUI(() =>
+                    {
+                        frmSender.UserIsExists = true;
+                    });
+
+                }
+            });
         }
 
         private void ConnectToServer()
@@ -927,8 +955,17 @@ namespace DCN.TicTacToe.UI.Client
 
         private void picb_PublicPark_Click(object sender, EventArgs e)
         {
-            Frm_PublicPark publicPark = new Frm_PublicPark(this.client);
-            publicPark.Show();
+            if (client.Status == Shared.Enum.StatusEnum.Connected)
+            {
+                Login(2);
+            }
+            else
+            {
+                //MessageBox.Show("You had login.");
+                 Frm_PublicPark publicPark = new Frm_PublicPark(this.client);
+                publicPark.Show();
+            }
+            
         }
     }
 }
