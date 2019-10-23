@@ -33,7 +33,6 @@
             this.btn_Exit = new System.Windows.Forms.Button();
             this.btn_SendMess = new System.Windows.Forms.Button();
             this.txt_Message = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.pnl_Control.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +47,6 @@
             // 
             // pnl_Control
             // 
-            this.pnl_Control.Controls.Add(this.button1);
             this.pnl_Control.Controls.Add(this.btn_Exit);
             this.pnl_Control.Controls.Add(this.btn_SendMess);
             this.pnl_Control.Controls.Add(this.txt_Message);
@@ -86,16 +84,6 @@
             this.txt_Message.TabIndex = 0;
             this.txt_Message.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Message_KeyDown);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(281, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Frm_PublicPark
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -122,6 +110,5 @@
         private System.Windows.Forms.Button btn_Exit;
         private System.Windows.Forms.Button btn_SendMess;
         private System.Windows.Forms.TextBox txt_Message;
-        private System.Windows.Forms.Button button1;
     }
 }

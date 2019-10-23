@@ -58,20 +58,11 @@
     <Compile Include="SkinComponents\LableItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SkinCustomArea.cs">
+    <Compile Include="SkinConnectError.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Frm_ConnectError.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frm_ConnectError.Designer.cs">
-      <DependentUpon>Frm_ConnectError.cs</DependentUpon>
+    <Compile Include="SkinCustomArea.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Frm_SettingConnect.cs">
       <SubType>Form</SubType>
@@ -79,7 +70,6 @@
     <Compile Include="Frm_SettingConnect.Designer.cs">
       <DependentUpon>Frm_SettingConnect.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -108,32 +98,17 @@
     <Compile Include="SkinRequestSession.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="SkinSettingConnect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="TextBoxAutoDisposeByTime.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="TransparentPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="TransparentPanel.Designer.cs">
-      <DependentUpon>TransparentPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TransRichTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="TransRichTextBox.Designer.cs">
-      <DependentUpon>TransRichTextBox.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Frm_ConnectError.resx">
-      <DependentUpon>Frm_ConnectError.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Frm_SettingConnect.resx">
       <DependentUpon>Frm_SettingConnect.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +116,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkinConnectError.resx">
+      <DependentUpon>SkinConnectError.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SkinFrmFindPlayer.resx">
       <DependentUpon>SkinFrmFindPlayer.cs</DependentUpon>
@@ -159,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SkinRequestSession.resx">
       <DependentUpon>SkinRequestSession.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SkinSettingConnect.resx">
+      <DependentUpon>SkinSettingConnect.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

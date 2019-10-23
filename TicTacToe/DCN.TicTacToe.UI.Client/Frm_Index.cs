@@ -108,6 +108,7 @@ namespace DCN.TicTacToe.UI.Client
                         }
                     };
                     this.pnl_Notify.Controls.Add(otherQuit);
+                    otherQuit.BringToFront();
                     this.pnl_Notify.BringToFront();
 
                     this.pnl_PlayerArea_2.Visible = false;
@@ -126,6 +127,7 @@ namespace DCN.TicTacToe.UI.Client
             {
                 SkinNotifyGame skinNotifyGame = new SkinNotifyGame(obj.Game);
                 pnl_Notify.Controls.Add(skinNotifyGame);
+                skinNotifyGame.BringToFront();
                 pnl_Notify.BringToFront();
                 skinNotifyGame.ActionForm += SkinNotifyGame_ActionForm;
                 skinNotifyGame.Location = new Point(0, 0);
@@ -144,13 +146,7 @@ namespace DCN.TicTacToe.UI.Client
 
         }
 
-        private void SkinNotifyGame_ActionForm(Options obj)
-        {
-            this.InvokeUI(() =>
-            {
-                this.pnl_Notify.SendToBack();
-            });
-        }
+        
 
         private void UpdateScoreRequest()
         {
@@ -297,39 +293,14 @@ namespace DCN.TicTacToe.UI.Client
 
         private void btn_Exit_Click(object sender, EventArgs e)
         {
-            //Frm_Quit quit = new Frm_Quit(this.Location);
-            //quit.ActionForm += Quit_ActionForm;
-            //quit.ShowDialog();
             SkinFrmQuit quit = new SkinFrmQuit();
             quit.ActionForm += Quit_ActionForm;
             pnl_Notify.Controls.Add(quit);
+            quit.BringToFront();
             pnl_Notify.BringToFront();
         }
 
-        private void Quit_ActionForm(Options obj)
-        {
-            if(obj == Options.YES)
-            {
-                if(this.pnl_GamePlay.Visible)
-                    client.EndCurrentSession((senderClient, response) => {
-                        this.InvokeUI(() =>{
-                            client.Disconnect();
-                            this.Close();
-                        });
-                    });
-                else
-                {
-                    client.Disconnect();
-                    this.Close();
-                }
-               
-            }
-            else if(obj == Options.NO)
-            {
-                this.pnl_Notify.SendToBack();
-            }
-            
-        }
+        
 
         private void btn_Maximise_Click(object sender, EventArgs e)
         {
@@ -395,99 +366,26 @@ namespace DCN.TicTacToe.UI.Client
             
         }
 
-        private void picb_PlayNow_Click(object sender, EventArgs e)
-        {
-            if (client.Status == Shared.Enum.StatusEnum.Connected)
-            {
-                Login(1);
-            }
-            else
-            {
-                //MessageBox.Show("You had login.");
-                this.pnl_Index.Visible = false;
-                this.pnl_Common.Visible = true;
-                this.pnl_Common.BringToFront();
-                this.btn_Previous.Visible = true;
-            }
-        }
 
         private void btn_ConnectToPlayer_Click(object sender, EventArgs e)
         {
             SkinFrmFindPlayer findPlayer = new SkinFrmFindPlayer();
             findPlayer.ActionForm += FindPlayer_ActionForm;
             this.pnl_Notify.Controls.Add(findPlayer);
+            findPlayer.BringToFront();
             this.pnl_Notify.BringToFront();
 
             
         }
 
-        private void FindPlayer_ActionForm(SkinFrmFindPlayer frmFind, string data)
-        {
-            if(data.Equals(""))
-            {
-                this.pnl_Notify.SendToBack();
-                return;
-            }
-
-            foreach(Control ctr in flp_ShowTableGame.Controls)
-            {
-                if(ctr is Button)
-                {
-                    if (ctr.Text.Equals(data) || ctr.Tag.Equals(data))
-                    {
-                        (ctr as Button).PerformClick();
-                        frmFind.Dispose();
-                        this.pnl_Notify.SendToBack();
-                        return;
-                    }
-                }
-            }
-
-            client.RequestSession(data, (senderClient, args) =>
-            {
-
-                if (args.IsConfirmed)
-                {
-                    Status("Session started with " + data);
-
-                    InvokeUI(() =>
-                    {
-                        Debug.WriteLine("Session started with " + data);
-                        //TODO: Create table and come to the game.
-                        frmFind.Dispose();
-                        this.pnl_Notify.SendToBack();
-
-                        this.pnl_GamePlay.Visible = true;
-                        this.pnl_GamePlay.BringToFront();
-                        this.btn_Already.Visible = true;
-                        this.pnl_PlayerArea_2.Visible = true;
-
-                    });
-                }
-                else
-                {
-                    this.InvokeUI(() => {
-                        if (args.Exception.Message.Contains("exist"))
-                        {
-                            frmFind.Message = "notExist";
-                        }
-                        else
-                        {
-                            frmFind.Message = "decline";
-                        }
-                        Debug.WriteLine(args.Exception);
-                    });
-                }
-
-            });
-        }
-
+        
         private void client_SessionRequest(DCN.TicTacToe.Client.Client client, TicTacToe.Client.EventArguments.SessionRequestEventArguments args)
         {
             this.InvokeUI(() =>
             {
                 SkinRequestSession frmRequestSession = new SkinRequestSession();
                 this.pnl_Notify.Controls.Add(frmRequestSession);
+                frmRequestSession.BringToFront();
                 this.pnl_Notify.BringToFront();
                 frmRequestSession.ActionForm += (option) => {
                     if(option == Options.YES)
@@ -521,6 +419,7 @@ namespace DCN.TicTacToe.UI.Client
                 SkinFrmQuit quit = new SkinFrmQuit();
                 quit.ActionForm += Quit_ActionForm_ForPrevious;
                 this.pnl_Notify.Controls.Add(quit);
+                quit.BringToFront();
                 this.pnl_Notify.BringToFront();
             }
             else if(this.pnl_Common.Visible)
@@ -528,33 +427,6 @@ namespace DCN.TicTacToe.UI.Client
                 this.pnl_Index.Visible = true;
                 this.pnl_Index.BringToFront();
                 (sender as Button).Visible = false;
-            }
-        }
-
-        private void Quit_ActionForm_ForPrevious(Options obj)
-        {
-            if(obj == Options.YES)
-            {
-                if (this.pnl_GamePlay.Visible)
-                {
-                    client.EndCurrentSession((senderClient, response) => {
-                        this.InvokeUI(() =>
-                        {
-                            if (!response.HasError)
-                            {
-                                this.pnl_Notify.SendToBack();
-                                this.pnl_GamePlay.Visible = false;
-                                this.pnl_Common.Visible = true;
-                                this.pnl_Common.BringToFront();
-                            }
-                            else
-                            {
-                                Debug.WriteLine(response.Exception);
-                            }
-                        });
-                    });
-                }
-                
             }
         }
 
@@ -777,16 +649,6 @@ namespace DCN.TicTacToe.UI.Client
             }
         }
 
-        private void frm_Quit_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnl_GamePlay_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void SetUpImageBoard(Control control, Game game)
         {
             control.Tag = (int)game;
@@ -812,46 +674,267 @@ namespace DCN.TicTacToe.UI.Client
             }
         }
 
-        private void btn_SettingConnect_Click(object sender, EventArgs e)
-        {
-            Frm_SettingConnect settingConnect = new Frm_SettingConnect(_addressServer, _portConnect);
-            settingConnect.ActionForm += SettingConnect_ActionForm;
-            settingConnect.TopLevel = false;
-            this.Controls.Add(settingConnect);
-            settingConnect.BringToFront();
-            settingConnect.Show();
-        }
-
-        private void SettingConnect_ActionForm(string address, int port)
-        {
-            try
-            {
-                if(client.TcpClient.Connected)
-                    client.Disconnect();
-                this._addressServer = address;
-                this._portConnect = port;
-                client.Connect(address, port);
-            }
-            catch(Exception ex)
-            {
-                Frm_ConnectError error = new Frm_ConnectError();
-                error.TopLevel = false;
-                this.Controls.Add(error);
-                error.BringToFront();
-                error.Show();
-            }
-        }
-
         private void Login(int type)
         {
             SkinFrmLogin login = new SkinFrmLogin();
 
             this.pnl_Notify.Controls.Add(login);
+            login.BringToFront();
             this.pnl_Notify.BringToFront();
             if(type == 1)
                 login.ActionForm += Login_ActionForm; 
             else if(type == 2)
                 login.ActionForm += Login_ActionForm1;
+        }   
+
+        private void ConnectToServer()
+        {
+            try
+            {
+                client.Connect(_addressServer, _portConnect);
+            }
+            catch (Exception ex)
+            {
+                SkinConnectError connectError = new SkinConnectError();
+                connectError.ActionForm += ConnectError_ActionForm;
+                this.pnl_Notify.Controls.Add(connectError);
+                connectError.BringToFront();
+                this.pnl_Notify.BringToFront();
+            }
+        }
+
+        private void ShowChatQueue(Control.ControlCollection queue , String newMess)
+        {
+            Control temp = new Control();
+            int count = 0;
+            foreach(Control ctr in queue)
+            {
+                if(count == 0)
+                {
+                    temp = ctr;
+                }
+                else
+                {
+                    temp.Text = ctr.Text;
+                    temp = ctr;
+                }
+                count++;
+            }
+            temp.Text = newMess;
+        }
+
+
+        #region Event handler
+
+        #region Form index
+
+        private void btn_SettingConnect_Click(object sender, EventArgs e)
+        {
+            SkinSettingConnect skinSettingConnect = new SkinSettingConnect(_addressServer, _portConnect);
+            skinSettingConnect.ActionForm += SkinSettingConnect_ActionForm;
+            this.pnl_Notify.Controls.Add(skinSettingConnect);
+            skinSettingConnect.BringToFront();
+            this.pnl_Notify.BringToFront();
+        }
+
+        private void picb_PlayNow_Click(object sender, EventArgs e)
+        {
+            if (client.Status == Shared.Enum.StatusEnum.Connected)
+            {
+                Login(1);
+            }
+            else
+            {
+                //MessageBox.Show("You had login.");
+                this.pnl_Index.Visible = false;
+                this.pnl_Common.Visible = true;
+                this.pnl_Common.BringToFront();
+                this.btn_Previous.Visible = true;
+            }
+        }
+
+        private void picb_PublicPark_Click(object sender, EventArgs e)
+        {
+            if (client.Status == Shared.Enum.StatusEnum.Connected)
+            {
+                Login(2);
+            }
+            else
+            {
+                //MessageBox.Show("You had login.");
+                Frm_PublicPark publicPark = new Frm_PublicPark(this.client);
+                publicPark.Show();
+            }
+
+        }
+
+        private void picb_Exit_Click(object sender, EventArgs e)
+        {
+            this.btn_Exit.PerformClick();
+        }
+
+        private void picb_About_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region Action for notify
+
+        private void SkinNotifyGame_ActionForm(Options obj)
+        {
+            this.InvokeUI(() =>
+            {
+                this.pnl_Notify.SendToBack();
+            });
+        }
+
+        private void Quit_ActionForm(Options obj)
+        {
+            if (obj == Options.YES)
+            {
+                if (this.pnl_GamePlay.Visible)
+                    client.EndCurrentSession((senderClient, response) => {
+                        this.InvokeUI(() => {
+                            client.Disconnect();
+                            this.Close();
+                        });
+                    });
+                else
+                {
+                    if (client.TcpClient.Connected)
+                        client.Disconnect();
+                    this.Close();
+                }
+
+            }
+            else if (obj == Options.NO)
+            {
+                this.pnl_Notify.SendToBack();
+            }
+
+        }
+
+        private void FindPlayer_ActionForm(SkinFrmFindPlayer frmFind, string data)
+        {
+            if (data.Equals(""))
+            {
+                this.pnl_Notify.SendToBack();
+                return;
+            }
+
+            foreach (Control ctr in flp_ShowTableGame.Controls)
+            {
+                if (ctr is Button)
+                {
+                    if (ctr.Text.Equals(data) || ctr.Tag.Equals(data))
+                    {
+                        (ctr as Button).PerformClick();
+                        frmFind.Dispose();
+                        this.pnl_Notify.SendToBack();
+                        return;
+                    }
+                }
+            }
+
+            client.RequestSession(data, (senderClient, args) =>
+            {
+
+                if (args.IsConfirmed)
+                {
+                    Status("Session started with " + data);
+
+                    InvokeUI(() =>
+                    {
+                        Debug.WriteLine("Session started with " + data);
+                        //TODO: Create table and come to the game.
+                        frmFind.Dispose();
+                        this.pnl_Notify.SendToBack();
+
+                        this.pnl_GamePlay.Visible = true;
+                        this.pnl_GamePlay.BringToFront();
+                        this.btn_Already.Visible = true;
+                        this.pnl_PlayerArea_2.Visible = true;
+
+                    });
+                }
+                else
+                {
+                    this.InvokeUI(() => {
+                        if (args.Exception.Message.Contains("exist"))
+                        {
+                            frmFind.Message = "notExist";
+                        }
+                        else
+                        {
+                            frmFind.Message = "decline";
+                        }
+                        Debug.WriteLine(args.Exception);
+                    });
+                }
+
+            });
+        }
+
+        private void Quit_ActionForm_ForPrevious(Options obj)
+        {
+            if (obj == Options.YES)
+            {
+                if (this.pnl_GamePlay.Visible)
+                {
+                    client.EndCurrentSession((senderClient, response) => {
+                        this.InvokeUI(() =>
+                        {
+                            if (!response.HasError)
+                            {
+                                this.pnl_Notify.SendToBack();
+                                this.pnl_GamePlay.Visible = false;
+                                this.pnl_Common.Visible = true;
+                                this.pnl_Common.BringToFront();
+                            }
+                            else
+                            {
+                                Debug.WriteLine(response.Exception);
+                            }
+                        });
+                    });
+                }
+
+            }
+            else
+            {
+                this.pnl_Notify.SendToBack();
+            }
+        }
+
+        private void SkinSettingConnect_ActionForm(string address, int port)
+        {
+            try
+            {
+                if (client.TcpClient.Connected)
+                    client.Disconnect();
+                this._addressServer = address;
+                this._portConnect = port;
+                client.Connect(address, port);
+                this.pnl_Notify.SendToBack();
+            }
+            catch (Exception ex)
+            {
+                SkinConnectError connectError = new SkinConnectError();
+                connectError.ActionForm += ConnectError_ActionForm;
+                this.pnl_Notify.Controls.Add(connectError);
+                connectError.BringToFront();
+                this.pnl_Notify.BringToFront();
+            }
+        }
+
+        private void ConnectError_ActionForm(Options obj)
+        {
+            if (obj == Options.YES)
+            {
+                this.pnl_Notify.SendToBack();
+            }
         }
 
         private void Login_ActionForm1(SkinFrmLogin frmSender, string userName)
@@ -879,42 +962,6 @@ namespace DCN.TicTacToe.UI.Client
             });
         }
 
-        private void ConnectToServer()
-        {
-            try
-            {
-                client.Connect(_addressServer, _portConnect);
-            }
-            catch (Exception ex)
-            {
-                Frm_ConnectError error = new Frm_ConnectError();
-                error.TopLevel = false;
-                this.Controls.Add(error);
-                error.BringToFront();
-                error.Show();
-            }
-        }
-
-        private void ShowChatQueue(Control.ControlCollection queue , String newMess)
-        {
-            Control temp = new Control();
-            int count = 0;
-            foreach(Control ctr in queue)
-            {
-                if(count == 0)
-                {
-                    temp = ctr;
-                }
-                else
-                {
-                    temp.Text = ctr.Text;
-                    temp = ctr;
-                }
-                count++;
-            }
-            temp.Text = newMess;
-        }
-
         private void Login_ActionForm(SkinFrmLogin frmSender, string userName)
         {
             client.Login(userName, (senderClient, args) => {
@@ -930,7 +977,7 @@ namespace DCN.TicTacToe.UI.Client
                         //this.btn_findOnline.PerformClick();
 
                     });
-                   
+
                 }
                 if (args.HasError)
                 {
@@ -938,34 +985,16 @@ namespace DCN.TicTacToe.UI.Client
                     {
                         frmSender.UserIsExists = true;
                     });
-                    
+
                 }
             });
         }
 
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
+        #endregion
 
-        }
+        #region Form Common
 
-        private void flp_ShowTableGame_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void picb_PublicPark_Click(object sender, EventArgs e)
-        {
-            if (client.Status == Shared.Enum.StatusEnum.Connected)
-            {
-                Login(2);
-            }
-            else
-            {
-                //MessageBox.Show("You had login.");
-                 Frm_PublicPark publicPark = new Frm_PublicPark(this.client);
-                publicPark.Show();
-            }
-            
-        }
+        #endregion
+        #endregion
     }
 }

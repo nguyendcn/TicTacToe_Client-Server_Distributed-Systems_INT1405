@@ -198,5 +198,26 @@
   <ItemGroup>
     <None Include="Resources\avatar-public-park.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close Window_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Minimize Window_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Prev_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Long Arrow Left_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Minimize Window 32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close Window 32px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
