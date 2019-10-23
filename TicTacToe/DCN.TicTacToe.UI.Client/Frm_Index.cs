@@ -300,8 +300,6 @@ namespace DCN.TicTacToe.UI.Client
             pnl_Notify.BringToFront();
         }
 
-        
-
         private void btn_Maximise_Click(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Maximized)
@@ -334,39 +332,6 @@ namespace DCN.TicTacToe.UI.Client
             this.Invoke(action);
         }
 
-
-        private void btn_Login_Click(object sender, EventArgs e)
-        {
-            client.Login(txt_UserName.Text, (senderClient, args) =>
-            {
-
-                if (args.IsValid)
-                {
-                    //client.Status = Shared.Enum.StatusEnum.Validated;
-                    Status("User Validated!");
-                    this.InvokeUI(() =>
-                    {
-                        this.Text = "Client - " + txt_UserName.Text;
-                        this.txt_UserName.Text = "";
-                        this.pnl_Index.Visible = false;
-                        this.pnl_Common.Visible = true;
-                        this.pnl_Common.BringToFront();
-                        this.btn_Previous.Visible = true;
-                        this.btn_findOnline.PerformClick();
-
-                    });
-                }
-
-                if (args.HasError)
-                {
-                    Status(args.Exception.ToString());
-                }
-
-            });
-            
-        }
-
-
         private void btn_ConnectToPlayer_Click(object sender, EventArgs e)
         {
             SkinFrmFindPlayer findPlayer = new SkinFrmFindPlayer();
@@ -377,7 +342,6 @@ namespace DCN.TicTacToe.UI.Client
 
             
         }
-
         
         private void client_SessionRequest(DCN.TicTacToe.Client.Client client, TicTacToe.Client.EventArguments.SessionRequestEventArguments args)
         {

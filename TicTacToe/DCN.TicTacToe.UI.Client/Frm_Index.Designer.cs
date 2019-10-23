@@ -30,11 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Index));
             this.pnl_form = new System.Windows.Forms.Panel();
-            this.pnl_TitleBar = new System.Windows.Forms.Panel();
-            this.btn_Maximise = new System.Windows.Forms.Button();
-            this.btn_Login = new System.Windows.Forms.Button();
-            this.pnl_ExitFormLogin = new System.Windows.Forms.Panel();
-            this.txt_UserName = new System.Windows.Forms.TextBox();
             this.pnl_Index = new System.Windows.Forms.Panel();
             this.pnl_IndexBar = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -87,12 +82,16 @@
             this.pnl_ChatControl = new System.Windows.Forms.Panel();
             this.btn_SendMessage = new System.Windows.Forms.Button();
             this.txt_Message = new System.Windows.Forms.TextBox();
+            this.pnl_TitleBar = new System.Windows.Forms.Panel();
             this.btn_Previous = new System.Windows.Forms.Button();
             this.btn_Minimise = new System.Windows.Forms.Button();
+            this.btn_Maximise = new System.Windows.Forms.Button();
             this.btn_Exit = new System.Windows.Forms.Button();
+            this.btn_Login = new System.Windows.Forms.Button();
+            this.pnl_ExitFormLogin = new System.Windows.Forms.Panel();
+            this.txt_UserName = new System.Windows.Forms.TextBox();
             this.pnl_Notify = new System.Windows.Forms.Panel();
             this.pnl_form.SuspendLayout();
-            this.pnl_TitleBar.SuspendLayout();
             this.pnl_Index.SuspendLayout();
             this.pnl_IndexBar.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -112,76 +111,20 @@
             this.pnl_MsgChat_1.SuspendLayout();
             this.pnl_GameBoard.SuspendLayout();
             this.pnl_ChatControl.SuspendLayout();
+            this.pnl_TitleBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnl_form
             // 
+            this.pnl_form.Controls.Add(this.pnl_GamePlay);
             this.pnl_form.Controls.Add(this.pnl_Index);
             this.pnl_form.Controls.Add(this.pnl_Common);
-            this.pnl_form.Controls.Add(this.pnl_GamePlay);
             this.pnl_form.Controls.Add(this.pnl_TitleBar);
             this.pnl_form.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_form.Location = new System.Drawing.Point(0, 0);
             this.pnl_form.Name = "pnl_form";
             this.pnl_form.Size = new System.Drawing.Size(873, 644);
             this.pnl_form.TabIndex = 0;
-            // 
-            // pnl_TitleBar
-            // 
-            this.pnl_TitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.pnl_TitleBar.Controls.Add(this.btn_Previous);
-            this.pnl_TitleBar.Controls.Add(this.btn_Minimise);
-            this.pnl_TitleBar.Controls.Add(this.btn_Maximise);
-            this.pnl_TitleBar.Controls.Add(this.btn_Exit);
-            this.pnl_TitleBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnl_TitleBar.Location = new System.Drawing.Point(0, 0);
-            this.pnl_TitleBar.Name = "pnl_TitleBar";
-            this.pnl_TitleBar.Size = new System.Drawing.Size(873, 34);
-            this.pnl_TitleBar.TabIndex = 0;
-            this.pnl_TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnl_titleBar_MouseDown);
-            // 
-            // btn_Maximise
-            // 
-            this.btn_Maximise.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btn_Maximise.Enabled = false;
-            this.btn_Maximise.FlatAppearance.BorderSize = 0;
-            this.btn_Maximise.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
-            this.btn_Maximise.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
-            this.btn_Maximise.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
-            this.btn_Maximise.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Maximise.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_Maximise.Location = new System.Drawing.Point(793, 0);
-            this.btn_Maximise.Name = "btn_Maximise";
-            this.btn_Maximise.Size = new System.Drawing.Size(40, 34);
-            this.btn_Maximise.TabIndex = 1;
-            this.btn_Maximise.Text = "o";
-            this.btn_Maximise.UseVisualStyleBackColor = true;
-            this.btn_Maximise.Click += new System.EventHandler(this.btn_Maximise_Click);
-            // 
-            // btn_Login
-            // 
-            this.btn_Login.Location = new System.Drawing.Point(108, 86);
-            this.btn_Login.Name = "btn_Login";
-            this.btn_Login.Size = new System.Drawing.Size(75, 23);
-            this.btn_Login.TabIndex = 1;
-            this.btn_Login.Text = "Done";
-            this.btn_Login.UseVisualStyleBackColor = true;
-            this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
-            // 
-            // pnl_ExitFormLogin
-            // 
-            this.pnl_ExitFormLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.pnl_ExitFormLogin.Location = new System.Drawing.Point(241, 14);
-            this.pnl_ExitFormLogin.Name = "pnl_ExitFormLogin";
-            this.pnl_ExitFormLogin.Size = new System.Drawing.Size(21, 19);
-            this.pnl_ExitFormLogin.TabIndex = 2;
-            // 
-            // txt_UserName
-            // 
-            this.txt_UserName.Location = new System.Drawing.Point(73, 52);
-            this.txt_UserName.Name = "txt_UserName";
-            this.txt_UserName.Size = new System.Drawing.Size(134, 20);
-            this.txt_UserName.TabIndex = 0;
             // 
             // pnl_Index
             // 
@@ -888,10 +831,28 @@
             // 
             // txt_Message
             // 
-            this.txt_Message.Location = new System.Drawing.Point(253, 36);
+            this.txt_Message.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.txt_Message.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txt_Message.Font = new System.Drawing.Font("Carter One", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Message.ForeColor = System.Drawing.SystemColors.Window;
+            this.txt_Message.Location = new System.Drawing.Point(256, 35);
             this.txt_Message.Name = "txt_Message";
-            this.txt_Message.Size = new System.Drawing.Size(312, 20);
+            this.txt_Message.Size = new System.Drawing.Size(312, 26);
             this.txt_Message.TabIndex = 0;
+            // 
+            // pnl_TitleBar
+            // 
+            this.pnl_TitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.pnl_TitleBar.Controls.Add(this.btn_Previous);
+            this.pnl_TitleBar.Controls.Add(this.btn_Minimise);
+            this.pnl_TitleBar.Controls.Add(this.btn_Maximise);
+            this.pnl_TitleBar.Controls.Add(this.btn_Exit);
+            this.pnl_TitleBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnl_TitleBar.Location = new System.Drawing.Point(0, 0);
+            this.pnl_TitleBar.Name = "pnl_TitleBar";
+            this.pnl_TitleBar.Size = new System.Drawing.Size(873, 34);
+            this.pnl_TitleBar.TabIndex = 0;
+            this.pnl_TitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnl_titleBar_MouseDown);
             // 
             // btn_Previous
             // 
@@ -927,6 +888,24 @@
             this.btn_Minimise.UseVisualStyleBackColor = true;
             this.btn_Minimise.Click += new System.EventHandler(this.btn_Minimise_Click);
             // 
+            // btn_Maximise
+            // 
+            this.btn_Maximise.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btn_Maximise.Enabled = false;
+            this.btn_Maximise.FlatAppearance.BorderSize = 0;
+            this.btn_Maximise.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btn_Maximise.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.btn_Maximise.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DimGray;
+            this.btn_Maximise.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Maximise.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_Maximise.Location = new System.Drawing.Point(793, 0);
+            this.btn_Maximise.Name = "btn_Maximise";
+            this.btn_Maximise.Size = new System.Drawing.Size(40, 34);
+            this.btn_Maximise.TabIndex = 1;
+            this.btn_Maximise.Text = "o";
+            this.btn_Maximise.UseVisualStyleBackColor = true;
+            this.btn_Maximise.Click += new System.EventHandler(this.btn_Maximise_Click);
+            // 
             // btn_Exit
             // 
             this.btn_Exit.Dock = System.Windows.Forms.DockStyle.Right;
@@ -943,6 +922,30 @@
             this.btn_Exit.TabIndex = 0;
             this.btn_Exit.UseVisualStyleBackColor = true;
             this.btn_Exit.Click += new System.EventHandler(this.btn_Exit_Click);
+            // 
+            // btn_Login
+            // 
+            this.btn_Login.Location = new System.Drawing.Point(108, 86);
+            this.btn_Login.Name = "btn_Login";
+            this.btn_Login.Size = new System.Drawing.Size(75, 23);
+            this.btn_Login.TabIndex = 1;
+            this.btn_Login.Text = "Done";
+            this.btn_Login.UseVisualStyleBackColor = true;
+            // 
+            // pnl_ExitFormLogin
+            // 
+            this.pnl_ExitFormLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnl_ExitFormLogin.Location = new System.Drawing.Point(241, 14);
+            this.pnl_ExitFormLogin.Name = "pnl_ExitFormLogin";
+            this.pnl_ExitFormLogin.Size = new System.Drawing.Size(21, 19);
+            this.pnl_ExitFormLogin.TabIndex = 2;
+            // 
+            // txt_UserName
+            // 
+            this.txt_UserName.Location = new System.Drawing.Point(73, 52);
+            this.txt_UserName.Name = "txt_UserName";
+            this.txt_UserName.Size = new System.Drawing.Size(134, 20);
+            this.txt_UserName.TabIndex = 0;
             // 
             // pnl_Notify
             // 
@@ -964,7 +967,6 @@
             this.Name = "Frm_Index";
             this.Text = "Form3";
             this.pnl_form.ResumeLayout(false);
-            this.pnl_TitleBar.ResumeLayout(false);
             this.pnl_Index.ResumeLayout(false);
             this.pnl_IndexBar.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -988,6 +990,7 @@
             this.pnl_GameBoard.ResumeLayout(false);
             this.pnl_ChatControl.ResumeLayout(false);
             this.pnl_ChatControl.PerformLayout();
+            this.pnl_TitleBar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
