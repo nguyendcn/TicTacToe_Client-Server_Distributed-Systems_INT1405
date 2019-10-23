@@ -102,6 +102,8 @@
     <Compile Include="Models\ResponseCallbackObject.cs" />
     <Compile Include="Models\TablePropertiesBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLServer\DBSQLServerUtils.cs" />
+    <Compile Include="SQLServer\DBUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

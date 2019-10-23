@@ -1,8 +1,11 @@
 ﻿using DCN.TicTacToe.Server;
+using DCN.TicTacToe.Shared.SQLServer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +18,11 @@ namespace DCN.TicTacToe.UI.Server
     {
         private DCN.TicTacToe.Server.Server server;
         private Timer updateListTimer;
+        private Timer autoSendData;
+        private List<int> listDataByTime;
+
+        private SqlConnection sqlConnection;
+
 
         public Frm_Index()
         {
@@ -27,6 +35,103 @@ namespace DCN.TicTacToe.UI.Server
             updateListTimer.Interval = 1000;
             updateListTimer.Tick += UpdateListTimer_Tick;
             updateListTimer.Start();
+
+            autoSendData = new Timer();
+            autoSendData.Interval = 1000;
+            autoSendData.Tick += AutoSendData_Tick;
+            listDataByTime = new List<int>();
+
+            try
+            {
+                sqlConnection = DBUtils.GetDBConnection();
+                sqlConnection.Open();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Can not open connection.");
+            }
+           
+        }
+
+        private void DeleteAllRow()
+        {
+            try
+            {
+                string sql = "Delete from tbl_online";
+
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.Connection = sqlConnection;
+                cmd.CommandText = sql;
+
+                int rowCount = cmd.ExecuteNonQuery();
+
+                Debug.WriteLine("Row Count delete affected = " + rowCount);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("Error: " + exception);
+                Console.WriteLine(exception.StackTrace);
+            }
+            finally
+            {
+            //    sqlConnection.Close();
+            //    sqlConnection.Dispose();
+            //    sqlConnection = null;
+            }
+        }
+
+        private void UpdateListOnline()
+        {
+            if(listDataByTime.Count >= 30)
+                listDataByTime.RemoveAt(0);
+            listDataByTime.Add(GetQuantityConnect());
+        }
+
+        private void UpdateToDataBase()
+        {
+            try
+            {
+                SqlCommand cmd = sqlConnection.CreateCommand();
+
+                string sql_1 = "Insert into tbl_online (Id, Quantity) values (";
+                string sql_2 = ");  ";
+                string sql = "";
+
+                for (int i = 0;i < listDataByTime.Count; i++)
+                {
+                    sql += sql_1 + (i + 1) + ", " + listDataByTime[i] + sql_2;
+                }
+                // Câu lệnh Insert.
+                
+
+                cmd.CommandText = sql;
+
+                // Thực thi Command (Dùng cho delete, insert, update).
+                int rowCount = cmd.ExecuteNonQuery();
+
+                Console.WriteLine("Row Count add affected = " + rowCount);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e);
+                Console.WriteLine(e.StackTrace);
+            }
+            finally
+            {
+                //sqlConnection.Close();
+                //sqlConnection.Dispose();
+                //sqlConnection = null;
+            }
+        }
+
+        private void AutoSendData_Tick(object sender, EventArgs e)
+        {
+            DeleteAllRow();
+
+            UpdateListOnline();
+
+            UpdateToDataBase();
         }
 
         private void RegisterEvents()
@@ -130,5 +235,9 @@ namespace DCN.TicTacToe.UI.Server
             return count;
         }
 
+        private void btn_AutoSendData_Click(object sender, EventArgs e)
+        {
+            autoSendData.Start();
+        }
     }
 }
